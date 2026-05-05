@@ -1,0 +1,62 @@
+---
+import type { GetStaticPaths } from "astro";
+import BackToTop from "../components/control/BackToTop.astro";
+import Footer from "../components/Footer.astro";
+import HomeHero from "../components/HomeHero.astro";
+import Navbar from "../components/Navbar.astro";
+import Pagination from "../components/control/Pagination.astro";
+import PostPage from "../components/PostPage.astro";
+import { PAGE_SIZE } from "../constants/constants";
+import Layout from "../layouts/Layout.astro";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { getSortedPosts } from "../utils/content-utils";
+
+export const getStaticPaths = (async ({ paginate }) => {
+	const allBlogPosts = await getSortedPosts();
+	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
+}) satisfies GetStaticPaths;
+// https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
+
+const { page } = Astro.props;
+
+const len = page.data.length;
+const isFirstPage = page.currentPage === 1;
+---
+
+{isFirstPage ? (
+	<Layout>
+		<div class="home-page min-h-screen">
+			<div class="home-navbar fixed left-0 right-0 top-0 z-50 px-3 md:px-6">
+				<Navbar class="home-navbar-card" />
+			</div>
+
+			<HomeHero />
+
+			<main id="swup-container" class="transition-swup-fade">
+				<div id="content-wrapper" class="home-content onload-animation mx-auto w-full max-w-[var(--page-width)] px-4 pb-16 pt-10 md:px-6 md:pt-14">
+					<PostPage page={page} variant="home" />
+					<Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`} />
+					<Footer />
+				</div>
+			</main>
+
+			<BackToTop />
+		</div>
+		<script>
+			function updateHomeNavbar() {
+				const navbar = document.querySelector(".home-navbar");
+				if (!navbar) return;
+				navbar.classList.toggle("home-navbar-scrolled", window.scrollY > window.innerHeight * 0.72);
+			}
+
+			updateHomeNavbar();
+			window.addEventListener("scroll", updateHomeNavbar, { passive: true });
+			window.addEventListener("resize", updateHomeNavbar);
+		</script>
+	</Layout>
+) : (
+	<MainGridLayout>
+		<PostPage page={page}></PostPage>
+		<Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
+	</MainGridLayout>
+)}

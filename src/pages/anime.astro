@@ -1,0 +1,18 @@
+---
+import AnimePage from "../components/AnimePage.astro";
+import { ANIME_PAGE_SIZE, filterAnimeItems, getBangumiAnimeList } from "../utils/anime";
+
+const { items, state } = await getBangumiAnimeList();
+const filteredItems = filterAnimeItems(items, "all");
+const pagedItems = filteredItems.slice(0, ANIME_PAGE_SIZE);
+const totalPages = Math.max(1, Math.ceil(filteredItems.length / ANIME_PAGE_SIZE));
+---
+
+<AnimePage
+	items={pagedItems}
+	state={state}
+	activeFilter="all"
+	currentPage={1}
+	totalPages={totalPages}
+	totalItems={filteredItems.length}
+/>

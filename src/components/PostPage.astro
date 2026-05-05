@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getPostUrlBySlug } from "@utils/url-utils";
+import PostCard from "./PostCard.astro";
+
+interface Props {
+	page: {
+		currentPage: number;
+		data: CollectionEntry<"posts">[];
+	};
+	variant?: "default" | "home";
+}
+
+const { page, variant = "default" } = Astro.props as Props;
+
+let delay = 0;
+const interval = 50;
+const isHome = variant === "home";
+---
+
+<section id="home-posts" class:list={["mb-4", { "pt-2": isHome }]}>
+	<div class:list={["mb-4 flex items-end justify-between gap-4 px-1", { "md:mb-6": isHome }]}>
+		<div>
+			<div class="text-xs font-semibold uppercase tracking-[0.24em] text-50">Latest Posts</div>
+			<h2 class="mt-2 text-2xl font-semibold text-90 md:text-3xl">Recent Posts</h2>
+		</div>
+		<div class="hidden text-sm text-50 md:block">Notes, projects, and records.</div>
+	</div>
+	<div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4">
+		{page.data.map((entry: CollectionEntry<"posts">) => (
+			<PostCard
+				entry={entry}
+				title={entry.data.title}
+				tags={entry.data.tags}
+				category={entry.data.category}
+				published={entry.data.published}
+				updated={entry.data.updated}
+				url={getPostUrlBySlug(entry.slug)}
+				image={entry.data.image}
+				description={entry.data.description}
+				draft={entry.data.draft}
+				class:list="onload-animation"
+				style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
+			/>
+		))}
+	</div>
+</section>

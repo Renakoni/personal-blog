@@ -1,0 +1,42 @@
+---
+import type { GetStaticPaths } from "astro";
+import AnimePage from "../../../../components/AnimePage.astro";
+import {
+	ANIME_PAGE_SIZE,
+	animeFilters,
+	filterAnimeItems,
+	getBangumiAnimeList,
+	type AnimeFilterKey,
+} from "../../../../utils/anime";
+
+export const getStaticPaths = (async () => {
+	const { items } = await getBangumiAnimeList();
+	return animeFilters
+		.filter((item) => item.key !== "all")
+		.flatMap((filter) => {
+			const filteredItems = filterAnimeItems(items, filter.key);
+			const totalPages = Math.ceil(filteredItems.length / ANIME_PAGE_SIZE);
+			return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => ({
+				params: { filter: filter.key, page: String(index + 2) },
+			}));
+		});
+}) satisfies GetStaticPaths;
+
+const filter = Astro.params.filter as AnimeFilterKey;
+const page = Number(Astro.params.page || "1");
+const { items, state } = await getBangumiAnimeList();
+const filteredItems = filterAnimeItems(items, filter);
+const totalPages = Math.max(1, Math.ceil(filteredItems.length / ANIME_PAGE_SIZE));
+const start = (page - 1) * ANIME_PAGE_SIZE;
+const pagedItems = filteredItems.slice(start, start + ANIME_PAGE_SIZE);
+---
+
+<AnimePage
+	items={pagedItems}
+	state={state}
+	activeFilter={filter}
+	currentPage={page}
+	totalPages={totalPages}
+	totalItems={filteredItems.length}
+	pageTitle={`Anime - ${animeFilters.find((item) => item.key === filter)?.label || "Filter"} - Page ${page}`}
+/>
