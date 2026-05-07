@@ -1,0 +1,34 @@
+[    9059ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[    9060ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[    9967ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[    9968ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[   31318ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:366
+[   31350ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[   31350ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[   57828ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:366
+[   57955ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[   57955ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  119074ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  119074ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  201188ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:366
+[  201219ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  201220ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  202450ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:366
+[  202524ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  202524ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  258075ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  258076ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  258270ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://api.github.com/repos/saicaca/fuwari:0
+[  258277ms] [WARNING] [GITHUB-CARD] (Error) Loading card for saicaca/fuwari | GCjkqe69. @ :15
+[  262574ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  262574ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  267033ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  267034ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  267128ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://api.github.com/repos/saicaca/fuwari:0
+[  267130ms] [WARNING] [GITHUB-CARD] (Error) Loading card for saicaca/fuwari | GCjkqe69. @ :15
+[  269392ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:366
+[  269410ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  269411ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  290253ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:366
+[  290410ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  290411ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127

@@ -1,6 +1,24 @@
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { siteConfig } from "../config";
 
 export type CollectionType = 1 | 2 | 3;
+
+type BangumiSubject = {
+	date?: string;
+	eps?: number | string;
+	total_episodes?: number | string;
+	id?: number | string;
+	images?: {
+		large?: string;
+		common?: string;
+		medium?: string;
+	};
+	infobox?: Array<{ key?: string; value?: any }>;
+	name?: string;
+	name_cn?: string;
+};
 
 export type AnimeItem = {
 	id: number | string;
@@ -10,16 +28,34 @@ export type AnimeItem = {
 	type: CollectionType;
 	date: string;
 	episodes: string;
-	staff: string;
+	details: string;
+	detailsPrimary: string;
+	detailsSecondary: string;
 	cover: string;
 };
 
 export type LoadState = {
-	source: "bangumi" | "fallback";
+	source: "cache" | "fallback";
 	message: string;
 };
 
+type BangumiAnimeListResult = {
+	items: AnimeItem[];
+	state: LoadState;
+};
+
+type AnimeCachePayload = {
+	generatedAt: string;
+	userId: string;
+	items: AnimeItem[];
+};
+
 export const ANIME_PAGE_SIZE = 12;
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const projectRoot = path.resolve(__dirname, "../..");
+const animeCachePath = path.join(projectRoot, "src", "data", "anime-cache.json");
+const animeCoverDir = path.join(projectRoot, "public", "anime-covers");
 
 export const fallbackAnimeList: AnimeItem[] = [
 	{
@@ -30,7 +66,9 @@ export const fallbackAnimeList: AnimeItem[] = [
 		type: 2,
 		date: "2015年7月3日",
 		episodes: "11话",
-		staff: "岸诚二 / 森田和明",
+		details: "11话 / 2015年7月3日 / 岸诚二 / 森田和明",
+		detailsPrimary: "11话 / 2015年7月3日",
+		detailsSecondary: "岸诚二 / 森田和明",
 		cover: "https://lain.bgm.tv/r/400/pic/cover/l/c9/76/278614_jcIuC.jpg",
 	},
 	{
@@ -41,7 +79,9 @@ export const fallbackAnimeList: AnimeItem[] = [
 		type: 2,
 		date: "2020年1月11日",
 		episodes: "12话",
-		staff: "后藤圭二 / 本多孝敏",
+		details: "12话 / 2020年1月11日 / 后藤圭二 / 城平京（講談社タイガ刊）；漫画：片瀬茶柴（講談社『月刊少年マガジン』『少年マガジンR』連載） / 本多孝敏",
+		detailsPrimary: "12话 / 2020年1月11日",
+		detailsSecondary: "後藤圭二 / 城平京（講談社タイガ刊）；漫画：片瀬茶柴（講談社『月刊少年マガジン』『少年マガジンR』連載） / 本多孝敏",
 		cover: "https://lain.bgm.tv/r/400/pic/cover/l/e9/53/289906_6DZN6.jpg",
 	},
 	{
@@ -52,7 +92,9 @@ export const fallbackAnimeList: AnimeItem[] = [
 		type: 1,
 		date: "2023年9月29日",
 		episodes: "28话",
-		staff: "斋藤圭一郎 / 长泽礼子",
+		details: "28话 / 2023年9月29日 / 山田鐘人・アベツカサ / 斋藤圭一郎 / 長澤礼子 / MADHOUSE",
+		detailsPrimary: "28话 / 2023年9月29日",
+		detailsSecondary: "山田鐘人・アベツカサ / 斋藤圭一郎 / 長澤礼子 / MADHOUSE",
 		cover: "https://lain.bgm.tv/r/400/pic/cover/l/c3/0f/306626_1Z24X.jpg",
 	},
 ];
@@ -84,43 +126,115 @@ export function formatDate(date: string | undefined): string {
 	return `${parts[0]}年${Number(parts[1])}月${Number(parts[2])}日`;
 }
 
-export function pickEpisodes(subject: any): string {
+export function pickEpisodes(subject: BangumiSubject): string {
 	const raw = subject?.eps ?? subject?.total_episodes;
 	if (!raw || Number(raw) <= 0) return "话数未知";
 	return `${raw}话`;
 }
 
-export function pickStaff(subject: any): string {
-	const infobox = Array.isArray(subject?.infobox) ? subject.infobox : [];
-	const picks: string[] = [];
-
-	for (const item of infobox) {
-		const key = String(item?.key || "");
-		if (key === "导演" || key === "监督") {
-			const value = Array.isArray(item?.value)
-				? item.value.map((entry: any) => entry?.v).filter(Boolean).join(" / ")
-				: String(item?.value || "");
-			if (value) picks.push(value);
-		}
-		if (key === "人物设定" || key === "人设" || key === "キャラクターデザイン") {
-			const value = Array.isArray(item?.value)
-				? item.value.map((entry: any) => entry?.v).filter(Boolean).join(" / ")
-				: String(item?.value || "");
-			if (value) picks.push(value);
-		}
-		if (picks.length >= 2) break;
+function flattenInfoboxValue(value: any): string {
+	if (Array.isArray(value)) {
+		return value.map((entry) => flattenInfoboxValue(entry)).filter(Boolean).join(" / ");
 	}
-
-	return picks.length > 0 ? picks.join(" / ") : "制作信息暂缺";
+	if (value && typeof value === "object") {
+		if ("v" in value) return flattenInfoboxValue(value.v);
+		if ("name" in value) return flattenInfoboxValue(value.name);
+		if ("k" in value) return flattenInfoboxValue(value.k);
+		return "";
+	}
+	return String(value || "").trim();
 }
 
-const BANGUMI_PAGE_SIZE = 50;
-const BANGUMI_MAX_PAGES = 20;
+function getInfobox(subject: BangumiSubject) {
+	return Array.isArray(subject?.infobox) ? subject.infobox : [];
+}
 
-export async function getBangumiAnimeList(): Promise<{
-	items: AnimeItem[];
-	state: LoadState;
-}> {
+function pickInfoboxDetail(subject: BangumiSubject, keys: string[]): string {
+	for (const item of getInfobox(subject)) {
+		const key = String(item?.key || "");
+		if (!keys.includes(key)) continue;
+		const value = flattenInfoboxValue(item?.value);
+		if (value) return value;
+	}
+	return "";
+}
+
+function pickInfoboxDetails(subject: BangumiSubject, keys: string[]): string[] {
+	const values: string[] = [];
+	for (const item of getInfobox(subject)) {
+		const key = String(item?.key || "");
+		if (!keys.includes(key)) continue;
+		const value = flattenInfoboxValue(item?.value);
+		if (value && !values.includes(value)) {
+			values.push(value);
+		}
+	}
+	return values;
+}
+
+function cleanDetailText(value: string): string {
+	return value.replace(/\s+/g, " ").replace(/\s*\/\s*/g, " / ").trim();
+}
+
+export function buildAnimeDetails(subject: BangumiSubject, date: string, episodes: string) {
+	const primaryParts: string[] = [];
+	if (episodes !== "话数未知") primaryParts.push(episodes);
+	if (date !== "日期未知") primaryParts.push(date);
+	const detailsPrimary = primaryParts.join(" / ") || "基础信息暂缺";
+
+	const secondaryParts: string[] = [];
+	const director = pickInfoboxDetail(subject, ["导演", "监督"]);
+	if (director) secondaryParts.push(director);
+
+	const sourceParts = pickInfoboxDetails(subject, ["原作", "漫画", "小说", "轻小说", "游戏", "作者"]);
+	for (const part of sourceParts) {
+		if (!secondaryParts.includes(part)) secondaryParts.push(part);
+	}
+
+	const staffParts = [
+		pickInfoboxDetail(subject, ["脚本", "系列构成", "シリーズ構成"]),
+		pickInfoboxDetail(subject, ["人物设定", "人设", "キャラクターデザイン"]),
+		pickInfoboxDetail(subject, ["动画制作", "アニメーション制作", "制作公司", "制作"]),
+	].filter(Boolean) as string[];
+	for (const part of staffParts) {
+		if (!secondaryParts.includes(part)) secondaryParts.push(part);
+	}
+
+	const detailsSecondary = cleanDetailText(secondaryParts.join(" / "));
+	const details = [detailsPrimary, detailsSecondary].filter(Boolean).join(" / ");
+
+	return {
+		details,
+		detailsPrimary,
+		detailsSecondary,
+	};
+}
+
+export async function readAnimeCache(): Promise<AnimeCachePayload | null> {
+	try {
+		const raw = await readFile(animeCachePath, "utf-8");
+		const parsed = JSON.parse(raw);
+		if (!parsed || !Array.isArray(parsed.items)) return null;
+		return parsed as AnimeCachePayload;
+	} catch {
+		return null;
+	}
+}
+
+export async function writeAnimeCache(payload: AnimeCachePayload) {
+		await mkdir(path.dirname(animeCachePath), { recursive: true });
+		await writeFile(animeCachePath, JSON.stringify(payload, null, 2) + "\n", "utf-8");
+}
+
+export function getAnimeCoverDir() {
+	return animeCoverDir;
+}
+
+export function getAnimeCachePath() {
+	return animeCachePath;
+}
+
+export async function getBangumiAnimeList(): Promise<BangumiAnimeListResult> {
 	const { userId, mode } = siteConfig.bangumi;
 	if (mode !== "bangumi" || !userId) {
 		return {
@@ -129,80 +243,21 @@ export async function getBangumiAnimeList(): Promise<{
 		};
 	}
 
-	const token = import.meta.env.BANGUMI_TOKEN;
-	if (!token) {
+	const cached = await readAnimeCache();
+	if (cached && cached.items.length > 0) {
 		return {
-			items: fallbackAnimeList,
-			state: { source: "fallback", message: "未检测到 BANGUMI_TOKEN，当前显示示例数据。" },
+			items: cached.items,
+			state: {
+				source: "cache",
+				message: `本地缓存已同步 ${cached.items.length} 条动画记录（${cached.generatedAt}）`,
+			},
 		};
 	}
 
-	try {
-		const allItems: AnimeItem[] = [];
-
-		for (let page = 0; page < BANGUMI_MAX_PAGES; page += 1) {
-			const offset = page * BANGUMI_PAGE_SIZE;
-			const response = await fetch(
-				`https://api.bgm.tv/v0/users/${encodeURIComponent(userId)}/collections?subject_type=2&limit=${BANGUMI_PAGE_SIZE}&offset=${offset}`,
-				{
-					headers: {
-						Accept: "application/json",
-						Authorization: `Bearer ${token}`,
-						"User-Agent": "fuwari-personal-blog/0.1",
-					},
-				},
-			);
-
-			if (!response.ok) {
-				return {
-					items: fallbackAnimeList,
-					state: { source: "fallback", message: `Bangumi 请求失败，HTTP ${response.status}。` },
-				};
-			}
-
-			const payload = await response.json();
-			const data = Array.isArray(payload.data) ? payload.data : [];
-
-			const pageItems = data
-				.map((item: any): AnimeItem | null => {
-					const subject = item.subject || {};
-					const type = Number(item.type || 2) as CollectionType;
-					if (type !== 1 && type !== 2 && type !== 3) return null;
-
-					const image =
-						subject.images?.large || subject.images?.common || subject.images?.medium;
-
-					return {
-						id: subject.id || item.subject_id,
-						title: subject.name_cn || subject.name || "未命名条目",
-						originalTitle: subject.name || subject.name_cn || "Unknown",
-						status: collectionStatusMap[type] || "看过",
-						type,
-						date: formatDate(subject.date),
-						episodes: pickEpisodes(subject),
-						staff: pickStaff(subject),
-						cover: normalizeCover(image),
-					};
-				})
-				.filter(Boolean) as AnimeItem[];
-
-			allItems.push(...pageItems);
-
-			if (data.length < BANGUMI_PAGE_SIZE) {
-				break;
-			}
-		}
-
-		return {
-			items: allItems,
-			state: { source: "bangumi", message: `已同步 ${allItems.length} 条动画记录` },
-		};
-	} catch {
-		return {
-			items: fallbackAnimeList,
-			state: { source: "fallback", message: "Bangumi 拉取异常，当前显示示例数据。" },
-		};
-	}
+	return {
+		items: fallbackAnimeList,
+		state: { source: "fallback", message: "未检测到 anime 缓存，当前显示示例数据。" },
+	};
 }
 
 export function filterAnimeItems(items: AnimeItem[], filterKey: AnimeFilterKey): AnimeItem[] {

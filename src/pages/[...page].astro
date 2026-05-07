@@ -32,7 +32,7 @@ const isFirstPage = page.currentPage === 1;
 
 			<HomeHero />
 
-			<main id="swup-container" class="transition-swup-fade">
+			<main class="transition-swup-fade">
 				<div id="content-wrapper" class="home-content onload-animation mx-auto w-full max-w-[var(--page-width)] px-4 pb-16 pt-10 md:px-6 md:pt-14">
 					<PostPage page={page} variant="home" />
 					<Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`} />

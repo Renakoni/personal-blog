@@ -2,7 +2,13 @@
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import "../styles/variables.styl";
 import "../styles/main.css";
+import "../styles/transition.css";
+import "../styles/scrollbar.css";
+import "../styles/markdown.css";
+import "../styles/expressive-code.css";
+import "../styles/photoswipe.css";
 
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import { profileConfig, siteConfig } from "@/config";
@@ -153,7 +159,9 @@ const bannerOffset =
 		  data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
-		<slot />
+		<div id="page-shell">
+			<slot />
+		</div>
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
@@ -165,8 +173,8 @@ const bannerOffset =
 	'banner-height-home': `${BANNER_HEIGHT_HOME}vh`,
 	'banner-height': `${BANNER_HEIGHT}vh`,
 }}>
-@tailwind components;
-@layer components {
+	@reference "../styles/main.css";
+	@layer components {
 	.enable-banner.is-home #banner-wrapper {
 		@apply h-[var(--banner-height-home)] translate-y-[var(--banner-height-extend)]
 	}

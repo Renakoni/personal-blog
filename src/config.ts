@@ -46,10 +46,6 @@ export const siteConfig: SiteConfig = {
 export const navBarConfig: NavBarConfig = {
 	links: [
 		{
-			name: "Home",
-			url: "/",
-		},
-		{
 			name: "Blog",
 			url: "/#home-posts",
 		},
@@ -67,7 +63,7 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "GitHub",
-			url: "https://github.com/saicaca/fuwari", // Internal links should not include the base path, as it is automatically added
+			url: "https://github.com/Renakoni", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
@@ -93,7 +89,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/saicaca/fuwari",
+			url: "https://github.com/Renakoni",
 		},
 	],
 };

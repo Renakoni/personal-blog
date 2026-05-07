@@ -1,6 +1,6 @@
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import swup from "@swup/astro";
@@ -30,18 +30,13 @@ export default defineConfig({
 	base: "/",
 	trailingSlash: "always",
 	integrations: [
-		tailwind({
-			nesting: true,
-		}),
 		swup({
 			theme: false,
-			animationClass: "transition-swup-", // see https://swup.js.org/options/#animationselector
-			// the default value `transition-` cause transition delay
-			// when the Tailwind class `transition-all` is used
-			containers: ["main", "#toc"],
+			animationClass: "transition-swup-",
+			containers: ["#page-shell"],
 			smoothScrolling: true,
 			cache: false,
-			preload: true,
+			preload: false,
 			accessibility: true,
 			updateHead: true,
 			updateBodyClass: true,
@@ -61,12 +56,12 @@ export default defineConfig({
 				pluginCollapsibleSections(),
 				pluginLineNumbers(),
 				pluginLanguageBadge(),
-				pluginCustomCopyButton()
+				pluginCustomCopyButton(),
 			],
 			defaultProps: {
 				wrap: true,
 				overridesByLang: {
-					'shellsession': {
+					shellsession: {
 						showLineNumbers: false,
 					},
 				},
@@ -76,7 +71,8 @@ export default defineConfig({
 				borderRadius: "0.75rem",
 				borderColor: "none",
 				codeFontSize: "0.875rem",
-				codeFontFamily: "'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+				codeFontFamily:
+					"'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
 				codeLineHeight: "1.5rem",
 				frames: {
 					editorBackground: "var(--codeblock-bg)",
@@ -87,19 +83,19 @@ export default defineConfig({
 					editorActiveTabIndicatorBottomColor: "var(--primary)",
 					editorActiveTabIndicatorTopColor: "none",
 					editorTabBarBorderBottomColor: "var(--codeblock-topbar-bg)",
-					terminalTitlebarBorderBottomColor: "none"
+					terminalTitlebarBorderBottomColor: "none",
 				},
 				textMarkers: {
 					delHue: 0,
 					insHue: 180,
-					markHue: 250
-				}
+					markHue: 250,
+				},
 			},
 			frames: {
 				showCopyToClipboardButton: false,
-			}
+			},
 		}),
-        svelte(),
+		svelte(),
 		sitemap(),
 	],
 	markdown: {
@@ -154,10 +150,10 @@ export default defineConfig({
 		],
 	},
 	vite: {
+		plugins: [tailwindcss()],
 		build: {
 			rollupOptions: {
 				onwarn(warning, warn) {
-					// temporarily suppress this warning
 					if (
 						warning.message.includes("is dynamically imported by") &&
 						warning.message.includes("but also statically imported by")

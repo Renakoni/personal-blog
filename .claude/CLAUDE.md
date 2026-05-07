@@ -1,8 +1,4 @@
-# AGENTS.md
-
-Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
-
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+# CLAUDE.md
 
 ## 1. Think Before Coding
 
@@ -10,7 +6,7 @@ Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-s
 
 Before implementing:
 - State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
+- If multiple interpretations exist, present them — don't pick silently.
 - If a simpler approach exists, say so. Push back when warranted.
 - If something is unclear, stop. Name what's confusing. Ask.
 
@@ -34,7 +30,7 @@ When editing existing code:
 - Don't "improve" adjacent code, comments, or formatting.
 - Don't refactor things that aren't broken.
 - Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
+- If you notice unrelated dead code, mention it — don't delete it.
 
 When your changes create orphans:
 - Remove imports/variables/functions that YOUR changes made unused.
@@ -52,14 +48,25 @@ Transform tasks into verifiable goals:
 - "Refactor X" → "Ensure tests pass before and after"
 
 For multi-step tasks, state a brief plan:
-```
+
 1. [Step] → verify: [check]
 2. [Step] → verify: [check]
 3. [Step] → verify: [check]
-```
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
----
+## 5. Project Workflow
 
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+- Default local dev command for this project: `pnpm dev --host 127.0.0.1 --port 3000`
+- For frontend / webpage issues, do not guess.
+- For frontend / webpage issues, do not blindly overwrite existing code or structure.
+- For bug fixes, error diagnosis, rendering anomalies, route issues, performance work, loading problems, or other cases where behavior correctness is in question, use browser / web tooling (including Playwright / MCP tools when available) to reproduce and verify before concluding.
+- For routine non-bug feature additions or straightforward content / configuration updates, browser / MCP verification is not mandatory unless the change is risky or likely to affect existing behavior.
+- Prefer direct diagnosis, concrete fixes, and concise solution-first responses.
+- Keep explanations short; prioritize what changed, why it was broken, and how it was verified.
+
+## 6. Verification Expectations
+
+- When modifying webpage behavior or layout in a bug / error / performance context, verify the actual rendered result with browser tooling whenever available.
+- Distinguish clearly between code-level reasoning and browser-confirmed behavior.
+- If local dev instances, stale browser sessions, or cached sessions can affect results, call that out explicitly and re-verify on a clean instance.

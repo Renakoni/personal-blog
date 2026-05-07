@@ -1,0 +1,95 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm astro *)",
+      "Bash(pnpm dev *)",
+      "Bash(python *)",
+      "Bash(uv run *)",
+      "WebFetch(domain:bangumi.github.io)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_network_requests",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_tabs",
+      "mcp__playwright__browser_close",
+      "Skill(update-config)",
+      "Bash(powershell *)",
+      "WebFetch(domain:docs.astro.build)",
+      "Bash(pnpm build *)",
+      "WebSearch",
+      "WebFetch(domain:svelte.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:svelte-changelog.dev)",
+      "Bash(pnpm sync-anime *)",
+      "Bash(pnpm build:anime *)"
+    ]
+  },
+  "skillOverrides": {
+    "aeon": "off",
+    "arxiv-database": "user-invocable-only",
+    "bgpt-paper-search": "off",
+    "biorxiv-database": "off",
+    "citation-management": "off",
+    "dask": "off",
+    "docx": "name-only",
+    "exploratory-data-analysis": "off",
+    "fluidsim": "off",
+    "generate-image": "name-only",
+    "geo-database": "name-only",
+    "geomaster": "name-only",
+    "geopandas": "name-only",
+    "matlab": "user-invocable-only",
+    "openalex-database": "off",
+    "paper-2-web": "off",
+    "peer-review": "name-only",
+    "polars": "off",
+    "pubmed-database": "user-invocable-only",
+    "pufferlib": "user-invocable-only",
+    "pydicom": "user-invocable-only",
+    "pymc": "user-invocable-only",
+    "pymoo": "user-invocable-only",
+    "pyzotero": "user-invocable-only",
+    "research-grants": "user-invocable-only",
+    "research-lookup": "name-only",
+    "scholar-evaluation": "name-only",
+    "scientific-brainstorming": "name-only",
+    "scientific-critical-thinking": "name-only",
+    "scientific-schematics": "name-only",
+    "scientific-slides": "name-only",
+    "scientific-visualization": "name-only",
+    "scientific-writing": "name-only",
+    "scikit-learn": "user-invocable-only",
+    "scikit-survival": "user-invocable-only",
+    "seaborn": "name-only",
+    "shap": "user-invocable-only",
+    "stable-baselines3": "user-invocable-only",
+    "statistical-analysis": "user-invocable-only",
+    "statsmodels": "off",
+    "sympy": "name-only",
+    "timesfm-forecasting": "off",
+    "torch-geometric": "name-only",
+    "umap-learn": "name-only",
+    "vaex": "off",
+    "venue-templates": "name-only",
+    "what-if-oracle": "name-only",
+    "xlsx": "name-only",
+    "zarr-python": "user-invocable-only"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$connections = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue; if ($connections) { $owningProcesses = $connections | Select-Object -ExpandProperty OwningProcess -Unique; foreach ($procId in $owningProcesses) { try { Stop-Process -Id $procId -Force -ErrorAction Stop } catch {} } }",
+            "shell": "powershell",
+            "timeout": 20,
+            "statusMessage": "Clearing port 3000"
+          }
+        ]
+      }
+    ]
+  }
+}

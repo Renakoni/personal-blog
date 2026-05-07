@@ -1,0 +1,235 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e6]:
+      - link "Fuwari" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e8]:
+          - img [ref=e9]
+          - text: Fuwari
+      - generic [ref=e11]:
+        - link "Home" [ref=e12] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e13]: Home
+        - link "Blog" [ref=e14] [cursor=pointer]:
+          - /url: /#home-posts
+          - generic [ref=e15]: Blog
+        - link "Anime" [ref=e16] [cursor=pointer]:
+          - /url: /anime/
+          - generic [ref=e17]: Anime
+        - link "Projects" [ref=e18] [cursor=pointer]:
+          - /url: /projects/
+          - generic [ref=e19]: Projects
+        - link "About" [ref=e20] [cursor=pointer]:
+          - /url: /about/
+          - generic [ref=e21]: About
+        - link "GitHub" [ref=e22] [cursor=pointer]:
+          - /url: https://github.com/saicaca/fuwari
+          - generic [ref=e23]:
+            - text: GitHub
+            - img [ref=e24]
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - button "Search Panel" [ref=e28] [cursor=pointer]:
+            - img [ref=e260]
+          - generic:
+            - generic:
+              - img
+              - textbox "Search"
+        - button "Display Settings" [ref=e29] [cursor=pointer]:
+          - img [ref=e30]
+        - menu [ref=e33]:
+          - menuitem "Light/Dark Mode" [ref=e34] [cursor=pointer]:
+            - img [ref=e263]
+            - img [ref=e266]
+            - img [ref=e269]
+      - generic:
+        - link "Home":
+          - /url: /
+          - generic: Home
+          - img
+        - link "Blog":
+          - /url: /#home-posts
+          - generic: Blog
+          - img
+        - link "Anime":
+          - /url: /anime/
+          - generic: Anime
+          - img
+        - link "Projects":
+          - /url: /projects/
+          - generic: Projects
+          - img
+        - link "About":
+          - /url: /about/
+          - generic: About
+          - img
+        - link "GitHub":
+          - /url: https://github.com/saicaca/fuwari
+          - generic: GitHub
+          - img
+      - generic [ref=e35]:
+        - generic:
+          - generic:
+            - generic:
+              - text: 主题色
+              - button "Reset to Default":
+                - generic:
+                  - img
+            - generic:
+              - generic: "250"
+          - generic:
+            - slider "主题色": "250"
+    - main [ref=e905]:
+      - generic [ref=e907]:
+        - generic [ref=e908]:
+          - generic [ref=e909]:
+            - img [ref=e910]
+            - text: Anime
+          - heading "番剧记录" [level=1] [ref=e912]
+          - navigation "Anime filters" [ref=e913]:
+            - link "全部" [ref=e914] [cursor=pointer]:
+              - /url: /anime/
+            - link "想看" [ref=e915] [cursor=pointer]:
+              - /url: /anime/wish/
+            - link "看过" [ref=e916] [cursor=pointer]:
+              - /url: /anime/done/
+            - link "在看" [ref=e917] [cursor=pointer]:
+              - /url: /anime/watching/
+        - generic [ref=e918]:
+          - article [ref=e919]:
+            - generic [ref=e920]:
+              - img "福星小子2 绮丽梦中人 cover" [ref=e922]
+              - generic [ref=e923]:
+                - generic [ref=e924]:
+                  - generic [ref=e925]:
+                    - heading "福星小子2 绮丽梦中人" [level=2] [ref=e926]
+                    - generic [ref=e927]: うる星やつら2 ビューティフル・ドリーマー
+                  - generic [ref=e928]: 在看
+                - generic [ref=e929]:
+                  - generic [ref=e930]: 1话 / 1984年2月11日
+                  - generic [ref=e931]: 押井守 / 高橋留美子 / やまざきかずお
+          - article [ref=e932]:
+            - generic [ref=e933]:
+              - img "莉兹与青鸟 cover" [ref=e935]
+              - generic [ref=e936]:
+                - generic [ref=e937]:
+                  - generic [ref=e938]:
+                    - heading "莉兹与青鸟" [level=2] [ref=e939]
+                    - generic [ref=e940]: リズと青い鳥
+                  - generic [ref=e941]: 在看
+                - generic [ref=e942]:
+                  - generic [ref=e943]: 1话 / 2018年4月21日
+                  - generic [ref=e944]: 山田尚子 / 武田綾乃（宝島社文庫「響け！ユーフォニアム 北宇治高校吹奏楽部、波乱の第二楽章」） / 吉田玲子 / 西屋太志 / 京都アニメーション
+          - article [ref=e945]:
+            - generic [ref=e946]:
+              - img "昭和元禄落语心中 cover" [ref=e948]
+              - generic [ref=e949]:
+                - generic [ref=e950]:
+                  - generic [ref=e951]:
+                    - heading "昭和元禄落语心中" [level=2] [ref=e952]
+                    - generic [ref=e953]: 昭和元禄落語心中
+                  - generic [ref=e954]: 在看
+                - generic [ref=e955]:
+                  - generic [ref=e956]: 13话 / 2016年1月8日
+                  - generic [ref=e957]: 畠山守[小俣真一] / 雲田はるこ（講談社「ITAN」連載） / 熊谷純(1-3,9,12-13)、中西やすひろ(4,7,11)、待田堂子(5,8)、柿原優子(6,10) / 細居美恵子
+          - article [ref=e958]:
+            - generic [ref=e959]:
+              - img "星空清理者 cover" [ref=e961]
+              - generic [ref=e962]:
+                - generic [ref=e963]:
+                  - generic [ref=e964]:
+                    - heading "星空清理者" [level=2] [ref=e965]
+                    - generic [ref=e966]: プラネテス
+                  - generic [ref=e967]: 在看
+                - generic [ref=e968]:
+                  - generic [ref=e969]: 26话 / 2003年10月4日
+                  - generic [ref=e970]: 谷口悟朗 / 幸村誠 / 千羽由利子
+          - article [ref=e971]:
+            - generic [ref=e972]:
+              - img "Code Geass 反叛的鲁路修 cover" [ref=e974]
+              - generic [ref=e975]:
+                - generic [ref=e976]:
+                  - generic [ref=e977]:
+                    - heading "Code Geass 反叛的鲁路修" [level=2] [ref=e978]
+                    - generic [ref=e979]: コードギアス 反逆のルルーシュ
+                  - generic [ref=e980]: 在看
+                - generic [ref=e981]:
+                  - generic [ref=e982]: 25话 / 2006年10月5日
+                  - generic [ref=e983]: 谷口悟朗 / 大河内一楼 / 木村貴宏 / サンライズ
+          - article [ref=e984]:
+            - generic [ref=e985]:
+              - img "怪物 cover" [ref=e987]
+              - generic [ref=e988]:
+                - generic [ref=e989]:
+                  - generic [ref=e990]:
+                    - heading "怪物" [level=2] [ref=e991]
+                    - generic [ref=e992]: MONSTER
+                  - generic [ref=e993]: 在看
+                - generic [ref=e994]:
+                  - generic [ref=e995]: 74话 / 2004年4月6日
+                  - generic [ref=e996]: 小島正幸 / 浦沢直樹（小学館・ビッグコミックス刊） / 藤田しげる；ゲストキャラデザイン：濱田邦彦、宮脇千鶴、津幡佳明
+          - article [ref=e997]:
+            - generic [ref=e998]:
+              - img "昭和元禄落语心中 -助六再临篇- cover" [ref=e1000]
+              - generic [ref=e1001]:
+                - generic [ref=e1002]:
+                  - generic [ref=e1003]:
+                    - heading "昭和元禄落语心中 -助六再临篇-" [level=2] [ref=e1004]
+                    - generic [ref=e1005]: 昭和元禄落語心中 -助六再び篇-
+                  - generic [ref=e1006]: 在看
+                - generic [ref=e1007]:
+                  - generic [ref=e1008]: 12话 / 2017年1月6日
+                  - generic [ref=e1009]: 畠山守(小俣真一) / 雲田はるこ（講談社「ITAN」連載） / 熊谷純(1,4-5,12)、中西やすひろ(2,6,9)、待田堂子(3,7,10)、柿原優子(8,11) / 細居美恵子
+          - article [ref=e1010]:
+            - generic [ref=e1011]:
+              - img "家有女友 cover" [ref=e1013]
+              - generic [ref=e1014]:
+                - generic [ref=e1015]:
+                  - generic [ref=e1016]:
+                    - heading "家有女友" [level=2] [ref=e1017]
+                    - generic [ref=e1018]: ドメスティックな彼女
+                  - generic [ref=e1019]: 在看
+                - generic [ref=e1020]:
+                  - generic [ref=e1021]: 12话 / 2019年1月11日
+                  - generic [ref=e1022]: 流石景『ドメスティックな彼女』（講談社「週刊少年マガジン」連載）
+          - article [ref=e1023]:
+            - generic [ref=e1024]:
+              - img "来玩游戏吧 cover" [ref=e1026]
+              - generic [ref=e1027]:
+                - generic [ref=e1028]:
+                  - generic [ref=e1029]:
+                    - heading "来玩游戏吧" [level=2] [ref=e1030]
+                    - generic [ref=e1031]: あそびあそばせ
+                  - generic [ref=e1032]: 在看
+                - generic [ref=e1033]:
+                  - generic [ref=e1034]: 12话 / 2018年7月8日
+                  - generic [ref=e1035]: 岸誠二 / 涼川りん『あそびあそばせ』（白泉社「ヤングアニマル」連載） / 柿原優子 / 黒澤桂子 / Lerche(ラルケ)
+        - generic [ref=e1039]:
+          - text: © 2026 Lorem Ipsum. All Rights Reserved. /
+          - link "RSS" [ref=e1040] [cursor=pointer]:
+            - /url: /rss.xml
+          - text: /
+          - link "Sitemap" [ref=e1041] [cursor=pointer]:
+            - /url: /sitemap-index.xml
+          - text: Powered by
+          - link "Astro" [ref=e1042] [cursor=pointer]:
+            - /url: https://astro.build
+          - text: "&"
+          - link "Fuwari" [ref=e1043] [cursor=pointer]:
+            - /url: https://github.com/saicaca/fuwari
+  - paragraph [ref=e307]: "Navigated to: 番剧记录."
+  - generic [ref=e239]:
+    - button "Menu" [ref=e240]:
+      - img [ref=e242]
+      - generic: Menu
+    - button "Inspect" [ref=e246]:
+      - img [ref=e248]
+      - generic: Inspect
+    - button "Audit" [ref=e250]:
+      - generic [ref=e251]:
+        - img [ref=e252]
+        - img [ref=e1044]
+      - generic: Audit
+    - button "Settings" [ref=e255]:
+      - img [ref=e257]
+      - generic: Settings

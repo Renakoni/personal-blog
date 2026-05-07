@@ -1,0 +1,4 @@
+[     189ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4322/src/components/Search.svelte:134
+[     190ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4322/src/components/Search.svelte:127
+[    2083ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:4322/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:366
+[    7607ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:4322/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:366

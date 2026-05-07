@@ -1,0 +1,204 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e574]:
+    - generic [ref=e578]:
+      - link "Fuwari" [ref=e579] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e580]:
+          - img [ref=e581]
+          - text: Fuwari
+      - generic [ref=e583]:
+        - link "Home" [ref=e584] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e585]: Home
+        - link "Blog" [ref=e586] [cursor=pointer]:
+          - /url: /#home-posts
+          - generic [ref=e587]: Blog
+        - link "Anime" [ref=e588] [cursor=pointer]:
+          - /url: /anime/
+          - generic [ref=e589]: Anime
+        - link "Projects" [ref=e590] [cursor=pointer]:
+          - /url: /projects/
+          - generic [ref=e591]: Projects
+        - link "About" [ref=e592] [cursor=pointer]:
+          - /url: /about/
+          - generic [ref=e593]: About
+        - link "GitHub" [ref=e594] [cursor=pointer]:
+          - /url: https://github.com/saicaca/fuwari
+          - generic [ref=e595]:
+            - text: GitHub
+            - img [ref=e596]
+      - generic [ref=e598]:
+        - generic [ref=e599]:
+          - button "Search Panel" [ref=e600] [cursor=pointer]:
+            - img [ref=e601]
+          - generic:
+            - generic:
+              - img
+              - textbox "Search"
+        - button "Display Settings" [ref=e603] [cursor=pointer]:
+          - img [ref=e604]
+        - menu [ref=e607]:
+          - menuitem "Light/Dark Mode" [ref=e608] [cursor=pointer]:
+            - img [ref=e610]
+            - img [ref=e613]
+            - img [ref=e616]
+      - generic:
+        - link "Home":
+          - /url: /
+          - generic: Home
+          - img
+        - link "Blog":
+          - /url: /#home-posts
+          - generic: Blog
+          - img
+        - link "Anime":
+          - /url: /anime/
+          - generic: Anime
+          - img
+        - link "Projects":
+          - /url: /projects/
+          - generic: Projects
+          - img
+        - link "About":
+          - /url: /about/
+          - generic: About
+          - img
+        - link "GitHub":
+          - /url: https://github.com/saicaca/fuwari
+          - generic: GitHub
+          - img
+      - generic [ref=e618]:
+        - generic:
+          - generic:
+            - generic:
+              - text: 主题色
+              - button "Reset to Default":
+                - generic:
+                  - img
+            - generic:
+              - generic: "250"
+          - generic:
+            - slider "主题色": "250"
+    - generic [ref=e620]:
+      - generic [ref=e621]:
+        - generic [ref=e623]:
+          - link "Go to About Page" [ref=e624] [cursor=pointer]:
+            - /url: /about/
+            - generic:
+              - img
+            - img "Profile Image of the Author" [ref=e626]
+          - generic [ref=e627]:
+            - generic [ref=e628]: Lorem Ipsum
+            - generic [ref=e630]: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            - generic [ref=e631]:
+              - link "Twitter" [ref=e632] [cursor=pointer]:
+                - /url: https://twitter.com
+                - img [ref=e633]
+              - link "Steam" [ref=e635] [cursor=pointer]:
+                - /url: https://store.steampowered.com
+                - img [ref=e636]
+              - link "GitHub" [ref=e638] [cursor=pointer]:
+                - /url: https://github.com/saicaca/fuwari
+                - img [ref=e639]
+        - generic [ref=e641]:
+          - generic [ref=e642]:
+            - generic [ref=e643]: 分类
+            - generic [ref=e644]:
+              - link "View all posts in the Examples category" [ref=e645] [cursor=pointer]:
+                - /url: /archive/?category=Examples
+                - button "Examples 5" [ref=e646]:
+                  - generic [ref=e647]:
+                    - generic [ref=e648]: Examples
+                    - generic [ref=e649]: "5"
+              - link "View all posts in the Guides category" [ref=e650] [cursor=pointer]:
+                - /url: /archive/?category=Guides
+                - button "Guides 1" [ref=e651]:
+                  - generic [ref=e652]:
+                    - generic [ref=e653]: Guides
+                    - generic [ref=e654]: "1"
+          - generic [ref=e655]:
+            - generic [ref=e656]: 标签
+            - generic [ref=e658]:
+              - link "View all posts with the Blogging tag" [ref=e659] [cursor=pointer]:
+                - /url: /archive/?tag=Blogging
+                - text: Blogging
+              - link "View all posts with the Customization tag" [ref=e660] [cursor=pointer]:
+                - /url: /archive/?tag=Customization
+                - text: Customization
+              - link "View all posts with the Demo tag" [ref=e661] [cursor=pointer]:
+                - /url: /archive/?tag=Demo
+                - text: Demo
+              - link "View all posts with the Example tag" [ref=e662] [cursor=pointer]:
+                - /url: /archive/?tag=Example
+                - text: Example
+              - link "View all posts with the Fuwari tag" [ref=e663] [cursor=pointer]:
+                - /url: /archive/?tag=Fuwari
+                - text: Fuwari
+              - link "View all posts with the Markdown tag" [ref=e664] [cursor=pointer]:
+                - /url: /archive/?tag=Markdown
+                - text: Markdown
+              - link "View all posts with the Video tag" [ref=e665] [cursor=pointer]:
+                - /url: /archive/?tag=Video
+                - text: Video
+      - main [ref=e666]:
+        - generic [ref=e668]:
+          - generic [ref=e669]:
+            - generic [ref=e670]:
+              - img [ref=e671]
+              - text: Selected Work
+            - heading "Projects" [level=1] [ref=e673]
+            - paragraph [ref=e674]: "A place for things worth keeping visible: tools, experiments, notes, and finished work."
+          - generic [ref=e675]:
+            - link "Building Website Personal Blog A personal site based on Fuwari, redesigned with a stronger visual homepage and custom content pages." [ref=e676] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e677]:
+                - img [ref=e679]
+                - generic [ref=e681]: Building
+              - generic [ref=e682]: Website
+              - heading "Personal Blog" [level=2] [ref=e683]
+              - paragraph [ref=e684]: A personal site based on Fuwari, redesigned with a stronger visual homepage and custom content pages.
+            - link "Draft Collection Anime Shelf A curated watchlist page for anime notes, scores, and personal impressions." [ref=e685] [cursor=pointer]:
+              - /url: /anime/
+              - generic [ref=e686]:
+                - img [ref=e688]
+                - generic [ref=e690]: Draft
+              - generic [ref=e691]: Collection
+              - heading "Anime Shelf" [level=2] [ref=e692]
+              - paragraph [ref=e693]: A curated watchlist page for anime notes, scores, and personal impressions.
+            - link "Planned Placeholder Future Project Reserve this slot for a tool, research note, demo, or repository that deserves a short introduction." [ref=e694] [cursor=pointer]:
+              - /url: https://github.com/saicaca/fuwari
+              - generic [ref=e695]:
+                - img [ref=e697]
+                - generic [ref=e699]: Planned
+              - generic [ref=e700]: Placeholder
+              - heading "Future Project" [level=2] [ref=e701]
+              - paragraph [ref=e702]: Reserve this slot for a tool, research note, demo, or repository that deserves a short introduction.
+      - generic [ref=e706]:
+        - text: © 2026 Lorem Ipsum. All Rights Reserved. /
+        - link "RSS" [ref=e707] [cursor=pointer]:
+          - /url: /rss.xml
+        - text: /
+        - link "Sitemap" [ref=e708] [cursor=pointer]:
+          - /url: /sitemap-index.xml
+        - text: Powered by
+        - link "Astro" [ref=e709] [cursor=pointer]:
+          - /url: https://astro.build
+        - text: "&"
+        - link "Fuwari" [ref=e710] [cursor=pointer]:
+          - /url: https://github.com/saicaca/fuwari
+  - paragraph [ref=e319]: "Navigated to: Projects"
+  - generic [ref=e295]:
+    - button "Menu" [ref=e296]:
+      - img [ref=e298]
+      - generic: Menu
+    - button "Inspect" [ref=e302]:
+      - img [ref=e304]
+      - generic: Inspect
+    - button "Audit" [ref=e306]:
+      - generic [ref=e307]:
+        - img [ref=e308]
+        - img [ref=e711]
+      - generic: Audit
+    - button "Settings" [ref=e314]:
+      - img [ref=e316]
+      - generic: Settings

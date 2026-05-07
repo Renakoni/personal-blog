@@ -1,0 +1,117 @@
+[    1227ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep) @ http://127.0.0.1:4321/node_modules/.vite/deps/overlayscrollbars.js?v=816ae590:0
+[    1281ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep) @ http://127.0.0.1:4321/node_modules/.vite/deps/photoswipe_lightbox.js?v=0edc59bc:0
+[    1346ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep) @ http://127.0.0.1:4321/node_modules/.vite/deps/@iconify_svelte.js?v=9ec47888:0
+[    1346ms] [ERROR] [astro-island] Error hydrating /src/components/LightDarkSwitch.svelte TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:4321/src/components/LightDarkSwitch.svelte @ http://127.0.0.1:4321/anime/:6929
+[    1347ms] [ERROR] [astro-island] Error hydrating /src/components/Search.svelte TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:4321/src/components/Search.svelte @ http://127.0.0.1:4321/anime/:6929
+[    1347ms] [ERROR] [astro-island] Error hydrating /src/components/widget/DisplaySettings.svelte TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:4321/src/components/widget/DisplaySettings.svelte @ http://127.0.0.1:4321/anime/:6929
+[    1358ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-DZXYCHJQ.js:0
+[    1359ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-AI5MQ6H6.js:0
+[    1359ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-YTUOIDVC.js:0
+[    2227ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[    2227ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  428429ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:366
+[  429193ms] [WARNING] [swup] Container missing in current document: #toc @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:454
+[  429243ms] [ERROR] Error: [swup] Container mismatch, aborting
+    at http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:484:134
+    at http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:186:16
+    at new Promise (<anonymous>)
+    at g (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:185:10)
+    at E.run (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:304:26)
+    at E.call (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:287:29)
+    at async _.N [as renderPage] (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:483:140)
+    at async http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:430:198
+    at async E.run (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:304:20)
+    at async E.call (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:287:18) @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:434
+[  429643ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  429643ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  433721ms] [WARNING] [swup] Container missing in incoming document: #toc @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:454
+[  433740ms] [ERROR] Error: [swup] Container mismatch, aborting
+    at http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:484:134
+    at http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:186:16
+    at new Promise (<anonymous>)
+    at g (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:185:10)
+    at E.run (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:304:26)
+    at E.call (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:287:29)
+    at async _.N [as renderPage] (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:483:140)
+    at async http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:430:198
+    at async E.run (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:304:20)
+    at async E.call (http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:287:18) @ http://127.0.0.1:4321/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=a7fb7764:434
+[  433934ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  433934ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  539475ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  539475ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  539543ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4321/@vite/client:1650
+[  539607ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.setAppStatus (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:430:22)
+    at http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:292:18
+    at Array.forEach (<anonymous>)
+    at AstroDevToolbar.connectedCallback (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:291:15)
+    at HTMLDocument.<anonymous> (http://127.0.0.1:4321/@fs/E:/blog/fuwari/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/entrypoint.js?v=a7fb7764:229:17) @ http://127.0.0.1:4321/@vite/client:1568
+[  539607ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.setAppStatus (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:430:22)
+    at http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:292:18
+    at Array.forEach (<anonymous>)
+    at AstroDevToolbar.connectedCallback (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:291:15)
+    at HTMLDocument.<anonymous> (http://127.0.0.1:4321/@fs/E:/blog/fuwari/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/entrypoint.js?v=a7fb7764:229:17) @ http://127.0.0.1:4321/@vite/client:1568
+[  539608ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.setAppStatus (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:430:22)
+    at http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:292:18
+    at Array.forEach (<anonymous>)
+    at AstroDevToolbar.connectedCallback (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:291:15)
+    at HTMLDocument.<anonymous> (http://127.0.0.1:4321/@fs/E:/blog/fuwari/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/entrypoint.js?v=a7fb7764:229:17) @ http://127.0.0.1:4321/@vite/client:1568
+[  539608ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.setAppStatus (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:430:22)
+    at http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:292:18
+    at Array.forEach (<anonymous>)
+    at AstroDevToolbar.connectedCallback (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:291:15)
+    at HTMLDocument.<anonymous> (http://127.0.0.1:4321/@fs/E:/blog/fuwari/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/entrypoint.js?v=a7fb7764:229:17) @ http://127.0.0.1:4321/@vite/client:1568
+[  539608ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.setAppStatus (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:430:22)
+    at http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:292:18
+    at Array.forEach (<anonymous>)
+    at AstroDevToolbar.connectedCallback (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:291:15)
+    at HTMLDocument.<anonymous> (http://127.0.0.1:4321/@fs/E:/blog/fuwari/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/entrypoint.js?v=a7fb7764:229:17) @ http://127.0.0.1:4321/@vite/client:1568
+[  539653ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.initApp (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:345:25) @ http://127.0.0.1:4321/@vite/client:1568
+[  539653ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.initApp (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:345:25) @ http://127.0.0.1:4321/@vite/client:1568
+[  539654ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.initApp (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:345:25) @ http://127.0.0.1:4321/@vite/client:1568
+[  539654ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.initApp (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:345:25) @ http://127.0.0.1:4321/@vite/client:1568
+[  539666ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://127.0.0.1:4321/@vite/client:414:17)
+    at HMRClient.send (http://127.0.0.1:4321/@vite/client:136:20)
+    at HMRContext.send (http://127.0.0.1:4321/@vite/client:100:20)
+    at AstroDevToolbar.initApp (http://127.0.0.1:4321/node_modules/.pnpm/astro@5.13.10_@types+node@24.5.2_jiti@1.21.7_lightningcss@1.29.3_rollup@2.79.2_sass@1.80.4_st_s7hqsa4qywm5m5vu4ywkwg7ioa/node_modules/astro/dist/runtime/client/dev-toolbar/toolbar.js?v=a7fb7764:345:25) @ http://127.0.0.1:4321/@vite/client:1568
+[  556466ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  556467ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127
+[  557425ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:4321/src/components/Search.svelte:134
+[  557425ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:4321/src/components/Search.svelte:127

@@ -22,15 +22,18 @@ const {
 	activeFilter,
 	currentPage,
 	totalPages,
-	totalItems,
 	pageTitle = "Anime",
 } = Astro.props;
 
-const activeFilterMeta =
-	animeFilters.find((item) => item.key === activeFilter) || animeFilters[0];
 const pageLinks = Array.from({ length: totalPages }, (_, index) => index + 1);
 const prevUrl = currentPage > 1 ? getAnimePageUrl(activeFilter, currentPage - 1) : null;
 const nextUrl = currentPage < totalPages ? getAnimePageUrl(activeFilter, currentPage + 1) : null;
+
+const statusClasses: Record<number, string> = {
+	1: "bg-[oklch(0.97_0.04_95)] text-[oklch(0.56_0.13_95)] ring-[oklch(0.86_0.06_95)] dark:bg-[oklch(0.31_0.03_95)] dark:text-[oklch(0.84_0.10_95)] dark:ring-[oklch(0.42_0.04_95)]",
+	2: "bg-[oklch(0.96_0.03_160)] text-[oklch(0.52_0.12_160)] ring-[oklch(0.84_0.05_160)] dark:bg-[oklch(0.30_0.03_160)] dark:text-[oklch(0.82_0.10_160)] dark:ring-[oklch(0.40_0.04_160)]",
+	3: "bg-[oklch(0.96_0.03_245)] text-[oklch(0.53_0.10_245)] ring-[oklch(0.85_0.04_245)] dark:bg-[oklch(0.29_0.03_245)] dark:text-[oklch(0.80_0.09_245)] dark:ring-[oklch(0.40_0.03_245)]",
+};
 ---
 
 <Layout title={pageTitle} description="Bangumi 动画记录">
@@ -41,37 +44,29 @@ const nextUrl = currentPage < totalPages ? getAnimePageUrl(activeFilter, current
 			</div>
 		</div>
 
-		<main id="swup-container" class="transition-swup-fade">
+		<main>
 			<section class="mx-auto w-full max-w-[var(--page-width)] px-4 pb-16 pt-24 md:px-6 md:pt-28">
-				<div class="mx-auto max-w-[56rem]">
-					<div class="card-base onload-animation border border-[var(--line-color)] px-6 py-7 md:px-8 md:py-8">
-						<div class="flex flex-wrap items-start justify-between gap-4">
-							<div>
-								<div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-50">
-									<Icon name="material-symbols:movie-outline" class="text-xl text-[var(--primary)]" />
-									Anime
-								</div>
-								<h1 class="mt-3 text-4xl font-semibold leading-tight text-90 md:text-5xl">番剧</h1>
-								<p class="mt-4 max-w-2xl text-sm leading-7 text-75 md:text-base md:leading-8">
-									单栏展示的动画记录页。当前分类为“{activeFilterMeta.label}”，本页显示 {items.length} / {totalItems} 条记录。
-								</p>
-							</div>
-							<div class:list={["rounded-full px-4 py-2 text-sm font-semibold", state.source === "bangumi"
-								? "bg-[var(--btn-regular-bg)] text-[var(--primary)]"
-								: "bg-[var(--btn-regular-bg)] text-[var(--btn-content)]"]}>
+				<div class="mx-auto max-w-[62rem] space-y-6">
+					<header class="px-1">
+						<div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-50">
+							<Icon name="material-symbols:movie-outline" class="text-xl text-[var(--primary)]" />
+							Anime
+						</div>
+						<h1 class="mt-3 text-4xl font-semibold leading-tight text-90 md:text-5xl">番剧记录</h1>
+						{state.source === "fallback" && (
+							<div class="mt-4 rounded-2xl border border-[var(--line-color)] bg-[var(--btn-regular-bg)] px-4 py-3 text-sm text-[var(--btn-content)]">
 								{state.message}
 							</div>
-						</div>
-
-						<nav class="mt-6 flex flex-wrap gap-3 border-t border-[var(--line-color)] pt-5" aria-label="Anime filters">
+						)}
+						<nav class="mt-6 flex flex-wrap gap-3 border-t border-[var(--line-color)] pt-6" aria-label="Anime filters">
 							{animeFilters.map((filter) => (
 								<a
 									href={getAnimePageUrl(filter.key, 1)}
 									class:list={[
-										"inline-flex min-h-10 items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition",
+										"inline-flex min-h-11 items-center justify-center rounded-full border px-4 py-2.5 text-sm font-semibold transition active:scale-[0.98]",
 										filter.key === activeFilter
-											? "border-[color:var(--primary)] bg-[var(--btn-regular-bg)] text-[var(--primary)]"
-											: "border-[var(--line-color)] bg-[var(--card-bg)] text-75 hover:text-[var(--primary)] hover:border-[color:var(--primary)]",
+											? "border-[color:var(--primary)] bg-[var(--btn-regular-bg)] text-[var(--primary)] shadow-sm"
+											: "border-[var(--line-color)] bg-[var(--card-bg)] text-75 hover:border-[color:var(--primary)] hover:text-[var(--primary)] hover:bg-[var(--btn-card-bg-hover)]",
 									]}
 									aria-current={filter.key === activeFilter ? "page" : undefined}
 								>
@@ -79,16 +74,15 @@ const nextUrl = currentPage < totalPages ? getAnimePageUrl(activeFilter, current
 								</a>
 							))}
 						</nav>
-					</div>
+					</header>
 
-					<div class="mt-6 flex flex-col gap-4">
-						{items.map((anime, index) => (
+					<div class="flex flex-col gap-4">
+						{items.map((anime) => (
 							<article
-								class="card-base onload-animation overflow-hidden border border-[var(--line-color)] px-4 py-4 md:px-5"
-								style={`animation-delay: calc(var(--content-delay) + ${index * 40}ms);`}
+								class="card-base overflow-hidden border border-[var(--line-color)] p-4 shadow-[0_18px_50px_rgba(15,23,42,0.05)] md:p-5"
 							>
-								<div class="flex items-start gap-4 md:gap-5">
-									<div class="h-32 w-24 shrink-0 overflow-hidden rounded-2xl bg-[var(--btn-regular-bg)] md:h-40 md:w-28">
+								<div class="flex items-start gap-4 sm:gap-5">
+									<div class="h-36 w-24 shrink-0 overflow-hidden rounded-[1.15rem] bg-[var(--btn-regular-bg)] sm:h-40 sm:w-28">
 										{anime.cover ? (
 											<img
 												src={anime.cover}
@@ -105,23 +99,25 @@ const nextUrl = currentPage < totalPages ? getAnimePageUrl(activeFilter, current
 									</div>
 
 									<div class="min-w-0 flex-1">
-										<div class="flex flex-wrap items-center justify-between gap-3">
-											<div class="flex flex-wrap items-center gap-2">
-												<span class="inline-flex min-h-8 items-center rounded-full bg-[var(--btn-regular-bg)] px-3 text-xs font-semibold text-[var(--primary)]">
-													{anime.status}
-												</span>
-												<span class="inline-flex min-h-8 items-center rounded-full bg-[var(--btn-regular-bg)] px-3 text-xs font-semibold text-[var(--btn-content)]">
-													{anime.episodes}
-												</span>
+										<div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+											<div class="min-w-0">
+												<h2 class="text-2xl font-semibold leading-tight text-90 md:text-[1.9rem]">{anime.title}</h2>
+												{anime.originalTitle && anime.originalTitle !== anime.title && (
+													<div class="mt-2 text-sm font-medium leading-6 text-50">{anime.originalTitle}</div>
+												)}
 											</div>
-											<div class="text-sm font-medium text-50">{anime.date}</div>
+											<span class:list={[
+												"inline-flex items-center self-start rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none ring-1 ring-inset",
+												statusClasses[anime.type] || statusClasses[2],
+											]}>
+												{anime.status}
+											</span>
 										</div>
 
-										<h2 class="mt-4 text-2xl font-semibold leading-tight text-90">{anime.title}</h2>
-										{anime.originalTitle && anime.originalTitle !== anime.title && (
-											<div class="mt-2 text-sm font-medium leading-6 text-50">{anime.originalTitle}</div>
-										)}
-										<div class="mt-4 text-sm leading-7 text-75">{anime.staff}</div>
+										<div class="mt-4 space-y-2 text-sm leading-7 text-75 break-words">
+											<div>{anime.detailsPrimary}</div>
+											{anime.detailsSecondary && <div>{anime.detailsSecondary}</div>}
+										</div>
 									</div>
 								</div>
 							</article>
@@ -129,20 +125,20 @@ const nextUrl = currentPage < totalPages ? getAnimePageUrl(activeFilter, current
 					</div>
 
 					{totalPages > 1 && (
-						<nav class="mt-6 flex items-center justify-center gap-3 onload-animation" aria-label="Anime pagination">
+						<nav class="mt-2 flex items-center justify-center gap-3" aria-label="Anime pagination">
 							<a
 								href={prevUrl || undefined}
-								class:list={["btn-card h-11 w-11 rounded-lg overflow-hidden", { disabled: !prevUrl }]}
+								class:list={["btn-card h-11 w-11 rounded-xl overflow-hidden text-[var(--primary)]", { disabled: !prevUrl }]}
 								aria-disabled={prevUrl ? "false" : "true"}
 							>
 								<Icon name="material-symbols:chevron-left-rounded" class="text-[1.75rem]" />
 							</a>
-							<div class="flex flex-wrap items-center gap-2 rounded-xl bg-[var(--card-bg)] p-2">
+							<div class="flex flex-wrap items-center gap-2 rounded-2xl border border-[var(--line-color)] bg-[var(--card-bg)] p-2 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
 								{pageLinks.map((pageNumber) => (
 									<a
 										href={getAnimePageUrl(activeFilter, pageNumber)}
 										class:list={[
-											"flex h-10 min-w-10 items-center justify-center rounded-lg px-3 text-sm font-semibold transition",
+											"flex h-10 min-w-10 items-center justify-center rounded-xl px-3 text-sm font-semibold transition active:scale-[0.96]",
 											pageNumber === currentPage
 												? "bg-[var(--primary)] text-white dark:text-[var(--deep-text)]"
 												: "text-75 hover:bg-[var(--btn-card-bg-hover)] hover:text-[var(--primary)]",
@@ -155,7 +151,7 @@ const nextUrl = currentPage < totalPages ? getAnimePageUrl(activeFilter, current
 							</div>
 							<a
 								href={nextUrl || undefined}
-								class:list={["btn-card h-11 w-11 rounded-lg overflow-hidden", { disabled: !nextUrl }]}
+								class:list={["btn-card h-11 w-11 rounded-xl overflow-hidden text-[var(--primary)]", { disabled: !nextUrl }]}
 								aria-disabled={nextUrl ? "false" : "true"}
 							>
 								<Icon name="material-symbols:chevron-right-rounded" class="text-[1.75rem]" />
@@ -163,7 +159,7 @@ const nextUrl = currentPage < totalPages ? getAnimePageUrl(activeFilter, current
 						</nav>
 					)}
 
-					<div class="mt-8">
+					<div class="mt-6">
 						<Footer />
 					</div>
 				</div>
