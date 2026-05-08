@@ -1,9 +1,26 @@
 # About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
 
-::github{repo="saicaca/fuwari"}
+## 我是谁
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+大多数时候，我在写代码、折腾站点、整理自己的内容系统。
+
+我喜欢那种既有结构感、又保留情绪温度的东西：好看的界面、顺手的工具、能长期维护下去的个人项目，以及那些会在很久之后还想再回头看的作品。
+
+## 这里写什么
+
+这个站不会只放一种内容。
+
+- **Blog**：技术记录、站点改造、折腾过程、一些不那么正式的开发笔记
+- **Anime**：在看、补完、喜欢的作品，以及偶尔留下来的观后感
+- **Projects**：还在做的、做过的，或者只是暂时想先留个位置的项目和实验
+
+它更像一个长期维护中的个人归档，而不是一次性搭完的展示页。
+
+## 我喜欢什么
+
+我偏爱两种看起来不太一样、但其实很容易相遇的气质：
+
+- 二次元作品里那种细腻、夜色、情绪感与角色感
+- 极客世界里那种克制、结构、系统感与可维护性
+
+所以这个站会自然地长成现在这样：既想保留一点梦和审美，也想把内容整理得足够清楚、足够耐看。

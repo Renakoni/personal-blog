@@ -1,25 +1,196 @@
 ---
-
-import { getEntry, render } from "astro:content";
-import Markdown from "@components/misc/Markdown.astro";
+import { Icon } from "astro-icon/components";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 
-const aboutPost = await getEntry("spec", "about");
+const currentArc = ["站点视觉调整中", "文章与项目持续整理", "动画记录慢慢补完"];
 
-if (!aboutPost) {
-	throw new Error("About page content not found");
-}
+const identityLead = {
+	label: "Identity",
+	title: "我是谁",
+	support:
+		"平时主要写代码、改站，也会慢慢整理文章、项目和自己想留下来的东西。",
+};
 
-const { Content } = await render(aboutPost);
+const identitySections = [
+	{
+		label: "About",
+		title: "这里写什么",
+		items: [
+			{
+				name: "Blog",
+				text: "技术记录、站点改造、折腾过程，还有一些不那么正式的开发笔记。",
+			},
+			{
+				name: "Anime",
+				text: "在看、补完、喜欢的作品，以及偶尔留下来的观后感。",
+			},
+			{
+				name: "Projects",
+				text: "正在做的、做过的，或者暂时先留个位置的项目和实验。",
+			},
+		],
+	},
+	{
+		label: "Preference",
+		title: "我喜欢什么",
+		paragraphs: [
+			"我偏爱两种看起来不太一样、但其实很容易相遇的气质：二次元作品里的细腻、夜色、情绪感与角色感，以及极客世界里的克制、结构、系统感与可维护性。",
+			"所以这个站会自然地长成现在这样：想保留一点梦和审美，也想把内容整理得足够清楚、足够耐看。",
+		],
+	},
+];
+
+const stackColumns = [
+	{
+		label: "Languages",
+		accent: "var(--about-accent-1)",
+		items: ["Python", "TypeScript", "Dart", "Java"],
+	},
+	{
+		label: "Frontend",
+		accent: "var(--about-accent-2)",
+		items: ["Astro", "Tailwind CSS", "Vue", "CSS"],
+	},
+	{
+		label: "Toolkit",
+		accent: "var(--about-accent-3)",
+		items: ["PyTorch", "Git", "Prompting"],
+	},
+];
+
+const stackMarquee = [
+	"Python",
+	"TypeScript",
+	"Astro",
+	"Tailwind CSS",
+	"Dart",
+	"Vue",
+	"PyTorch",
+	"Java",
+	"CSS",
+	"Git",
+	"Prompting",
+	"Astro",
+];
 ---
-<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
-    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-        <div class="card-base z-10 px-9 py-6 relative w-full ">
-            <Markdown class="mt-2">
-                <Content />
-            </Markdown>
-        </div>
-    </div>
+<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)} showSidebar={false}>
+	<div class="about-page mx-auto w-full max-w-6xl space-y-6 md:space-y-7">
+		<section class="about-hero card-base relative overflow-hidden border border-black/8 onload-animation dark:border-white/8">
+			<div class="relative h-[18rem] w-full md:h-[24rem]">
+				<img src="/about-cover.png" alt="About cover" class="h-full w-full object-cover object-[center_58%]" />
+				<div class="about-hero__veil absolute inset-0"></div>
+				<div class="about-hero__noise absolute inset-0"></div>
+				<div class="about-hero__glow absolute inset-0"></div>
+				<div class="about-hero__content absolute inset-x-0 bottom-0 p-7 md:p-10 lg:p-12">
+					<div class="about-hero__meta onload-animation" style="animation-delay: 120ms;">
+						<span>About</span>
+						<span>Pan</span>
+					</div>
+					<div class="mt-4 max-w-4xl">
+						<h1 class="about-hero__title onload-animation" style="animation-delay: 180ms;"><span class="about-hero__line">忘れはしないよ</span><span class="about-hero__line">時が流れても</span></h1>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="grid gap-5 lg:grid-cols-[minmax(0,1.68fr)_minmax(13rem,0.56fr)]">
+			<div class="about-story card-base border border-black/8 px-6 py-6 onload-animation dark:border-white/8 md:px-8 md:py-8" style="animation-delay: 120ms;">
+				<div class="about-section-label">{identityLead.label}</div>
+				<div class="about-identity-lead mt-5">
+					<h2 class="about-identity-lead__title">{identityLead.title}</h2>
+					<p class="about-identity-lead__support mt-4">{identityLead.support}</p>
+				</div>
+
+				<div class="about-identity-sections mt-6 space-y-4">
+					{identitySections.map((section) => (
+						<section class="about-identity-block">
+							<div class="about-identity-block__label">{section.label}</div>
+							<h3 class="about-identity-block__title mt-3">{section.title}</h3>
+
+							{section.items && (
+								<div class="about-identity-entry-list mt-4">
+									{section.items.map((item) => (
+										<div class="about-identity-entry">
+											<div class="about-identity-entry__name">{item.name}</div>
+											<p class="about-identity-entry__text">{item.text}</p>
+										</div>
+									))}
+								</div>
+							)}
+
+							{section.paragraphs && (
+								<div class="about-identity-paragraphs mt-4 space-y-4">
+									{section.paragraphs.map((paragraph) => (
+										<p>{paragraph}</p>
+									))}
+								</div>
+							)}
+						</section>
+					))}
+				</div>
+			</div>
+
+			<aside class="space-y-4">
+				<div class="about-rail card-base border border-black/8 px-4 py-4 onload-animation dark:border-white/8 md:px-5 md:py-5" style="animation-delay: 190ms;">
+					<div class="about-panel__title">
+						<Icon name="material-symbols:orbit-rounded" class="text-[1.05rem] text-[var(--primary)]" />
+						Current
+					</div>
+					<div class="about-rail__caption mt-3">recently</div>
+					<ul class="mt-4 space-y-3">
+						{currentArc.map((item, index) => (
+							<li class="about-rail__item">
+								<span class="about-rail__index">0{index + 1}</span>
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			</aside>
+		</section>
+
+		<section class="about-fingerprint card-base overflow-hidden border border-black/8 onload-animation dark:border-white/8" style="animation-delay: 320ms;">
+			<div class="about-fingerprint__header px-7 py-5 md:px-8 md:py-6">
+				<div class="about-fingerprint-hero">
+					<div class="about-fingerprint-hero__label about-fingerprint-hero__label--solo">
+						<div class="about-section-label">Stack</div>
+						<div class="about-fingerprint-hero__line"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="about-stack-marquee-wrap border-t border-black/6 py-3 dark:border-white/8">
+				<div class="about-stack-marquee">
+					<div class="about-stack-marquee__track">
+						{stackMarquee.map((item) => (
+							<span>{item}</span>
+						))}
+						{stackMarquee.map((item) => (
+							<span>{item}</span>
+						))}
+					</div>
+				</div>
+			</div>
+
+			<div class="border-t border-black/6 px-6 py-5 dark:border-white/8 md:px-8 md:py-7">
+				<div class="grid gap-3 xl:grid-cols-[minmax(0,1.12fr)_minmax(0,0.9fr)_minmax(0,0.9fr)]">
+					{stackColumns.map((column, index) => (
+						<article class="about-stack-column onload-animation" style={`animation-delay: ${360 + index * 70}ms; --about-stack-accent:${column.accent};`}>
+							<div class="about-stack-column__head">
+								<div class="about-stack-column__label">{column.label}</div>
+								<span class="about-stack-column__pulse"></span>
+							</div>
+							<div class="about-stack-column__list mt-4">
+								{column.items.map((item) => (
+									<div class="about-stack-column__item">{item}</div>
+								))}
+							</div>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+	</div>
 </MainGridLayout>

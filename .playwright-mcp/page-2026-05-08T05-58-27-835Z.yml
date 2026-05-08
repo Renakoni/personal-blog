@@ -1,0 +1,118 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - link "Pan" [ref=e6] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e7]:
+        - img [ref=e8]
+        - text: Pan
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - button "Search Panel" [ref=e12]:
+          - img [ref=e13]
+        - generic:
+          - generic:
+            - img
+            - textbox "Search"
+      - button "Display Settings" [ref=e15]:
+        - img [ref=e16]
+      - menu [ref=e19]:
+        - menuitem "Light/Dark Mode" [ref=e20]:
+          - img [ref=e22]
+          - img [ref=e25]
+          - img [ref=e28]
+      - button "Menu" [ref=e30]:
+        - img [ref=e31]
+    - generic:
+      - link "Blog":
+        - /url: /#home-posts
+        - generic: Blog
+        - img
+      - link "Anime":
+        - /url: /anime/
+        - generic: Anime
+        - img
+      - link "Projects":
+        - /url: /projects/
+        - generic: Projects
+        - img
+      - link "About":
+        - /url: /about/
+        - generic: About
+        - img
+      - link "GitHub":
+        - /url: https://github.com/Renakoni
+        - generic: GitHub
+        - img
+    - generic [ref=e33]:
+      - generic:
+        - generic:
+          - generic:
+            - text: 主题色
+            - button "Reset to Default":
+              - generic:
+                - img
+          - generic:
+            - generic: "250"
+        - generic:
+          - slider "主题色": "250"
+  - generic [ref=e36]:
+    - generic [ref=e37]:
+      - img "Hero image for Fuwari" [ref=e40]
+      - generic [ref=e44]:
+        - heading "Pan" [level=1] [ref=e45]:
+          - img "Pan" [ref=e46]
+        - paragraph [ref=e47]: 夢のように愛して、愛のように夢を見て。
+    - main [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - heading "最新文章" [level=2] [ref=e53]
+          - generic [ref=e56]:
+            - link "Draft Example" [ref=e57] [cursor=pointer]:
+              - /url: /posts/draft/
+              - text: Draft Example
+              - img [ref=e58]
+            - generic [ref=e60]:
+              - generic [ref=e61]:
+                - img [ref=e63]
+                - generic [ref=e65]: 2022-07-01
+              - generic [ref=e66]:
+                - img [ref=e68]
+                - link "View all posts in the Examples category" [ref=e71] [cursor=pointer]:
+                  - /url: /archive/?category=Examples
+                  - text: Examples
+            - generic [ref=e72]: This article is currently in a draft state and is not published. Therefore, it will not be visible to the general audience. The content is still a work in progress and may require further editing and review.
+            - generic [ref=e73]:
+              - generic [ref=e74]: 72 字
+              - generic [ref=e75]: "|"
+              - generic [ref=e76]: 1 分钟
+        - generic [ref=e77]:
+          - link:
+            - /url: ""
+            - img
+          - generic [ref=e79]: "1"
+          - link:
+            - /url: ""
+            - img
+        - generic [ref=e82]:
+          - text: © 2026 Pan. Built with
+          - link "Astro" [ref=e83] [cursor=pointer]:
+            - /url: https://astro.build
+          - text: . /
+          - link "RSS" [ref=e84] [cursor=pointer]:
+            - /url: /rss.xml
+          - text: /
+          - link "Sitemap" [ref=e85] [cursor=pointer]:
+            - /url: /sitemap-index.xml
+  - generic [ref=e88]:
+    - button "Menu" [ref=e89]:
+      - img [ref=e91]
+      - generic: Menu
+    - button "Inspect" [ref=e95]:
+      - img [ref=e97]
+      - generic: Inspect
+    - button "Audit" [ref=e99]:
+      - img [ref=e101]
+      - generic: Audit
+    - button "Settings" [ref=e104]:
+      - img [ref=e106]
+      - generic: Settings

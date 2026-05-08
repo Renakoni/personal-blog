@@ -1,0 +1,321 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - link "Pan" [ref=e6] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e7]:
+        - img [ref=e8]
+        - text: Pan
+    - generic [ref=e10]:
+      - link "Blog" [ref=e11] [cursor=pointer]:
+        - /url: /#home-posts
+        - generic [ref=e12]:
+          - img [ref=e13]
+          - generic [ref=e15]: Blog
+      - link "Anime" [ref=e16] [cursor=pointer]:
+        - /url: /anime/
+        - generic [ref=e17]:
+          - img [ref=e18]
+          - generic [ref=e20]: Anime
+      - link "Projects" [ref=e21] [cursor=pointer]:
+        - /url: /projects/
+        - generic [ref=e22]:
+          - img [ref=e23]
+          - generic [ref=e25]: Projects
+      - link "About" [ref=e26] [cursor=pointer]:
+        - /url: /about/
+        - generic [ref=e27]:
+          - img [ref=e28]
+          - generic [ref=e30]: About
+      - link "GitHub" [ref=e31] [cursor=pointer]:
+        - /url: https://github.com/Renakoni
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - generic [ref=e35]: GitHub
+          - img [ref=e36]
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - button "Search Panel" [ref=e40]:
+          - img [ref=e299]
+        - generic:
+          - generic:
+            - img
+            - textbox "Search"
+      - button "Display Settings" [ref=e41]:
+        - img [ref=e42]
+      - menu [ref=e45]:
+        - menuitem "Light/Dark Mode" [ref=e46]:
+          - img [ref=e302]
+          - img [ref=e305]
+          - img [ref=e308]
+    - generic:
+      - link "Blog":
+        - /url: /#home-posts
+        - generic: Blog
+        - img
+      - link "Anime":
+        - /url: /anime/
+        - generic: Anime
+        - img
+      - link "Projects":
+        - /url: /projects/
+        - generic: Projects
+        - img
+      - link "About":
+        - /url: /about/
+        - generic: About
+        - img
+      - link "GitHub":
+        - /url: https://github.com/Renakoni
+        - generic: GitHub
+        - img
+    - generic [ref=e47]:
+      - generic:
+        - generic:
+          - generic:
+            - text: 主题色
+            - button "Reset to Default":
+              - generic:
+                - img
+          - generic:
+            - generic: "250"
+        - generic:
+          - slider "主题色": "250"
+  - main [ref=e316]:
+    - generic [ref=e318]:
+      - generic [ref=e319]:
+        - generic [ref=e320]:
+          - img [ref=e321]
+          - text: Anime Archive / Watch Shelf
+        - generic [ref=e323]:
+          - generic [ref=e324]:
+            - heading "番剧记录" [level=1] [ref=e325]
+            - paragraph [ref=e326]: 一个按观看状态归档的私人动画收藏库。这里记录的不是评分表，而是持续留下来的观看痕迹。
+          - generic "Anime archive summary" [ref=e327]:
+            - generic [ref=e328]:
+              - generic [ref=e329]: Filter
+              - strong [ref=e330]: 看过
+            - generic [ref=e331]:
+              - generic [ref=e332]: Entries
+              - strong [ref=e333]: "181"
+            - generic [ref=e334]:
+              - generic [ref=e335]: Page
+              - strong [ref=e336]: 1/16
+        - navigation "Anime filters" [ref=e337]:
+          - link "全部 all" [ref=e338] [cursor=pointer]:
+            - /url: /anime/
+            - generic [ref=e339]: 全部
+            - generic [ref=e340]: all
+          - link "想看 wish" [ref=e341] [cursor=pointer]:
+            - /url: /anime/wish/
+            - generic [ref=e342]: 想看
+            - generic [ref=e343]: wish
+          - link "看过 done" [ref=e344] [cursor=pointer]:
+            - /url: /anime/done/
+            - generic [ref=e345]: 看过
+            - generic [ref=e346]: done
+          - link "在看 watching" [ref=e347] [cursor=pointer]:
+            - /url: /anime/watching/
+            - generic [ref=e348]: 在看
+            - generic [ref=e349]: watching
+        - text: WATCH / SHELF / MEMORY
+      - generic [ref=e350]:
+        - generic [ref=e351]: 01 — 12
+        - generic [ref=e352]: 181 records indexed
+      - generic [ref=e353]:
+        - article [ref=e354]:
+          - generic [ref=e355]: "01"
+          - img "乱步奇谭 拉普拉斯的游戏 cover" [ref=e357]
+          - generic [ref=e358]:
+            - generic [ref=e359]:
+              - generic [ref=e360]: 看过
+              - generic [ref=e361]: 11话
+              - generic [ref=e362]: 2015年7月2日
+            - heading "乱步奇谭 拉普拉斯的游戏" [level=2] [ref=e363]
+            - generic [ref=e364]: 乱歩奇譚 Game of Laplace
+            - generic [ref=e365]:
+              - generic [ref=e366]: 11话 / 2015年7月2日
+              - generic [ref=e367]: 岸誠二 / 森田和明
+        - article [ref=e368]:
+          - generic [ref=e369]: "02"
+          - img "虚构推理 cover" [ref=e371]
+          - generic [ref=e372]:
+            - generic [ref=e373]:
+              - generic [ref=e374]: 看过
+              - generic [ref=e375]: 12话
+              - generic [ref=e376]: 2020年1月11日
+            - heading "虚构推理" [level=2] [ref=e377]
+            - generic [ref=e378]: 虚構推理
+            - generic [ref=e379]:
+              - generic [ref=e380]: 12话 / 2020年1月11日
+              - generic [ref=e381]: 後藤圭二 / 城平京（講談社タイガ刊）；漫画：片瀬茶柴（講談社『月刊少年マガジン』『少年マガジンR』連載） / 本多孝敏
+        - article [ref=e382]:
+          - generic [ref=e383]: "03"
+          - img "命运石之门 cover" [ref=e385]
+          - generic [ref=e386]:
+            - generic [ref=e387]:
+              - generic [ref=e388]: 看过
+              - generic [ref=e389]: 25话
+              - generic [ref=e390]: 2011年4月6日
+            - heading "命运石之门" [level=2] [ref=e391]
+            - generic [ref=e392]: STEINS;GATE
+            - generic [ref=e393]:
+              - generic [ref=e394]: 25话 / 2011年4月6日
+              - generic [ref=e395]: 佐藤卓哉・浜崎博嗣 (第1-24话) / 小林智樹 (第25话) / 5pb. / Nitro+ / 花田十輝 / 坂井久太 / WHITE FOX
+        - article [ref=e396]:
+          - generic [ref=e397]: "04"
+          - img "浪客剑心 追忆篇 cover" [ref=e399]
+          - generic [ref=e400]:
+            - generic [ref=e401]:
+              - generic [ref=e402]: 看过
+              - generic [ref=e403]: 4话
+              - generic [ref=e404]: 1999年2月20日
+            - heading "浪客剑心 追忆篇" [level=2] [ref=e405]
+            - generic [ref=e406]: るろうに剣心 -明治剣客浪漫譚- 追憶編
+            - generic [ref=e407]:
+              - generic [ref=e408]: 4话 / 1999年2月20日
+              - generic [ref=e409]: 古橋一浩 / 和月伸宏（集英社「週刊少年ジャンプ」連載） / 柳沢まさひで
+        - article [ref=e410]:
+          - generic [ref=e411]: "05"
+          - img "秒速5厘米 cover" [ref=e413]
+          - generic [ref=e414]:
+            - generic [ref=e415]:
+              - generic [ref=e416]: 看过
+              - generic [ref=e417]: 3话
+              - generic [ref=e418]: 2007年3月3日
+            - heading "秒速5厘米" [level=2] [ref=e419]
+            - generic [ref=e420]: 秒速5センチメートル
+            - generic [ref=e421]:
+              - generic [ref=e422]: 3话 / 2007年3月3日
+              - generic [ref=e423]: 新海誠 / 西村貴世
+        - article [ref=e424]:
+          - generic [ref=e425]: "06"
+          - img "我心里危险的东西 cover" [ref=e427]
+          - generic [ref=e428]:
+            - generic [ref=e429]:
+              - generic [ref=e430]: 看过
+              - generic [ref=e431]: 12话
+              - generic [ref=e432]: 2023年4月1日
+            - heading "我心里危险的东西" [level=2] [ref=e433]
+            - generic [ref=e434]: 僕の心のヤバイやつ
+            - generic [ref=e435]:
+              - generic [ref=e436]: 12话 / 2023年4月1日
+              - generic [ref=e437]: 赤城博昭 / 桜井のりお（秋田書店「マンガクロス」連載） / 勝又聖人
+        - article [ref=e438]:
+          - generic [ref=e439]: "07"
+          - img "我心里危险的东西 第二季 cover" [ref=e441]
+          - generic [ref=e442]:
+            - generic [ref=e443]:
+              - generic [ref=e444]: 看过
+              - generic [ref=e445]: 13话
+              - generic [ref=e446]: 2024年1月6日
+            - heading "我心里危险的东西 第二季" [level=2] [ref=e447]
+            - generic [ref=e448]: 僕の心のヤバイやつ 第2期
+            - generic [ref=e449]:
+              - generic [ref=e450]: 13话 / 2024年1月6日
+              - generic [ref=e451]: 赤城博昭 / 桜井のりお（秋田書店「マンガクロス」連載） / 花田十輝 / 勝又聖人
+        - article [ref=e452]:
+          - generic [ref=e453]: "08"
+          - img "败犬女主太多了！ cover" [ref=e455]
+          - generic [ref=e456]:
+            - generic [ref=e457]:
+              - generic [ref=e458]: 看过
+              - generic [ref=e459]: 12话
+              - generic [ref=e460]: 2024年7月13日
+            - heading "败犬女主太多了！" [level=2] [ref=e461]
+            - generic [ref=e462]: 負けヒロインが多すぎる！
+            - generic [ref=e463]:
+              - generic [ref=e464]: 12话 / 2024年7月13日
+              - generic [ref=e465]: 北村翔太郎 / 雨森たきび（小学館「ガガガ文庫」刊） / 川上哲也
+        - article [ref=e466]:
+          - generic [ref=e467]: "09"
+          - img "CAROLE & TUESDAY cover" [ref=e469]
+          - generic [ref=e470]:
+            - generic [ref=e471]:
+              - generic [ref=e472]: 看过
+              - generic [ref=e473]: 24话
+              - generic [ref=e474]: 2019年4月10日
+            - heading "CAROLE & TUESDAY" [level=2] [ref=e475]
+            - generic [ref=e476]: キャロル＆チューズデイ
+            - generic [ref=e477]:
+              - generic [ref=e478]: 24话 / 2019年4月10日
+              - generic [ref=e479]: 堀元宣 / BONES、渡辺信一郎 / 赤尾でこ [ 三重野瞳 ] (1-2,5,9,14,19,23)、中西やすひろ(3,8,13,18,22)、うえのきみこ(4,7,11,17,21)、野村祐一(6,10,16,20)、渡辺信一郎(12,24)、信本敬子(15) / 斎藤恒徳 / BONES
+        - article [ref=e480]:
+          - generic [ref=e481]: "10"
+          - img "孤独摇滚！ cover" [ref=e483]
+          - generic [ref=e484]:
+            - generic [ref=e485]:
+              - generic [ref=e486]: 看过
+              - generic [ref=e487]: 12话
+              - generic [ref=e488]: 2022年10月8日
+            - heading "孤独摇滚！" [level=2] [ref=e489]
+            - generic [ref=e490]: ぼっち・ざ・ろっく！
+            - generic [ref=e491]:
+              - generic [ref=e492]: 12话 / 2022年10月8日
+              - generic [ref=e493]: 斎藤圭一郎 / はまじあき（芳文社「まんがタイムきららMAX」連載中） / 吉田恵里香 / けろりら / CloverWorks
+        - article [ref=e494]:
+          - generic [ref=e495]: "11"
+          - img "夏日重现 cover" [ref=e497]
+          - generic [ref=e498]:
+            - generic [ref=e499]:
+              - generic [ref=e500]: 看过
+              - generic [ref=e501]: 25话
+              - generic [ref=e502]: 2022年4月14日
+            - heading "夏日重现" [level=2] [ref=e503]
+            - generic [ref=e504]: サマータイムレンダ
+            - generic [ref=e505]:
+              - generic [ref=e506]: 25话 / 2022年4月14日
+              - generic [ref=e507]: 渡辺歩 / 田中靖規（集英社ジャンプコミックス刊） / 瀬古浩司 / 松元美季 / OLM TEAM KOJIMA
+        - article [ref=e508]:
+          - generic [ref=e509]: "12"
+          - img "86 -不存在的战区- 第2部分 cover" [ref=e511]
+          - generic [ref=e512]:
+            - generic [ref=e513]:
+              - generic [ref=e514]: 看过
+              - generic [ref=e515]: 12话
+              - generic [ref=e516]: 2021年10月2日
+            - heading "86 -不存在的战区- 第2部分" [level=2] [ref=e517]
+            - generic [ref=e518]: 86―エイティシックス― 第2クール
+            - generic [ref=e519]:
+              - generic [ref=e520]: 12话 / 2021年10月2日
+              - generic [ref=e521]: 石井俊匡 / 安里アサト（「電撃文庫」刊） / 川上哲也
+      - navigation "Anime pagination" [ref=e522]:
+        - img [ref=e524]
+        - generic [ref=e526]:
+          - link "1" [ref=e527] [cursor=pointer]:
+            - /url: /anime/done/
+          - link "2" [ref=e528] [cursor=pointer]:
+            - /url: /anime/done/page/2/
+          - link "3" [ref=e529] [cursor=pointer]:
+            - /url: /anime/done/page/3/
+          - generic [ref=e530]: …
+          - link "16" [ref=e531] [cursor=pointer]:
+            - /url: /anime/done/page/16/
+        - link [ref=e532] [cursor=pointer]:
+          - /url: /anime/done/page/2/
+          - img [ref=e533]
+      - generic [ref=e538]:
+        - text: © 2026 Pan. Built with
+        - link "Astro" [ref=e539] [cursor=pointer]:
+          - /url: https://astro.build
+        - text: . /
+        - link "RSS" [ref=e540] [cursor=pointer]:
+          - /url: /rss.xml
+        - text: /
+        - link "Sitemap" [ref=e541] [cursor=pointer]:
+          - /url: /sitemap-index.xml
+  - paragraph [ref=e313]: "Navigated to: 番剧记录"
+  - generic [ref=e278]:
+    - button "Menu" [ref=e279]:
+      - img [ref=e281]
+      - generic: Menu
+    - button "Inspect" [ref=e285]:
+      - img [ref=e287]
+      - generic: Inspect
+    - button "Audit" [ref=e289]:
+      - generic [ref=e290]:
+        - img [ref=e291]
+        - img [ref=e542]
+      - generic: Audit
+    - button "Settings" [ref=e294]:
+      - img [ref=e296]
+      - generic: Settings

@@ -1,67 +1,131 @@
 ---
 import { Icon } from "astro-icon/components";
+import ButtonLink from "../components/control/ButtonLink.astro";
+import ButtonTag from "../components/control/ButtonTag.astro";
+import WidgetLayout from "../components/widget/WidgetLayout.astro";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { projects } from "../utils/projects";
 
-const projects = [
-	{
-		name: "Personal Blog",
-		type: "Website",
-		status: "Building",
-		description: "A personal site based on Fuwari, redesigned with a stronger visual homepage and custom content pages.",
-		link: "/",
-		icon: "material-symbols:article-outline",
-	},
-	{
-		name: "Anime Shelf",
-		type: "Collection",
-		status: "Draft",
-		description: "A curated watchlist page for anime notes, scores, and personal impressions.",
-		link: "/anime/",
-		icon: "material-symbols:movie-outline",
-	},
-	{
-		name: "Future Project",
-		type: "Placeholder",
-		status: "Planned",
-		description: "Reserve this slot for a tool, research note, demo, or repository that deserves a short introduction.",
-		link: "https://github.com/saicaca/fuwari",
-		icon: "fa6-brands:github",
-		external: true,
-	},
-];
+const countValues = (values: string[]) => {
+	const countMap = new Map<string, number>();
+	values.forEach((value) => countMap.set(value, (countMap.get(value) ?? 0) + 1));
+	return [...countMap.entries()]
+		.sort(([a], [b]) => a.toLowerCase().localeCompare(b.toLowerCase()))
+		.map(([name, count]) => ({ name, count }));
+};
+
+const categories = countValues(projects.map((project) => project.category));
+const tags = countValues(projects.flatMap((project) => project.tags));
+const filterUrl = (key: "category" | "tag", value: string) => `/projects/?${key}=${encodeURIComponent(value)}`;
 ---
 
 <MainGridLayout title="Projects" description="Projects, experiments, and selected work">
-	<section class="space-y-6">
-		<div class="card-base px-7 py-8 md:px-10 md:py-10">
-			<div class="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-50">
-				<Icon name="material-symbols:code-rounded" class="text-xl text-[var(--primary)]" />
-				Selected Work
+	<div slot="sidebar" id="sidebar" class="mb-4 row-start-2 row-end-3 col-span-2 w-full lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation">
+		<div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4">
+			<WidgetLayout name="Project Categories" id="project-categories" isCollapsed={false}>
+				<ButtonLink url="/projects/" badge={String(projects.length)} label="View all projects">All</ButtonLink>
+				{categories.map((category) => (
+					<ButtonLink
+						url={filterUrl("category", category.name)}
+						badge={String(category.count)}
+						label={`View ${category.name} projects`}
+					>
+						{category.name}
+					</ButtonLink>
+				))}
+			</WidgetLayout>
+
+			<WidgetLayout name="Project Tags" id="project-tags" isCollapsed={false}>
+				<div class="flex gap-2 flex-wrap">
+					{tags.map((tag) => (
+						<ButtonTag href={filterUrl("tag", tag.name)} label={`View projects tagged ${tag.name}`}>
+							{tag.name}
+						</ButtonTag>
+					))}
+				</div>
+			</WidgetLayout>
+		</div>
+	</div>
+
+	<section class="projects-page space-y-5">
+		<h1 class="sr-only">Projects</h1>
+		<header class="projects-intro projects-intro--showcase card-base border border-black/8 px-6 py-7 dark:border-white/8 md:px-8 md:py-8">
+			<div class="projects-intro__label">
+				<Icon name="material-symbols:code-rounded" class="text-[1.1rem] text-[var(--primary)]" />
+				Projects / Lab Archive
 			</div>
-			<h1 class="text-4xl font-semibold leading-tight text-90 md:text-5xl">Projects</h1>
-			<p class="mt-4 max-w-2xl text-base leading-8 text-75">
-				A place for things worth keeping visible: tools, experiments, notes, and finished work.
-			</p>
+		</header>
+
+		<div class="projects-empty card-base border border-black/8 px-6 py-7 text-sm text-50 dark:border-white/8 md:px-8" hidden>
+			没有匹配当前分类或标签的项目。
 		</div>
 
-		<div class="grid gap-4 md:grid-cols-2">
-			{projects.map((project) => (
+		<div class="projects-archive projects-archive--showcase space-y-4">
+			{projects.map((project, index) => (
 				<a
-					href={project.link}
-					target={project.external ? "_blank" : null}
-					class="card-base group block px-6 py-6 active:scale-[0.99]"
+					href={`/projects/${project.slug}/`}
+					data-project-entry
+					data-category={project.category}
+					data-tags={project.tags.join(",")}
+					class:list={[
+						"projects-entry projects-entry--showcase surface-hover group block card-base border border-black/8 px-6 py-6 dark:border-white/8 md:px-8 md:py-7",
+						{ "projects-entry--with-image": !!project.image },
+					]}
+					style={project.image ? `--project-image: url(${project.image})` : undefined}
 				>
-					<div class="mb-5 flex items-start justify-between gap-4">
-						<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--btn-regular-bg)] text-[var(--primary)]">
-							<Icon name={project.icon} class="text-2xl" />
+					<div class="projects-entry__showcase-grid">
+						<div class="projects-entry__meta">
+							<div class="projects-entry__icon">
+								<Icon name={project.icon} class="text-[1.35rem]" />
+							</div>
+							<div class="projects-entry__index">{String(index + 1).padStart(2, "0")}</div>
 						</div>
-						<span class="rounded-full bg-[var(--btn-regular-bg)] px-3 py-1 text-xs font-semibold text-[var(--btn-content)]">{project.status}</span>
+
+						<div class="projects-entry__content">
+							<div class="projects-entry__kicker">{project.category} · {project.status}</div>
+							<div class="projects-entry__title-row mt-2">
+								<h2 class="projects-entry__title">{project.name}</h2>
+								<div class="projects-entry__open">
+									Open case
+									<Icon name="material-symbols:arrow-forward-rounded" class="text-[1.05rem]" />
+								</div>
+							</div>
+							<p class="projects-entry__description mt-4">{project.description}</p>
+
+							<div class="projects-entry__stack mt-5">
+								{project.tags.map((tag) => (
+									<span>{tag}</span>
+								))}
+							</div>
+						</div>
 					</div>
-					<div class="text-sm font-semibold uppercase tracking-[0.18em] text-50">{project.type}</div>
-					<h2 class="mt-2 text-2xl font-semibold text-90 group-hover:text-[var(--primary)]">{project.name}</h2>
-					<p class="mt-3 text-sm leading-7 text-75">{project.description}</p>
 				</a>
 			))}
 		</div>
 	</section>
 </MainGridLayout>
+
+<script>
+	function syncProjectFilters() {
+		const emptyMessage = document.querySelector<HTMLElement>(".projects-empty");
+		if (!emptyMessage) return;
+
+		const params = new URLSearchParams(window.location.search);
+		const category = params.get("category");
+		const tag = params.get("tag");
+		const entries = Array.from(document.querySelectorAll<HTMLElement>("[data-project-entry]"));
+		let visibleCount = 0;
+
+		entries.forEach((entry) => {
+			const entryTags = (entry.dataset.tags ?? "").split(",");
+			const isVisible = (!category || entry.dataset.category === category) && (!tag || entryTags.includes(tag));
+			entry.hidden = !isVisible;
+			visibleCount += isVisible ? 1 : 0;
+		});
+
+		emptyMessage.hidden = visibleCount > 0;
+	}
+
+	syncProjectFilters();
+	document.addEventListener("astro:page-load", syncProjectFilters);
+</script>

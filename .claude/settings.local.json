@@ -23,7 +23,21 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:svelte-changelog.dev)",
       "Bash(pnpm sync-anime *)",
-      "Bash(pnpm build:anime *)"
+      "Bash(pnpm build:anime *)",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_take_screenshot",
+      "WebFetch(domain:www.portfoliogallery.dev)",
+      "WebFetch(domain:dribbble.com)",
+      "Bash(pnpm exec *)",
+      "Read(//tmp/**)",
+      "Bash(pnpm preview *)",
+      "Bash(curl *)",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_hover",
+      "Bash(git diff *)",
+      "Bash(pnpm check *)",
+      "mcp__playwright__browser_press_key",
+      "mcp__playwright__browser_type"
     ]
   },
   "skillOverrides": {
@@ -76,20 +90,5 @@
     "what-if-oracle": "name-only",
     "xlsx": "name-only",
     "zarr-python": "user-invocable-only"
-  },
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$connections = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue; if ($connections) { $owningProcesses = $connections | Select-Object -ExpandProperty OwningProcess -Unique; foreach ($procId in $owningProcesses) { try { Stop-Process -Id $procId -Force -ErrorAction Stop } catch {} } }",
-            "shell": "powershell",
-            "timeout": 20,
-            "statusMessage": "Clearing port 3000"
-          }
-        ]
-      }
-    ]
   }
 }

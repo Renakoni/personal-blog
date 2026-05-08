@@ -46,15 +46,15 @@ function toggleScheme() {
 	switchScheme(seq[(i + 1) % seq.length]);
 }
 
-function showPanel() {
-	const panel = document.querySelector("#light-dark-panel");
-	panel.classList.remove("float-panel-closed");
-}
+	function showPanel() {
+		const panel = document.querySelector("#light-dark-panel");
+		panel?.classList.remove("float-panel-closed");
+	}
 
-function hidePanel() {
-	const panel = document.querySelector("#light-dark-panel");
-	panel.classList.add("float-panel-closed");
-}
+	function hidePanel() {
+		const panel = document.querySelector("#light-dark-panel");
+		panel?.classList.add("float-panel-closed");
+	}
 </script>
 
 <!-- z-50 make the panel higher than other float panels -->

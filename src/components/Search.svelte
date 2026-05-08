@@ -1,56 +1,174 @@
 <script lang="ts">
-import I18nKey from "@i18n/i18nKey";
-import { i18n } from "@i18n/translation";
 import Icon from "@iconify/svelte";
 import { url } from "@utils/url-utils.ts";
-import { onMount } from "svelte";
+import { onMount, tick } from "svelte";
 import type { SearchResult } from "@/global";
 
-let keywordDesktop = "";
-let keywordMobile = "";
+type CommandItem = {
+	kind: "command";
+	title: string;
+	description: string;
+	href: string;
+	icon: string;
+	badge: string;
+	external?: boolean;
+};
+
+type PostItem = {
+	kind: "post";
+	title: string;
+	description: string;
+	href: string;
+};
+
+type PaletteItem = CommandItem | PostItem;
+
+let keyword = "";
 let result: SearchResult[] = [];
 let isSearching = false;
 let pagefindLoaded = false;
 let initialized = false;
+let isOpen = false;
+let activeIndex = 0;
+let inputEl: HTMLInputElement;
+let panelEl: HTMLDivElement;
+let searchTimeout: ReturnType<typeof setTimeout>;
+
+const commandItems: CommandItem[] = [
+	{
+		kind: "command",
+		title: "Home / Blog",
+		description: "Return to the main transmission feed",
+		href: url("/#home-posts"),
+		icon: "material-symbols:article-outline-rounded",
+		badge: "MAIN",
+	},
+	{
+		kind: "command",
+		title: "Anime Archive",
+		description: "Open the Bangumi watch dossier",
+		href: url("/anime/"),
+		icon: "material-symbols:movie-outline",
+		badge: "ANI",
+	},
+	{
+		kind: "command",
+		title: "Projects",
+		description: "Inspect experiments and build logs",
+		href: url("/projects/"),
+		icon: "material-symbols:code-rounded",
+		badge: "LAB",
+	},
+	{
+		kind: "command",
+		title: "Archive",
+		description: "Browse indexed posts by timeline",
+		href: url("/archive/"),
+		icon: "material-symbols:inventory-2-outline-rounded",
+		badge: "IDX",
+	},
+	{
+		kind: "command",
+		title: "About",
+		description: "Open profile and identity record",
+		href: url("/about/"),
+		icon: "material-symbols:person-outline-rounded",
+		badge: "ID",
+	},
+	{
+		kind: "command",
+		title: "GitHub",
+		description: "Jump to external source repository",
+		href: "https://github.com/Renakoni",
+		icon: "fa6-brands:github",
+		badge: "EXT",
+		external: true,
+	},
+];
 
 const fakeResult: SearchResult[] = [
 	{
 		url: url("/"),
 		meta: {
-			title: "This Is a Fake Search Result",
+			title: "DEV MODE / Pagefind Offline",
 		},
 		excerpt:
-			"Because the search cannot work in the <mark>dev</mark> environment.",
+			"Search index is simulated in <mark>dev</mark>. Build and preview to test production Pagefind.",
 	},
 	{
-		url: url("/"),
+		url: url("/archive/"),
 		meta: {
-			title: "If You Want to Test the Search",
+			title: "Archive Index",
 		},
-		excerpt: "Try running <mark>npm build && npm preview</mark> instead.",
+		excerpt: "Open the local archive while the full-text index is unavailable.",
 	},
 ];
 
-const togglePanel = () => {
-	const panel = document.getElementById("search-panel");
-	panel?.classList.toggle("float-panel-closed");
+const normalize = (value: string) => value.trim().toLowerCase();
+
+$: normalizedKeyword = normalize(keyword);
+$: filteredCommands = normalizedKeyword
+	? commandItems.filter((item) =>
+			`${item.title} ${item.description} ${item.badge}`
+				.toLowerCase()
+				.includes(normalizedKeyword),
+		)
+	: commandItems;
+$: postItems = result.map<PostItem>((item) => ({
+	kind: "post",
+	title: item.meta.title,
+	description: item.excerpt,
+	href: item.url,
+}));
+$: paletteItems = [...filteredCommands, ...postItems];
+$: if (activeIndex >= paletteItems.length) {
+	activeIndex = Math.max(0, paletteItems.length - 1);
+}
+
+const focusInput = async () => {
+	await tick();
+	inputEl?.focus();
+	inputEl?.select();
 };
 
-const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
+const syncPanelVisibility = (show: boolean) => {
+	isOpen = show;
 	const panel = document.getElementById("search-panel");
-	if (!panel || !isDesktop) return;
+	panel?.classList.toggle("float-panel-closed", !show);
+};
 
-	if (show) {
-		panel.classList.remove("float-panel-closed");
+const openPalette = async () => {
+	syncPanelVisibility(true);
+	activeIndex = 0;
+	await focusInput();
+};
+
+const closePalette = () => {
+	syncPanelVisibility(false);
+};
+
+const togglePanel = () => {
+	if (isOpen) {
+		closePalette();
 	} else {
-		panel.classList.add("float-panel-closed");
+		void openPalette();
 	}
 };
 
-const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
-	if (!keyword) {
-		setPanelVisibility(false, isDesktop);
+const runItem = (item: PaletteItem | undefined) => {
+	if (!item) return;
+	closePalette();
+	if (item.kind === "command" && item.external) {
+		window.open(item.href, "_blank", "noopener,noreferrer");
+		return;
+	}
+	window.location.href = item.href;
+};
+
+const search = async (searchKeyword: string): Promise<void> => {
+	if (!searchKeyword) {
 		result = [];
+		isSearching = false;
 		return;
 	}
 
@@ -64,7 +182,7 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 		let searchResults: SearchResult[] = [];
 
 		if (import.meta.env.PROD && pagefindLoaded && window.pagefind) {
-			const response = await window.pagefind.search(keyword);
+			const response = await window.pagefind.search(searchKeyword);
 			searchResults = await Promise.all(
 				response.results.map((item) => item.data()),
 			);
@@ -76,14 +194,58 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 		}
 
 		result = searchResults;
-		setPanelVisibility(result.length > 0, isDesktop);
 	} catch (error) {
 		console.error("Search error:", error);
 		result = [];
-		setPanelVisibility(false, isDesktop);
 	} finally {
 		isSearching = false;
 	}
+};
+
+const handleKeydown = (event: KeyboardEvent) => {
+	if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+		event.preventDefault();
+		void openPalette();
+		return;
+	}
+
+	if (!isOpen) return;
+
+	if (event.key === "Escape") {
+		event.preventDefault();
+		closePalette();
+		return;
+	}
+
+	if (event.key === "ArrowDown") {
+		event.preventDefault();
+		activeIndex = paletteItems.length
+			? (activeIndex + 1) % paletteItems.length
+			: 0;
+		return;
+	}
+
+	if (event.key === "ArrowUp") {
+		event.preventDefault();
+		activeIndex = paletteItems.length
+			? (activeIndex - 1 + paletteItems.length) % paletteItems.length
+			: 0;
+		return;
+	}
+
+	if (event.key === "Enter") {
+		event.preventDefault();
+		runItem(paletteItems[activeIndex]);
+	}
+};
+
+const handleInput = () => {
+	clearTimeout(searchTimeout);
+	searchTimeout = setTimeout(() => {
+		if (initialized) {
+			void search(keyword);
+		}
+	}, 120);
 };
 
 onMount(() => {
@@ -93,106 +255,160 @@ onMount(() => {
 			typeof window !== "undefined" &&
 			!!window.pagefind &&
 			typeof window.pagefind.search === "function";
-		console.log("Pagefind status on init:", pagefindLoaded);
-		if (keywordDesktop) search(keywordDesktop, true);
-		if (keywordMobile) search(keywordMobile, false);
+		if (keyword) void search(keyword);
 	};
 
+	document.addEventListener("keydown", handleKeydown);
+
+	const observer = new MutationObserver(() => {
+		isOpen = !panelEl?.classList.contains("float-panel-closed");
+	});
+	if (panelEl) {
+		observer.observe(panelEl, { attributes: true, attributeFilter: ["class"] });
+	}
+
 	if (import.meta.env.DEV) {
-		console.log(
-			"Pagefind is not available in development mode. Using mock data.",
-		);
 		initializeSearch();
 	} else {
-		document.addEventListener("pagefindready", () => {
-			console.log("Pagefind ready event received.");
-			initializeSearch();
-		});
-		document.addEventListener("pagefindloaderror", () => {
-			console.warn(
-				"Pagefind load error event received. Search functionality will be limited.",
-			);
-			initializeSearch(); // Initialize with pagefindLoaded as false
-		});
+		document.addEventListener("pagefindready", initializeSearch);
+		document.addEventListener("pagefindloaderror", initializeSearch);
 
-		// Fallback in case events are not caught or pagefind is already loaded by the time this script runs
 		setTimeout(() => {
 			if (!initialized) {
-				console.log("Fallback: Initializing search after timeout.");
 				initializeSearch();
 			}
-		}, 2000); // Adjust timeout as needed
+		}, 2000);
 	}
+
+	return () => {
+		clearTimeout(searchTimeout);
+		document.removeEventListener("keydown", handleKeydown);
+		document.removeEventListener("pagefindready", initializeSearch);
+		document.removeEventListener("pagefindloaderror", initializeSearch);
+		observer.disconnect();
+	};
 });
-
-$: if (initialized && keywordDesktop) {
-	(async () => {
-		await search(keywordDesktop, true);
-	})();
-}
-
-$: if (initialized && keywordMobile) {
-	(async () => {
-		await search(keywordMobile, false);
-	})();
-}
 </script>
 
-<!-- search bar for desktop view -->
-<div id="search-bar" class="hidden lg:flex transition-all items-center h-11 mr-2 rounded-lg
-      bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06]
-      dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
-">
-    <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
-    <input placeholder="{i18n(I18nKey.search)}" bind:value={keywordDesktop} on:focus={() => search(keywordDesktop, true)}
-           class="transition-all pl-10 text-sm bg-transparent outline-0
-         h-full w-40 active:w-60 focus:w-60 text-black/50 dark:text-white/50"
-    >
-</div>
+<div class="relative">
+	<button
+		id="search-bar"
+		type="button"
+		on:click={openPalette}
+		aria-label="Open Command Palette"
+		class="hidden lg:flex command-trigger transition-all items-center h-11 mr-2 rounded-lg px-3 gap-2
+		bg-black/[0.04] hover:bg-black/[0.06] focus-visible:bg-black/[0.06]
+		dark:bg-white/5 dark:hover:bg-white/10 dark:focus-visible:bg-white/10"
+	>
+		<Icon icon="material-symbols:search" class="text-[1.2rem] text-black/35 dark:text-white/35" />
+		<span class="text-sm font-semibold text-black/55 dark:text-white/55">Quick Access</span>
+		<span class="command-trigger__key">⌘K</span>
+	</button>
 
-<!-- toggle btn for phone/tablet view -->
-<button on:click={togglePanel} aria-label="Search Panel" id="search-switch"
-        class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90">
-    <Icon icon="material-symbols:search" class="text-[1.25rem]"></Icon>
-</button>
+	<button
+		on:click={togglePanel}
+		aria-label="Search Panel"
+		id="search-switch"
+		class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90"
+	>
+		<Icon icon="material-symbols:search" class="text-[1.25rem]"></Icon>
+	</button>
 
-<!-- search panel -->
-<div id="search-panel" class="float-panel float-panel-closed search-panel absolute md:w-[30rem]
-top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
+	<div
+		bind:this={panelEl}
+		id="search-panel"
+		class="float-panel float-panel-closed search-panel command-palette absolute w-[calc(100vw-2rem)] md:w-[34rem]
+		top-20 right-0 shadow-2xl rounded-2xl p-2"
+	>
+		<div class="command-palette__header">
+			<div>
+				<div class="system-label">Quick Access Terminal</div>
+				<div class="command-palette__subtitle">Search posts, routes, and archive nodes</div>
+			</div>
+			<div class="command-palette__shortcut">ESC</div>
+		</div>
 
-    <!-- search bar inside panel for phone/tablet -->
-    <div id="search-bar-inside" class="flex relative lg:hidden transition-all items-center h-11 rounded-xl
-      bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06]
-      dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
-  ">
-        <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
-        <input placeholder="Search" bind:value={keywordMobile}
-               class="pl-10 absolute inset-0 text-sm bg-transparent outline-0
-               focus:w-60 text-black/50 dark:text-white/50"
-        >
-    </div>
+		<div id="search-bar-inside" class="command-palette__input-wrap">
+			<Icon icon="material-symbols:terminal-rounded" class="command-palette__input-icon" />
+			<input
+				bind:this={inputEl}
+				placeholder="Type a command or keyword..."
+				bind:value={keyword}
+				on:input={handleInput}
+				class="command-palette__input"
+				role="combobox"
+				aria-expanded={isOpen}
+				aria-controls="command-palette-results"
+			/>
+			{#if isSearching}
+				<span class="command-palette__status">SYNC</span>
+			{:else}
+				<span class="command-palette__status">↵ RUN</span>
+			{/if}
+		</div>
 
-    <!-- search results -->
-    {#each result as item}
-        <a href={item.url}
-           class="transition first-of-type:mt-2 lg:first-of-type:mt-0 group block
-       rounded-xl text-lg px-3 py-2 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]">
-            <div class="transition text-90 inline-flex font-bold group-hover:text-[var(--primary)]">
-                {item.meta.title}<Icon icon="fa6-solid:chevron-right" class="transition text-[0.75rem] translate-x-1 my-auto text-[var(--primary)]"></Icon>
-            </div>
-            <div class="transition text-sm text-50">
-                {@html item.excerpt}
-            </div>
-        </a>
-    {/each}
+		<div id="command-palette-results" class="command-palette__results" role="listbox">
+			{#if filteredCommands.length}
+				<div class="command-palette__section">Quick Access</div>
+				{#each filteredCommands as item, index}
+					<button
+						type="button"
+						class:command-palette__row--active={activeIndex === index}
+						class="command-palette__row"
+						on:mouseenter={() => (activeIndex = index)}
+						on:click={() => runItem(item)}
+						role="option"
+						aria-selected={activeIndex === index}
+					>
+						<span class="command-palette__icon"><Icon icon={item.icon} /></span>
+						<span class="command-palette__copy">
+							<span class="command-palette__title">{item.title}</span>
+							<span class="command-palette__desc">{item.description}</span>
+						</span>
+						<span class="command-palette__badge">{item.badge}</span>
+					</button>
+				{/each}
+			{/if}
+
+			{#if postItems.length}
+				<div class="command-palette__section">Archive Index</div>
+				{#each postItems as item, index}
+					{@const itemIndex = filteredCommands.length + index}
+					<button
+						type="button"
+						class:command-palette__row--active={activeIndex === itemIndex}
+						class="command-palette__row"
+						on:mouseenter={() => (activeIndex = itemIndex)}
+						on:click={() => runItem(item)}
+						role="option"
+						aria-selected={activeIndex === itemIndex}
+					>
+						<span class="command-palette__icon"><Icon icon="material-symbols:article-outline-rounded" /></span>
+						<span class="command-palette__copy">
+							<span class="command-palette__title">{item.title}</span>
+							<span class="command-palette__desc">{@html item.description}</span>
+						</span>
+						<span class="command-palette__badge">POST</span>
+					</button>
+				{/each}
+			{/if}
+
+			{#if !paletteItems.length}
+				<div class="command-palette__empty">
+					<div class="system-label">No Signal</div>
+					<p>No matching command or indexed post.</p>
+				</div>
+			{/if}
+		</div>
+	</div>
 </div>
 
 <style>
-  input:focus {
-    outline: 0;
-  }
-  .search-panel {
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-  }
+input:focus {
+	outline: 0;
+}
+.search-panel {
+	max-height: calc(100vh - 100px);
+	overflow-y: auto;
+}
 </style>

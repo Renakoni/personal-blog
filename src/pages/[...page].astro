@@ -3,7 +3,6 @@ import type { GetStaticPaths } from "astro";
 import BackToTop from "../components/control/BackToTop.astro";
 import Footer from "../components/Footer.astro";
 import HomeHero from "../components/HomeHero.astro";
-import Navbar from "../components/Navbar.astro";
 import Pagination from "../components/control/Pagination.astro";
 import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
@@ -19,23 +18,32 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const { page } = Astro.props;
 
-const len = page.data.length;
+const hiddenHomeSlugs = new Set([
+	"guide",
+	"markdown-extended",
+	"expressive-code",
+	"markdown",
+	"video",
+]);
+
 const isFirstPage = page.currentPage === 1;
+const homePageData = isFirstPage
+	? page.data.filter((post) => !hiddenHomeSlugs.has(post.slug))
+	: page.data;
+const len = isFirstPage ? homePageData.length : page.data.length;
 ---
 
 {isFirstPage ? (
 	<Layout>
 		<div class="home-page min-h-screen">
-			<div class="home-navbar fixed left-0 right-0 top-0 z-50 px-3 md:px-6">
-				<Navbar class="home-navbar-card" />
-			</div>
-
 			<HomeHero />
 
-			<main class="transition-swup-fade">
+			<main>
 				<div id="content-wrapper" class="home-content onload-animation mx-auto w-full max-w-[var(--page-width)] px-4 pb-16 pt-10 md:px-6 md:pt-14">
-					<PostPage page={page} variant="home" />
-					<Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`} />
+					<PostPage page={{ ...page, data: homePageData }} variant="home" />
+					{len > 0 && (
+						<Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${len * 50}ms)`} />
+					)}
 					<Footer />
 				</div>
 			</main>
@@ -57,6 +65,6 @@ const isFirstPage = page.currentPage === 1;
 ) : (
 	<MainGridLayout>
 		<PostPage page={page}></PostPage>
-		<Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
+		<Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${page.data.length * 50}ms)`}></Pagination>
 	</MainGridLayout>
 )}

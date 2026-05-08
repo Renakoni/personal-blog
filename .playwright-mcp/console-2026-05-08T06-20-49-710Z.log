@@ -1,0 +1,106 @@
+[    8296ms] [ERROR] [astro-island] Error hydrating /src/components/LightDarkSwitchClient.svelte Svelte error: effect_orphan
+`$effect` can only be used inside an effect (e.g. during component initialisation)
+https://svelte.dev/e/effect_orphan
+
+	in <unknown>
+
+    at effect_orphan (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:315:19)
+    at validate_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:2502:5)
+    at user_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:2595:3)
+    at onMount (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-JEA7ZZMK.js?v=9344cd7a:4207:5)
+    at LightDarkSwitch (http://127.0.0.1:3000/src/components/LightDarkSwitch.svelte:37:2)
+    at LightDarkSwitchClient.$.add_svelte_meta.componentTag (http://127.0.0.1:3000/src/components/LightDarkSwitchClient.svelte:16:26)
+    at Module.add_svelte_meta (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:510:12)
+    at LightDarkSwitchClient (http://127.0.0.1:3000/src/components/LightDarkSwitchClient.svelte:16:4)
+    at Boundary.<anonymous> (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-IGLBWQUO.js?v=9344cd7a:675:21)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:1253:81 @ http://127.0.0.1:3000/:8779
+[    8298ms] [WARNING] Failed to hydrate:  TypeError: Cannot read properties of undefined (reading 'call')
+
+	in <unknown>
+
+    at get_first_child (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:3800:29)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-NK5CEYTU.js?v=9344cd7a:153:7
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-JEA7ZZMK.js?v=9344cd7a:268:17
+    at DisplaySettings (http://127.0.0.1:3000/src/components/widget/DisplaySettings.svelte:60:12)
+    at Boundary.<anonymous> (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-IGLBWQUO.js?v=9344cd7a:675:21)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:1253:81
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3190:21)
+    at create_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:2554:7)
+    at branch (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:2710:10) @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-IGLBWQUO.js?v=9344cd7a:607
+[    8299ms] [ERROR] [astro-island] Error hydrating /src/components/widget/DisplaySettings.svelte TypeError: Cannot read properties of null (reading 'nodes_start')
+
+	in <unknown>
+
+    at assign_nodes (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-NK5CEYTU.js?v=9344cd7a:135:14)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-NK5CEYTU.js?v=9344cd7a:170:7
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-JEA7ZZMK.js?v=9344cd7a:268:17
+    at DisplaySettings (http://127.0.0.1:3000/src/components/widget/DisplaySettings.svelte:60:12)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-IGLBWQUO.js?v=9344cd7a:675:21
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:1097:57
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3190:21)
+    at create_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:2554:7)
+    at branch (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:2710:10) @ http://127.0.0.1:3000/:8779
+[    8302ms] [ERROR] [astro-island] Error hydrating /src/components/Search.svelte Svelte error: effect_orphan
+`$effect` can only be used inside an effect (e.g. during component initialisation)
+https://svelte.dev/e/effect_orphan
+
+	in <unknown>
+
+    at effect_orphan (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:315:19)
+    at validate_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:2502:5)
+    at user_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:2595:3)
+    at Module.init (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-JEA7ZZMK.js?v=9344cd7a:3241:3)
+    at Search (http://127.0.0.1:3000/src/components/Search.svelte:356:4)
+    at Boundary.<anonymous> (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-IGLBWQUO.js?v=9344cd7a:675:21)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:1253:81
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3190:21)
+    at create_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:2554:7) @ http://127.0.0.1:3000/:8779
+[    8384ms] [ERROR] [astro-island] Error hydrating /src/components/widget/DisplaySettings.svelte TypeError: Cannot read properties of null (reading 'nodes_start')
+
+	in <unknown>
+
+    at assign_nodes (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-NK5CEYTU.js?v=9344cd7a:135:14)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-NK5CEYTU.js?v=9344cd7a:170:7
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-JEA7ZZMK.js?v=9344cd7a:268:17
+    at DisplaySettings (http://127.0.0.1:3000/src/components/widget/DisplaySettings.svelte:60:12)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-IGLBWQUO.js?v=9344cd7a:675:21
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:1097:57
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3190:21)
+    at create_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:2554:7)
+    at branch (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:2710:10) @ http://127.0.0.1:3000/:8779
+[    8385ms] [ERROR] [astro-island] Error hydrating /src/components/Search.svelte Svelte error: effect_orphan
+`$effect` can only be used inside an effect (e.g. during component initialisation)
+https://svelte.dev/e/effect_orphan
+
+	in <unknown>
+
+    at effect_orphan (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:315:19)
+    at validate_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:2502:5)
+    at user_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:2595:3)
+    at Module.init (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-JEA7ZZMK.js?v=9344cd7a:3241:3)
+    at Search (http://127.0.0.1:3000/src/components/Search.svelte:356:4)
+    at Boundary.<anonymous> (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-IGLBWQUO.js?v=9344cd7a:675:21)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:1253:81
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:3190:21)
+    at create_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:2554:7) @ http://127.0.0.1:3000/:8779
+[    8385ms] [ERROR] [astro-island] Error hydrating /src/components/LightDarkSwitchClient.svelte Svelte error: effect_orphan
+`$effect` can only be used inside an effect (e.g. during component initialisation)
+https://svelte.dev/e/effect_orphan
+
+	in <unknown>
+
+    at effect_orphan (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:315:19)
+    at validate_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:2502:5)
+    at user_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:2595:3)
+    at onMount (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-JEA7ZZMK.js?v=9344cd7a:4207:5)
+    at LightDarkSwitch (http://127.0.0.1:3000/src/components/LightDarkSwitch.svelte:37:2)
+    at LightDarkSwitchClient.$.add_svelte_meta.componentTag (http://127.0.0.1:3000/src/components/LightDarkSwitchClient.svelte:16:26)
+    at Module.add_svelte_meta (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-Y4P4WN5G.js?v=9344cd7a:510:12)
+    at LightDarkSwitchClient (http://127.0.0.1:3000/src/components/LightDarkSwitchClient.svelte:16:4)
+    at Boundary.<anonymous> (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-IGLBWQUO.js?v=9344cd7a:675:21)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-FKYBLHJN.js?v=9344cd7a:1253:81 @ http://127.0.0.1:3000/:8779

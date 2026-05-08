@@ -1,0 +1,234 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - link "Pan" [ref=e6] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e7]:
+        - img [ref=e8]
+        - text: Pan
+    - generic [ref=e10]:
+      - link "Blog" [ref=e11] [cursor=pointer]:
+        - /url: /#home-posts
+        - generic [ref=e12]:
+          - img [ref=e13]
+          - generic [ref=e15]: Blog
+      - link "Anime" [ref=e16] [cursor=pointer]:
+        - /url: /anime/
+        - generic [ref=e17]:
+          - img [ref=e18]
+          - generic [ref=e20]: Anime
+      - link "Projects" [ref=e21] [cursor=pointer]:
+        - /url: /projects/
+        - generic [ref=e22]:
+          - img [ref=e23]
+          - generic [ref=e25]: Projects
+      - link "About" [ref=e26] [cursor=pointer]:
+        - /url: /about/
+        - generic [ref=e27]:
+          - img [ref=e28]
+          - generic [ref=e30]: About
+      - link "GitHub" [ref=e31] [cursor=pointer]:
+        - /url: https://github.com/Renakoni
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - generic [ref=e35]: GitHub
+          - img [ref=e36]
+    - generic [ref=e38]:
+      - generic [ref=e40]:
+        - img
+        - textbox "搜索" [ref=e41]
+      - button "Display Settings" [ref=e42]:
+        - img [ref=e43]
+      - menu [ref=e46]:
+        - menuitem "Light/Dark Mode" [ref=e47]:
+          - img [ref=e49]
+          - img [ref=e52]
+          - img [ref=e55]
+        - generic:
+          - generic:
+            - button "亮色":
+              - img
+              - text: 亮色
+            - button "暗色":
+              - img
+              - text: 暗色
+            - button "跟随系统":
+              - img
+              - text: 跟随系统
+    - generic:
+      - link "Blog":
+        - /url: /#home-posts
+        - generic: Blog
+        - img
+      - link "Anime":
+        - /url: /anime/
+        - generic: Anime
+        - img
+      - link "Projects":
+        - /url: /projects/
+        - generic: Projects
+        - img
+      - link "About":
+        - /url: /about/
+        - generic: About
+        - img
+      - link "GitHub":
+        - /url: https://github.com/Renakoni
+        - generic: GitHub
+        - img
+    - generic [ref=e57]:
+      - generic:
+        - generic:
+          - generic:
+            - text: 主题色
+            - button "Reset to Default":
+              - generic:
+                - img
+          - generic:
+            - generic: "250"
+        - generic:
+          - slider "主题色": "250"
+  - generic [ref=e131]:
+    - generic [ref=e132]:
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - generic [ref=e136]: Project Categories
+          - generic [ref=e137]:
+            - link "View all projects" [ref=e138] [cursor=pointer]:
+              - /url: /projects/
+              - button "All 2" [ref=e139]:
+                - generic [ref=e140]:
+                  - generic [ref=e141]: All
+                  - generic [ref=e142]: "2"
+            - link "View Archive projects" [ref=e143] [cursor=pointer]:
+              - /url: /projects/?category=Archive
+              - button "Archive 1" [ref=e144]:
+                - generic [ref=e145]:
+                  - generic [ref=e146]: Archive
+                  - generic [ref=e147]: "1"
+            - link "View Site projects" [ref=e148] [cursor=pointer]:
+              - /url: /projects/?category=Site
+              - button "Site 1" [ref=e149]:
+                - generic [ref=e150]:
+                  - generic [ref=e151]: Site
+                  - generic [ref=e152]: "1"
+        - generic [ref=e153]:
+          - generic [ref=e154]: Project Tags
+          - generic [ref=e156]:
+            - link "View projects tagged 个人记录" [ref=e157] [cursor=pointer]:
+              - /url: /projects/?tag=%E4%B8%AA%E4%BA%BA%E8%AE%B0%E5%BD%95
+              - text: 个人记录
+            - link "View projects tagged 仍在补完" [ref=e158] [cursor=pointer]:
+              - /url: /projects/?tag=%E4%BB%8D%E5%9C%A8%E8%A1%A5%E5%AE%8C
+              - text: 仍在补完
+            - link "View projects tagged 视觉重构中" [ref=e159] [cursor=pointer]:
+              - /url: /projects/?tag=%E8%A7%86%E8%A7%89%E9%87%8D%E6%9E%84%E4%B8%AD
+              - text: 视觉重构中
+            - link "View projects tagged Anime" [ref=e160] [cursor=pointer]:
+              - /url: /projects/?tag=Anime
+              - text: Anime
+            - link "View projects tagged Archive" [ref=e161] [cursor=pointer]:
+              - /url: /projects/?tag=Archive
+              - text: Archive
+            - link "View projects tagged Astro" [ref=e162] [cursor=pointer]:
+              - /url: /projects/?tag=Astro
+              - text: Astro
+            - link "View projects tagged Personal OS" [ref=e163] [cursor=pointer]:
+              - /url: /projects/?tag=Personal%20OS
+              - text: Personal OS
+            - link "View projects tagged TypeScript" [ref=e164] [cursor=pointer]:
+              - /url: /projects/?tag=TypeScript
+              - text: TypeScript
+      - main [ref=e165]:
+        - generic [ref=e166]:
+          - generic [ref=e167]:
+            - heading "Projects" [level=1] [ref=e168]
+            - generic [ref=e169]:
+              - generic [ref=e170]:
+                - img [ref=e171]
+                - text: Projects / Lab Archive
+              - text: PROJECTS / LAB / ARCHIVE
+            - generic [ref=e173]:
+              - link "01 Site · ACTIVE BUILD Fuwari Personal OS Design / Frontend / Content System 把个人博客改造成二次元审美驱动的技术档案站：主页、文章、动画记录、项目展示都围绕同一套个人世界观重组。 Astro TypeScript Personal OS 视觉重构中 自定义首页 Hero 与内容入口 Markdown 文章系统与封面卡片 柔和过渡与深色视觉基调" [ref=e174] [cursor=pointer]:
+                - /url: /projects/fuwari-personal-os/
+                - generic [ref=e175]:
+                  - generic [ref=e176]:
+                    - img [ref=e178]
+                    - generic [ref=e180]: "01"
+                  - generic [ref=e181]:
+                    - generic [ref=e182]:
+                      - generic [ref=e183]:
+                        - generic [ref=e184]: Site · ACTIVE BUILD
+                        - heading "Fuwari Personal OS" [level=2] [ref=e185]
+                      - generic [ref=e186]: Design / Frontend / Content System
+                    - paragraph [ref=e187]: 把个人博客改造成二次元审美驱动的技术档案站：主页、文章、动画记录、项目展示都围绕同一套个人世界观重组。
+                    - generic [ref=e188]:
+                      - generic [ref=e189]: Astro
+                      - generic [ref=e190]: TypeScript
+                      - generic [ref=e191]: Personal OS
+                      - generic [ref=e192]: 视觉重构中
+                    - list [ref=e193]:
+                      - listitem [ref=e194]: 自定义首页 Hero 与内容入口
+                      - listitem [ref=e195]: Markdown 文章系统与封面卡片
+                      - listitem [ref=e196]: 柔和过渡与深色视觉基调
+                  - generic [ref=e198]:
+                    - text: Open case
+                    - img [ref=e199]
+              - link "02 Archive · CURATED ARCHIVE Anime Shelf Data Curation / Interface Design 不是评分表，而是一个持续记录观看痕迹的动画档案库：状态筛选、分页和个人收藏感优先于普通列表效率。 Anime Archive 个人记录 仍在补完 想看 / 看过 / 在看状态过滤 大量条目的分页浏览 和博客主视觉保持同一套暗色氛围" [ref=e201] [cursor=pointer]:
+                - /url: /projects/anime-shelf/
+                - generic [ref=e202]:
+                  - generic [ref=e203]:
+                    - img [ref=e205]
+                    - generic [ref=e207]: "02"
+                  - generic [ref=e208]:
+                    - generic [ref=e209]:
+                      - generic [ref=e210]:
+                        - generic [ref=e211]: Archive · CURATED ARCHIVE
+                        - heading "Anime Shelf" [level=2] [ref=e212]
+                      - generic [ref=e213]: Data Curation / Interface Design
+                    - paragraph [ref=e214]: 不是评分表，而是一个持续记录观看痕迹的动画档案库：状态筛选、分页和个人收藏感优先于普通列表效率。
+                    - generic [ref=e215]:
+                      - generic [ref=e216]: Anime
+                      - generic [ref=e217]: Archive
+                      - generic [ref=e218]: 个人记录
+                      - generic [ref=e219]: 仍在补完
+                    - list [ref=e220]:
+                      - listitem [ref=e221]: 想看 / 看过 / 在看状态过滤
+                      - listitem [ref=e222]: 大量条目的分页浏览
+                      - listitem [ref=e223]: 和博客主视觉保持同一套暗色氛围
+                  - generic [ref=e224]:
+                    - generic [ref=e225]:
+                      - img [ref=e226]
+                      - generic [ref=e228]: Archive
+                    - generic [ref=e229]:
+                      - text: Open case
+                      - img [ref=e230]
+          - generic [ref=e235]:
+            - text: © 2026 Pan. Built with
+            - link "Astro" [ref=e236] [cursor=pointer]:
+              - /url: https://astro.build
+            - text: . /
+            - link "RSS" [ref=e237] [cursor=pointer]:
+              - /url: /rss.xml
+            - text: /
+            - link "Sitemap" [ref=e238] [cursor=pointer]:
+              - /url: /sitemap-index.xml
+    - generic:
+      - generic:
+        - button "Back to Top":
+          - img
+  - paragraph [ref=e130]: "Navigated to: Projects"
+  - generic [ref=e109]:
+    - button "Menu" [ref=e110]:
+      - img [ref=e112]
+      - generic: Menu
+    - button "Inspect" [ref=e116]:
+      - img [ref=e118]
+      - generic: Inspect
+    - button "Audit" [ref=e120]:
+      - generic [ref=e121]:
+        - img [ref=e122]
+        - img [ref=e244]
+      - generic: Audit
+    - button "Settings" [ref=e125]:
+      - img [ref=e127]
+      - generic: Settings

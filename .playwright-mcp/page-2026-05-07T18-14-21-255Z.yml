@@ -1,0 +1,160 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - link "Pan" [ref=e6] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e7]:
+        - img [ref=e8]
+        - text: Pan
+    - generic [ref=e10]:
+      - link "Blog" [ref=e11] [cursor=pointer]:
+        - /url: /#home-posts
+        - generic [ref=e12]:
+          - img [ref=e13]
+          - generic [ref=e15]: Blog
+      - link "Anime" [ref=e16] [cursor=pointer]:
+        - /url: /anime/
+        - generic [ref=e17]:
+          - img [ref=e18]
+          - generic [ref=e20]: Anime
+      - link "Projects" [ref=e21] [cursor=pointer]:
+        - /url: /projects/
+        - generic [ref=e22]:
+          - img [ref=e23]
+          - generic [ref=e25]: Projects
+      - link "About" [ref=e26] [cursor=pointer]:
+        - /url: /about/
+        - generic [ref=e27]:
+          - img [ref=e28]
+          - generic [ref=e30]: About
+      - link "GitHub" [ref=e31] [cursor=pointer]:
+        - /url: https://github.com/Renakoni
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - generic [ref=e35]: GitHub
+          - img [ref=e36]
+    - generic [ref=e38]:
+      - generic [ref=e40]:
+        - img
+        - textbox "搜索" [ref=e41]
+      - button "Display Settings" [ref=e42]:
+        - img [ref=e43]
+      - menu [ref=e46]:
+        - menuitem "Light/Dark Mode" [ref=e47]:
+          - img [ref=e49]
+          - img [ref=e52]
+          - img [ref=e55]
+        - generic:
+          - generic:
+            - button "亮色":
+              - img
+              - text: 亮色
+            - button "暗色":
+              - img
+              - text: 暗色
+            - button "跟随系统":
+              - img
+              - text: 跟随系统
+    - generic:
+      - link "Blog":
+        - /url: /#home-posts
+        - generic: Blog
+        - img
+      - link "Anime":
+        - /url: /anime/
+        - generic: Anime
+        - img
+      - link "Projects":
+        - /url: /projects/
+        - generic: Projects
+        - img
+      - link "About":
+        - /url: /about/
+        - generic: About
+        - img
+      - link "GitHub":
+        - /url: https://github.com/Renakoni
+        - generic: GitHub
+        - img
+    - generic [ref=e57]:
+      - generic:
+        - generic:
+          - generic:
+            - text: 主题色
+            - button "Reset to Default":
+              - generic:
+                - img
+          - generic:
+            - generic: "250"
+        - generic:
+          - slider "主题色": "250"
+  - generic [ref=e58]:
+    - main [ref=e60]:
+      - generic [ref=e61]:
+        - generic [ref=e62]:
+          - link "Back to projects" [ref=e63] [cursor=pointer]:
+            - /url: /projects/
+            - img [ref=e64]
+            - text: Back to projects
+          - article [ref=e66]:
+            - generic [ref=e67]:
+              - img [ref=e68]
+              - text: Archive · CURATED ARCHIVE
+            - generic [ref=e70]:
+              - generic [ref=e71]:
+                - heading "Anime Shelf" [level=1] [ref=e72]
+                - paragraph [ref=e73]: 不是评分表，而是一个持续记录观看痕迹的动画档案库：状态筛选、分页和个人收藏感优先于普通列表效率。
+              - generic [ref=e74]:
+                - generic [ref=e75]: Role
+                - strong [ref=e76]: Data Curation / Interface Design
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - heading "Case notes" [level=2] [ref=e79]
+              - list [ref=e80]:
+                - listitem [ref=e81]: 想看 / 看过 / 在看状态过滤
+                - listitem [ref=e82]: 大量条目的分页浏览
+                - listitem [ref=e83]: 和博客主视觉保持同一套暗色氛围
+            - complementary [ref=e84]:
+              - heading "Tags" [level=2] [ref=e85]
+              - generic [ref=e86]:
+                - generic [ref=e87]: Anime
+                - generic [ref=e88]: Archive
+                - generic [ref=e89]: 个人记录
+                - generic [ref=e90]: 仍在补完
+              - link "Visit related page" [ref=e91] [cursor=pointer]:
+                - /url: /anime/
+                - text: Visit related page
+                - img [ref=e92]
+          - navigation "Related projects" [ref=e94]:
+            - generic [ref=e95]: Other projects
+            - link "Site Fuwari Personal OS" [ref=e97] [cursor=pointer]:
+              - /url: /projects/fuwari-personal-os/
+              - generic [ref=e98]: Site
+              - strong [ref=e99]: Fuwari Personal OS
+        - generic [ref=e103]:
+          - text: © 2026 Pan. Built with
+          - link "Astro" [ref=e104] [cursor=pointer]:
+            - /url: https://astro.build
+          - text: . /
+          - link "RSS" [ref=e105] [cursor=pointer]:
+            - /url: /rss.xml
+          - text: /
+          - link "Sitemap" [ref=e106] [cursor=pointer]:
+            - /url: /sitemap-index.xml
+    - generic:
+      - generic:
+        - button "Back to Top":
+          - img
+  - generic [ref=e109]:
+    - button "Menu" [ref=e110]:
+      - img [ref=e112]
+      - generic: Menu
+    - button "Inspect" [ref=e116]:
+      - img [ref=e118]
+      - generic: Inspect
+    - button "Audit" [ref=e120]:
+      - img [ref=e122]
+      - generic: Audit
+    - button "Settings" [ref=e125]:
+      - img [ref=e127]
+      - generic: Settings
+  - paragraph [ref=e130]

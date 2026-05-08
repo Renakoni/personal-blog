@@ -1,16 +1,9 @@
 ---
-import { Icon } from "astro-icon/components";
-import { profileConfig, siteConfig } from "../config";
-import { url } from "../utils/url-utils";
+import { siteConfig } from "../config";
 import ImageWrapper from "./misc/ImageWrapper.astro";
 
-interface Props {
-	showLatestLink?: boolean;
-}
-
-const { showLatestLink = true } = Astro.props;
 const heroImage =
-	siteConfig.banner.src || profileConfig.avatar || "assets/images/demo-banner.png";
+	siteConfig.banner.src || "assets/images/demo-banner.png";
 const heroPosition = siteConfig.banner.position || "center";
 ---
 
@@ -24,41 +17,25 @@ const heroPosition = siteConfig.banner.position || "center";
 		/>
 	</div>
 	<div class="home-hero__veil absolute inset-0"></div>
+	<div class="home-hero__noise absolute inset-0"></div>
 
 	<div class="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[var(--page-width)] flex-col justify-end px-6 pb-24 pt-28 md:px-10 md:pb-28 lg:px-14">
-		<div class="max-w-4xl">
-			<div class="mb-4 text-sm font-medium text-white/75 md:text-base">
-				{profileConfig.name}
-			</div>
-			<h1 class="max-w-4xl text-5xl font-semibold leading-[1.04] text-white md:text-7xl lg:text-[6rem]">
-				{siteConfig.title}
+		<div class="home-hero__content max-w-5xl">
+			<h1 class="home-hero__wordmark onload-animation" style="animation-delay: 180ms;">
+				<img
+					src="/pan-wordmark.svg"
+					alt="Pan"
+					class="home-hero__wordmark-svg"
+				/>
 			</h1>
-			<p class="mt-5 max-w-2xl text-base leading-8 text-white/80 md:mt-6 md:text-xl md:leading-9">
-				{profileConfig.bio || siteConfig.subtitle}
+			<p class="home-hero__jp-subtitle onload-animation" style="animation-delay: 260ms;">
+				夢のように愛して、愛のように夢を見て。
 			</p>
-			<div class="mt-8 flex flex-wrap gap-3 md:mt-10">
-				<a
-					href={url("/archive/")}
-					class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-95"
-				>
-					Archive
-					<Icon name="material-symbols:arrow-forward-rounded" class="text-xl" />
-				</a>
-				{showLatestLink && (
-					<a
-						href="#home-posts"
-						class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/15 active:scale-95"
-					>
-						Latest
-						<Icon name="material-symbols:south-rounded" class="text-xl" />
-					</a>
-				)}
-			</div>
 		</div>
 	</div>
 
-	<div class="pointer-events-none absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 text-white/70 md:block">
-		<div class="flex flex-col items-center gap-2 text-xs uppercase tracking-[0.28em]">
+	<div class="pointer-events-none absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 text-white/70 md:block onload-animation" style="animation-delay: 360ms;">
+		<div class="home-hero__scroll-cue flex flex-col items-center gap-2 text-xs uppercase tracking-[0.28em]">
 			<span>Scroll</span>
 			<span class="h-10 w-px bg-white/40"></span>
 		</div>

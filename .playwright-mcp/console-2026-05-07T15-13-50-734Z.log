@@ -1,0 +1,65 @@
+[    2011ms] [ERROR] [astro-island] Error hydrating /src/components/Search.svelte TypeError: Cannot read properties of null (reading '$')
+
+	in <unknown>
+
+    at Module.legacy_pre_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2664:13)
+    at Search (http://127.0.0.1:3000/src/components/Search.svelte:161:4)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-2D6AUTU6.js?v=2ed82e44:326:58
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3190:21)
+    at create_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2554:7)
+    at branch (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2710:10)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-2D6AUTU6.js?v=2ed82e44:320:17
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3190:21) @ http://127.0.0.1:3000/projects/:7472
+[    2012ms] [ERROR] [astro-island] Error hydrating /src/components/widget/DisplaySettings.svelte TypeError: Cannot read properties of null (reading '$')
+
+	in <unknown>
+
+    at Module.legacy_pre_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2664:13)
+    at DisplaySettings (http://127.0.0.1:3000/src/components/widget/DisplaySettings.svelte:48:4)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-2D6AUTU6.js?v=2ed82e44:326:58
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3190:21)
+    at create_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2554:7)
+    at branch (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2710:10)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-2D6AUTU6.js?v=2ed82e44:320:17
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3190:21) @ http://127.0.0.1:3000/projects/:7472
+[    2014ms] [WARNING] Failed to hydrate:  TypeError: Cannot read properties of null (reading '$')
+
+	in <unknown>
+	in LightDarkSwitch.svelte
+	in LightDarkSwitchClient.svelte
+
+    at legacy_pre_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2664:13)
+    at Icon (http://127.0.0.1:3000/node_modules/.vite/deps/@iconify_svelte.js?v=29bdfa8f:1772:3)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-2D6AUTU6.js?v=2ed82e44:326:58
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3190:21)
+    at create_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2554:7)
+    at branch (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2710:10)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-2D6AUTU6.js?v=2ed82e44:320:17
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3190:21) @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-EYUIUZYQ.js?v=2ed82e44:607
+[    2015ms] [ERROR] [astro-island] Error hydrating /src/components/LightDarkSwitchClient.svelte TypeError: Cannot read properties of null (reading '$')
+
+	in <unknown>
+	in LightDarkSwitch.svelte
+	in LightDarkSwitchClient.svelte
+
+    at legacy_pre_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2664:13)
+    at Icon (http://127.0.0.1:3000/node_modules/.vite/deps/@iconify_svelte.js?v=29bdfa8f:1772:3)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-2D6AUTU6.js?v=2ed82e44:326:58
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3190:21)
+    at create_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2554:7)
+    at branch (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:2710:10)
+    at http://127.0.0.1:3000/node_modules/.vite/deps/chunk-2D6AUTU6.js?v=2ed82e44:320:17
+    at update_reaction (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3060:18)
+    at update_effect (http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BRUDMWFF.js?v=2ed82e44:3190:21) @ http://127.0.0.1:3000/projects/:7472
+[    2870ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:3000/src/components/Search.svelte:135
+[    2870ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:3000/src/components/Search.svelte:128
+[   17045ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:3000/src/components/Search.svelte:135
+[   17045ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:3000/src/components/Search.svelte:128
+[   17195ms] [WARNING] SwupA11yPlugin: No main heading (h1) found on new page @ http://127.0.0.1:3000/node_modules/.vite/deps/@swup_astro_client_SwupA11yPlugin.js?v=9344cd7a:174

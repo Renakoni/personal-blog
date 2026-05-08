@@ -1,0 +1,10 @@
+[   12830ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:3000/src/components/Search.svelte:135
+[   12831ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:3000/src/components/Search.svelte:128
+[   27011ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=9344cd7a:366
+[   27712ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=9344cd7a:366
+[   42016ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=9344cd7a:366
+[   42245ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=9344cd7a:366
+[   61208ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=9344cd7a:366
+[   61642ms] [WARNING] [swup] No elements found matching animationSelector `[class*="transition-swup-"]` @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-SQL7AVGP.js?v=9344cd7a:366
+[   81238ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:3000/src/components/Search.svelte:135
+[   81238ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:3000/src/components/Search.svelte:128

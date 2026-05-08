@@ -1,0 +1,4 @@
+[    1735ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:3001/src/components/Search.svelte:135
+[    1735ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:3001/src/components/Search.svelte:128
+[  126728ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:3001/src/components/Search.svelte:135
+[  126729ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:3001/src/components/Search.svelte:128

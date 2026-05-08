@@ -1,0 +1,5 @@
+[     343ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:3000/src/components/Search.svelte:135
+[     343ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:3000/src/components/Search.svelte:128
+[    1580ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://static.doubleclick.net/instream/ad_status.js:0
+[    3682ms] [INFO] %c%s line-height: 30px; color: #FF6699 bili-fe-fp: 1.1.4 @ https://s1.hdslb.com/bfs/seed/jinkela/short/user-fingerprint/bili-user-fingerprint.min.js:0
+[    3705ms] [ERROR] @bilibili/bili-user-fingerprint(report): report is not found @ https://s1.hdslb.com/bfs/seed/jinkela/short/user-fingerprint/bili-user-fingerprint.min.js:0

@@ -116,10 +116,24 @@
 
     }
 
-    .katex-display-container {
-        max-width: 100%;
-        overflow-x: auto;
-        margin: 1em 0;
+    iframe, video {
+        display: block;
+        margin: 1.5em 0;
+    }
+
+    figure {
+        margin: 1.75em 0;
+    }
+
+    figcaption {
+        margin-top: 0.65rem;
+        color: rgb(15 23 42 / 0.46);
+        font-size: 0.82rem;
+        text-align: center;
+    }
+
+    :root.dark & figcaption {
+        color: rgb(255 255 255 / 0.46);
     }
 
 }

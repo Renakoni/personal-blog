@@ -1,0 +1,269 @@
+- generic [ref=e3]:
+  - generic [ref=e7]:
+    - link "Pan" [ref=e8] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e9]:
+        - img [ref=e10]
+        - text: Pan
+    - generic [ref=e12]:
+      - link "Blog" [ref=e13] [cursor=pointer]:
+        - /url: /#home-posts
+        - generic [ref=e14]:
+          - img [ref=e15]
+          - generic [ref=e17]: Blog
+      - link "Anime" [ref=e18] [cursor=pointer]:
+        - /url: /anime/
+        - generic [ref=e19]:
+          - img [ref=e20]
+          - generic [ref=e22]: Anime
+      - link "Projects" [ref=e23] [cursor=pointer]:
+        - /url: /projects/
+        - generic [ref=e24]:
+          - img [ref=e25]
+          - generic [ref=e27]: Projects
+      - link "About" [ref=e28] [cursor=pointer]:
+        - /url: /about/
+        - generic [ref=e29]:
+          - img [ref=e30]
+          - generic [ref=e32]: About
+      - link "GitHub" [ref=e33] [cursor=pointer]:
+        - /url: https://github.com/Renakoni
+        - generic [ref=e34]:
+          - img [ref=e35]
+          - generic [ref=e37]: GitHub
+          - img [ref=e38]
+    - button "Display Settings" [ref=e41]:
+      - img [ref=e42]
+    - generic:
+      - link "Blog":
+        - /url: /#home-posts
+        - generic: Blog
+        - img
+      - link "Anime":
+        - /url: /anime/
+        - generic: Anime
+        - img
+      - link "Projects":
+        - /url: /projects/
+        - generic: Projects
+        - img
+      - link "About":
+        - /url: /about/
+        - generic: About
+        - img
+      - link "GitHub":
+        - /url: https://github.com/Renakoni
+        - generic: GitHub
+        - img
+  - main [ref=e44]:
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - img [ref=e49]
+          - text: Anime
+        - heading "番剧记录" [level=1] [ref=e51]
+        - navigation "Anime filters" [ref=e52]:
+          - link "全部" [ref=e53] [cursor=pointer]:
+            - /url: /anime/
+          - link "想看" [ref=e54] [cursor=pointer]:
+            - /url: /anime/wish/
+          - link "看过" [ref=e55] [cursor=pointer]:
+            - /url: /anime/done/
+          - link "在看" [ref=e56] [cursor=pointer]:
+            - /url: /anime/watching/
+      - generic [ref=e57]:
+        - article [ref=e58]:
+          - generic [ref=e59]:
+            - img "乱步奇谭 拉普拉斯的游戏 cover" [ref=e61]
+            - generic [ref=e62]:
+              - generic [ref=e63]:
+                - generic [ref=e64]:
+                  - heading "乱步奇谭 拉普拉斯的游戏" [level=2] [ref=e65]
+                  - generic [ref=e66]: 乱歩奇譚 Game of Laplace
+                - generic [ref=e67]: 看过
+              - generic [ref=e68]:
+                - generic [ref=e69]: 11话 / 2015年7月2日
+                - generic [ref=e70]: 岸誠二 / 森田和明
+        - article [ref=e71]:
+          - generic [ref=e72]:
+            - img "虚构推理 cover" [ref=e74]
+            - generic [ref=e75]:
+              - generic [ref=e76]:
+                - generic [ref=e77]:
+                  - heading "虚构推理" [level=2] [ref=e78]
+                  - generic [ref=e79]: 虚構推理
+                - generic [ref=e80]: 看过
+              - generic [ref=e81]:
+                - generic [ref=e82]: 12话 / 2020年1月11日
+                - generic [ref=e83]: 後藤圭二 / 城平京（講談社タイガ刊）；漫画：片瀬茶柴（講談社『月刊少年マガジン』『少年マガジンR』連載） / 本多孝敏
+        - article [ref=e84]:
+          - generic [ref=e85]:
+            - img "葬送的芙莉莲 cover" [ref=e87]
+            - generic [ref=e88]:
+              - generic [ref=e89]:
+                - generic [ref=e90]:
+                  - heading "葬送的芙莉莲" [level=2] [ref=e91]
+                  - generic [ref=e92]: 葬送のフリーレン
+                - generic [ref=e93]: 想看
+              - generic [ref=e94]:
+                - generic [ref=e95]: 28话 / 2023年9月29日
+                - generic [ref=e96]: 斎藤圭一郎 / 山田鐘人・アベツカサ（小学館「週刊少年サンデー」連載中） / 鈴木智尋 / 長澤礼子 / MADHOUSE
+        - article [ref=e97]:
+          - generic [ref=e98]:
+            - img "红辣椒 cover" [ref=e100]
+            - generic [ref=e101]:
+              - generic [ref=e102]:
+                - generic [ref=e103]:
+                  - heading "红辣椒" [level=2] [ref=e104]
+                  - generic [ref=e105]: パプリカ
+                - generic [ref=e106]: 想看
+              - generic [ref=e107]:
+                - generic [ref=e108]: 1话 / 2006年11月25日
+                - generic [ref=e109]: 今敏 / 筒井康隆 / 安藤雅司
+        - article [ref=e110]:
+          - generic [ref=e111]:
+            - img "钢之炼金术师 FULLMETAL ALCHEMIST cover" [ref=e113]
+            - generic [ref=e114]:
+              - generic [ref=e115]:
+                - generic [ref=e116]:
+                  - heading "钢之炼金术师 FULLMETAL ALCHEMIST" [level=2] [ref=e117]
+                  - generic [ref=e118]: 鋼の錬金術師 FULLMETAL ALCHEMIST
+                - generic [ref=e119]: 想看
+              - generic [ref=e120]:
+                - generic [ref=e121]: 64话 / 2009年4月5日
+                - generic [ref=e122]: 入江泰浩 / 荒川弘（掲載 月刊「少年ガンガン」スクウェア・エニックス刊） / 大野木寛(1-3,7-9,12,14,17,19,30,32,40,46,53,56,58-64,sp1-4)、土屋理敬(4-5,10,18,21,23,26,31,36-37,41,45,50,52,55)、菅正太郎(6,11,13,16,22,28,33-34,42,48,54)、津村米紀(15,20,25,27,38,43,49)、水上清資(24,29,35,39,44,47,51,57) / 菅野宏紀 / BONES
+        - article [ref=e123]:
+          - generic [ref=e124]:
+            - img "命运石之门 cover" [ref=e126]
+            - generic [ref=e127]:
+              - generic [ref=e128]:
+                - generic [ref=e129]:
+                  - heading "命运石之门" [level=2] [ref=e130]
+                  - generic [ref=e131]: STEINS;GATE
+                - generic [ref=e132]: 看过
+              - generic [ref=e133]:
+                - generic [ref=e134]: 25话 / 2011年4月6日
+                - generic [ref=e135]: 佐藤卓哉・浜崎博嗣 (第1-24话) / 小林智樹 (第25话) / 5pb. / Nitro+ / 花田十輝 / 坂井久太 / WHITE FOX
+        - article [ref=e136]:
+          - generic [ref=e137]:
+            - img "福星小子2 绮丽梦中人 cover" [ref=e139]
+            - generic [ref=e140]:
+              - generic [ref=e141]:
+                - generic [ref=e142]:
+                  - heading "福星小子2 绮丽梦中人" [level=2] [ref=e143]
+                  - generic [ref=e144]: うる星やつら2 ビューティフル・ドリーマー
+                - generic [ref=e145]: 在看
+              - generic [ref=e147]: 1话 / 1984年2月11日
+        - article [ref=e148]:
+          - generic [ref=e149]:
+            - img "浪客剑心 追忆篇 cover" [ref=e151]
+            - generic [ref=e152]:
+              - generic [ref=e153]:
+                - generic [ref=e154]:
+                  - heading "浪客剑心 追忆篇" [level=2] [ref=e155]
+                  - generic [ref=e156]: るろうに剣心 -明治剣客浪漫譚- 追憶編
+                - generic [ref=e157]: 看过
+              - generic [ref=e158]:
+                - generic [ref=e159]: 4话 / 1999年2月20日
+                - generic [ref=e160]: 古橋一浩 / 和月伸宏（集英社「週刊少年ジャンプ」連載） / 柳沢まさひで
+        - article [ref=e161]:
+          - generic [ref=e162]:
+            - img "秒速5厘米 cover" [ref=e164]
+            - generic [ref=e165]:
+              - generic [ref=e166]:
+                - generic [ref=e167]:
+                  - heading "秒速5厘米" [level=2] [ref=e168]
+                  - generic [ref=e169]: 秒速5センチメートル
+                - generic [ref=e170]: 看过
+              - generic [ref=e171]:
+                - generic [ref=e172]: 3话 / 2007年3月3日
+                - generic [ref=e173]: 新海誠 / 西村貴世
+        - article [ref=e174]:
+          - generic [ref=e175]:
+            - img "我心里危险的东西 cover" [ref=e177]
+            - generic [ref=e178]:
+              - generic [ref=e179]:
+                - generic [ref=e180]:
+                  - heading "我心里危险的东西" [level=2] [ref=e181]
+                  - generic [ref=e182]: 僕の心のヤバイやつ
+                - generic [ref=e183]: 看过
+              - generic [ref=e184]:
+                - generic [ref=e185]: 12话 / 2023年4月1日
+                - generic [ref=e186]: 赤城博昭 / 桜井のりお（秋田書店「マンガクロス」連載） / 勝又聖人
+        - article [ref=e187]:
+          - generic [ref=e188]:
+            - img "我心里危险的东西 第二季 cover" [ref=e190]
+            - generic [ref=e191]:
+              - generic [ref=e192]:
+                - generic [ref=e193]:
+                  - heading "我心里危险的东西 第二季" [level=2] [ref=e194]
+                  - generic [ref=e195]: 僕の心のヤバイやつ 第2期
+                - generic [ref=e196]: 看过
+              - generic [ref=e197]:
+                - generic [ref=e198]: 13话 / 2024年1月6日
+                - generic [ref=e199]: 赤城博昭 / 桜井のりお（秋田書店「マンガクロス」連載） / 花田十輝 / 勝又聖人
+        - article [ref=e200]:
+          - generic [ref=e201]:
+            - img "败犬女主太多了！ cover" [ref=e203]
+            - generic [ref=e204]:
+              - generic [ref=e205]:
+                - generic [ref=e206]:
+                  - heading "败犬女主太多了！" [level=2] [ref=e207]
+                  - generic [ref=e208]: 負けヒロインが多すぎる！
+                - generic [ref=e209]: 看过
+              - generic [ref=e210]:
+                - generic [ref=e211]: 12话 / 2024年7月13日
+                - generic [ref=e212]: 北村翔太郎 / 雨森たきび（小学館「ガガガ文庫」刊） / 川上哲也
+      - navigation "Anime pagination" [ref=e213]:
+        - generic:
+          - img
+        - generic [ref=e214]:
+          - link "1" [ref=e215] [cursor=pointer]:
+            - /url: /anime/
+          - link "2" [ref=e216] [cursor=pointer]:
+            - /url: /anime/page/2/
+          - link "3" [ref=e217] [cursor=pointer]:
+            - /url: /anime/page/3/
+          - link "4" [ref=e218] [cursor=pointer]:
+            - /url: /anime/page/4/
+          - link "5" [ref=e219] [cursor=pointer]:
+            - /url: /anime/page/5/
+          - link "6" [ref=e220] [cursor=pointer]:
+            - /url: /anime/page/6/
+          - link "7" [ref=e221] [cursor=pointer]:
+            - /url: /anime/page/7/
+          - link "8" [ref=e222] [cursor=pointer]:
+            - /url: /anime/page/8/
+          - link "9" [ref=e223] [cursor=pointer]:
+            - /url: /anime/page/9/
+          - link "10" [ref=e224] [cursor=pointer]:
+            - /url: /anime/page/10/
+          - link "11" [ref=e225] [cursor=pointer]:
+            - /url: /anime/page/11/
+          - link "12" [ref=e226] [cursor=pointer]:
+            - /url: /anime/page/12/
+          - link "13" [ref=e227] [cursor=pointer]:
+            - /url: /anime/page/13/
+          - link "14" [ref=e228] [cursor=pointer]:
+            - /url: /anime/page/14/
+          - link "15" [ref=e229] [cursor=pointer]:
+            - /url: /anime/page/15/
+          - link "16" [ref=e230] [cursor=pointer]:
+            - /url: /anime/page/16/
+          - link "17" [ref=e231] [cursor=pointer]:
+            - /url: /anime/page/17/
+          - link "18" [ref=e232] [cursor=pointer]:
+            - /url: /anime/page/18/
+        - link [ref=e233] [cursor=pointer]:
+          - /url: /anime/page/2/
+          - img [ref=e234]
+      - generic [ref=e239]:
+        - text: © 2026 Pan. Built with
+        - link "Astro" [ref=e240] [cursor=pointer]:
+          - /url: https://astro.build
+        - text: . /
+        - link "RSS" [ref=e241] [cursor=pointer]:
+          - /url: /rss.xml
+        - text: /
+        - link "Sitemap" [ref=e242] [cursor=pointer]:
+          - /url: /sitemap-index.xml

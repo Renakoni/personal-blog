@@ -1,0 +1,209 @@
+- generic [ref=e2]:
+  - generic [ref=e6]:
+    - link "Pan" [ref=e7] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e8]:
+        - img [ref=e9]
+        - text: Pan
+    - generic [ref=e11]:
+      - link "Blog" [ref=e12] [cursor=pointer]:
+        - /url: /#home-posts
+        - generic [ref=e13]:
+          - img [ref=e14]
+          - generic [ref=e16]: Blog
+      - link "Anime" [ref=e17] [cursor=pointer]:
+        - /url: /anime/
+        - generic [ref=e18]:
+          - img [ref=e19]
+          - generic [ref=e21]: Anime
+      - link "Projects" [ref=e22] [cursor=pointer]:
+        - /url: /projects/
+        - generic [ref=e23]:
+          - img [ref=e24]
+          - generic [ref=e26]: Projects
+      - link "About" [ref=e27] [cursor=pointer]:
+        - /url: /about/
+        - generic [ref=e28]:
+          - img [ref=e29]
+          - generic [ref=e31]: About
+      - link "GitHub" [ref=e32] [cursor=pointer]:
+        - /url: https://github.com/Renakoni
+        - generic [ref=e33]:
+          - img [ref=e34]
+          - generic [ref=e36]: GitHub
+          - img [ref=e37]
+    - generic [ref=e39]:
+      - textbox "搜索" [ref=e42]
+      - button "Display Settings" [ref=e43]:
+        - img [ref=e44]
+      - menu [ref=e47]:
+        - menuitem "Light/Dark Mode" [ref=e48]
+        - generic:
+          - generic:
+            - button "亮色"
+            - button "暗色"
+            - button "跟随系统"
+    - generic:
+      - link "Blog":
+        - /url: /#home-posts
+        - generic: Blog
+        - img
+      - link "Anime":
+        - /url: /anime/
+        - generic: Anime
+        - img
+      - link "Projects":
+        - /url: /projects/
+        - generic: Projects
+        - img
+      - link "About":
+        - /url: /about/
+        - generic: About
+        - img
+      - link "GitHub":
+        - /url: https://github.com/Renakoni
+        - generic: GitHub
+        - img
+    - generic [ref=e49]:
+      - generic:
+        - generic:
+          - generic:
+            - text: 主题色
+            - button "Reset to Default"
+          - generic:
+            - generic: "250"
+        - generic:
+          - slider "主题色": "250"
+  - generic [ref=e50]:
+    - main [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e56]:
+            - img "About cover" [ref=e57]
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - generic [ref=e63]: About
+                - generic [ref=e64]: Pan
+              - heading "忘れはしないよ 時が流れても" [level=1] [ref=e66]:
+                - generic [ref=e67]: 忘れはしないよ
+                - generic [ref=e68]: 時が流れても
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - generic [ref=e71]: Identity
+              - generic [ref=e72]:
+                - heading "代码、审美、内容，长期并行。" [level=2] [ref=e73]
+                - paragraph [ref=e74]: 这里不是履历，也不是项目清单，更像一个持续更新中的个人界面。
+              - generic [ref=e75]:
+                - article [ref=e76]:
+                  - generic [ref=e77]: Build
+                  - heading "Blog / Interface / Personal Systems" [level=3] [ref=e78]
+                  - paragraph [ref=e79]: 做站点、做界面，也做让内容长期可整理、可回看的结构。
+                - article [ref=e80]:
+                  - generic [ref=e81]: Focus
+                  - heading "ACG / Tech / Visual Rhythm" [level=3] [ref=e82]
+                  - paragraph [ref=e83]: 偏爱夜色、留白、结构感，也偏爱那些能长期维护的东西。
+                - article [ref=e84]:
+                  - generic [ref=e85]: Work
+                  - heading "Sharp, calm, maintained" [level=3] [ref=e86]
+                  - paragraph [ref=e87]: 不追求堆砌感，宁可克制一些，也要把完成度做高。
+              - generic [ref=e88]:
+                - article [ref=e89]:
+                  - generic [ref=e90]: Writing
+                  - heading "Blog" [level=3] [ref=e91]
+                  - list [ref=e92]:
+                    - listitem [ref=e93]: 技术记录
+                    - listitem [ref=e94]: 站点改造
+                    - listitem [ref=e95]: 不那么正式的开发笔记
+                - article [ref=e96]:
+                  - generic [ref=e97]: Watching
+                  - heading "Anime" [level=3] [ref=e98]
+                  - list [ref=e99]:
+                    - listitem [ref=e100]: 在看 / 补完
+                    - listitem [ref=e101]: 喜欢的作品
+                    - listitem [ref=e102]: 偶尔留下来的观后感
+                - article [ref=e103]:
+                  - generic [ref=e104]: Making
+                  - heading "Projects" [level=3] [ref=e105]
+                  - list [ref=e106]:
+                    - listitem [ref=e107]: 正在做的
+                    - listitem [ref=e108]: 做过的
+                    - listitem [ref=e109]: 暂时留位的实验
+              - paragraph [ref=e110]: 想留下来的，不只是结果，也包括过程里的判断、品味和选择。
+            - complementary [ref=e111]:
+              - generic [ref=e112]:
+                - generic [ref=e113]:
+                  - img [ref=e114]
+                  - text: Current Arc
+                - generic [ref=e116]: now
+                - list [ref=e117]:
+                  - listitem [ref=e118]:
+                    - generic [ref=e119]: "01"
+                    - generic [ref=e120]: Visual language
+                  - listitem [ref=e121]:
+                    - generic [ref=e122]: "02"
+                    - generic [ref=e123]: Archive structure
+                  - listitem [ref=e124]:
+                    - generic [ref=e125]: "03"
+                    - generic [ref=e126]: Interface detail
+          - generic [ref=e127]:
+            - generic [ref=e131]: Stack
+            - generic [ref=e135]:
+              - generic [ref=e136]: Python
+              - generic [ref=e137]: TypeScript
+              - generic [ref=e138]: Astro
+              - generic [ref=e139]: Tailwind CSS
+              - generic [ref=e140]: Dart
+              - generic [ref=e141]: Vue
+              - generic [ref=e142]: PyTorch
+              - generic [ref=e143]: Java
+              - generic [ref=e144]: CSS
+              - generic [ref=e145]: Git
+              - generic [ref=e146]: Prompting
+              - generic [ref=e147]: Astro
+              - generic [ref=e148]: Python
+              - generic [ref=e149]: TypeScript
+              - generic [ref=e150]: Astro
+              - generic [ref=e151]: Tailwind CSS
+              - generic [ref=e152]: Dart
+              - generic [ref=e153]: Vue
+              - generic [ref=e154]: PyTorch
+              - generic [ref=e155]: Java
+              - generic [ref=e156]: CSS
+              - generic [ref=e157]: Git
+              - generic [ref=e158]: Prompting
+              - generic [ref=e159]: Astro
+            - generic [ref=e161]:
+              - article [ref=e162]:
+                - generic [ref=e164]: Languages
+                - generic [ref=e166]:
+                  - generic [ref=e167]: Python
+                  - generic [ref=e168]: TypeScript
+                  - generic [ref=e169]: Dart
+                  - generic [ref=e170]: Java
+              - article [ref=e171]:
+                - generic [ref=e173]: Frontend
+                - generic [ref=e175]:
+                  - generic [ref=e176]: Astro
+                  - generic [ref=e177]: Tailwind CSS
+                  - generic [ref=e178]: Vue
+                  - generic [ref=e179]: CSS
+              - article [ref=e180]:
+                - generic [ref=e182]: Toolkit
+                - generic [ref=e184]:
+                  - generic [ref=e185]: PyTorch
+                  - generic [ref=e186]: Git
+                  - generic [ref=e187]: Prompting
+        - generic [ref=e191]:
+          - text: © 2026 Pan. Built with
+          - link "Astro" [ref=e192] [cursor=pointer]:
+            - /url: https://astro.build
+          - text: . /
+          - link "RSS" [ref=e193] [cursor=pointer]:
+            - /url: /rss.xml
+          - text: /
+          - link "Sitemap" [ref=e194] [cursor=pointer]:
+            - /url: /sitemap-index.xml
+    - generic:
+      - generic:
+        - button "Back to Top":
+          - img

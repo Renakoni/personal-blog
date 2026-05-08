@@ -1,0 +1,195 @@
+- generic [ref=e2]:
+  - generic [ref=e6]:
+    - link "Pan" [ref=e7] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e8]:
+        - img [ref=e9]
+        - text: Pan
+    - generic [ref=e11]:
+      - link "Blog" [ref=e12] [cursor=pointer]:
+        - /url: /#home-posts
+        - generic [ref=e13]:
+          - img [ref=e14]
+          - generic [ref=e16]: Blog
+      - link "Anime" [ref=e17] [cursor=pointer]:
+        - /url: /anime/
+        - generic [ref=e18]:
+          - img [ref=e19]
+          - generic [ref=e21]: Anime
+      - link "Projects" [ref=e22] [cursor=pointer]:
+        - /url: /projects/
+        - generic [ref=e23]:
+          - img [ref=e24]
+          - generic [ref=e26]: Projects
+      - link "About" [ref=e27] [cursor=pointer]:
+        - /url: /about/
+        - generic [ref=e28]:
+          - img [ref=e29]
+          - generic [ref=e31]: About
+      - link "GitHub" [ref=e32] [cursor=pointer]:
+        - /url: https://github.com/Renakoni
+        - generic [ref=e33]:
+          - img [ref=e34]
+          - generic [ref=e36]: GitHub
+          - img [ref=e37]
+    - button "Display Settings" [ref=e40]:
+      - img [ref=e41]
+    - generic:
+      - link "Blog":
+        - /url: /#home-posts
+        - generic: Blog
+        - img
+      - link "Anime":
+        - /url: /anime/
+        - generic: Anime
+        - img
+      - link "Projects":
+        - /url: /projects/
+        - generic: Projects
+        - img
+      - link "About":
+        - /url: /about/
+        - generic: About
+        - img
+      - link "GitHub":
+        - /url: https://github.com/Renakoni
+        - generic: GitHub
+        - img
+  - generic [ref=e44]:
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]: Project Categories
+        - generic [ref=e49]:
+          - link "View all projects" [ref=e50] [cursor=pointer]:
+            - /url: /projects/
+            - button "All 2" [ref=e51]:
+              - generic [ref=e52]:
+                - generic [ref=e53]: All
+                - generic [ref=e54]: "2"
+          - link "View Archive projects" [ref=e55] [cursor=pointer]:
+            - /url: /projects/?category=Archive
+            - button "Archive 1" [ref=e56]:
+              - generic [ref=e57]:
+                - generic [ref=e58]: Archive
+                - generic [ref=e59]: "1"
+          - link "View Site projects" [ref=e60] [cursor=pointer]:
+            - /url: /projects/?category=Site
+            - button "Site 1" [ref=e61]:
+              - generic [ref=e62]:
+                - generic [ref=e63]: Site
+                - generic [ref=e64]: "1"
+      - generic [ref=e65]:
+        - generic [ref=e66]: Project Tags
+        - generic [ref=e68]:
+          - link "View projects tagged 个人记录" [ref=e69] [cursor=pointer]:
+            - /url: /projects/?tag=%E4%B8%AA%E4%BA%BA%E8%AE%B0%E5%BD%95
+            - text: 个人记录
+          - link "View projects tagged 仍在补完" [ref=e70] [cursor=pointer]:
+            - /url: /projects/?tag=%E4%BB%8D%E5%9C%A8%E8%A1%A5%E5%AE%8C
+            - text: 仍在补完
+          - link "View projects tagged 视觉重构中" [ref=e71] [cursor=pointer]:
+            - /url: /projects/?tag=%E8%A7%86%E8%A7%89%E9%87%8D%E6%9E%84%E4%B8%AD
+            - text: 视觉重构中
+          - link "View projects tagged Anime" [ref=e72] [cursor=pointer]:
+            - /url: /projects/?tag=Anime
+            - text: Anime
+          - link "View projects tagged Archive" [ref=e73] [cursor=pointer]:
+            - /url: /projects/?tag=Archive
+            - text: Archive
+          - link "View projects tagged Astro" [ref=e74] [cursor=pointer]:
+            - /url: /projects/?tag=Astro
+            - text: Astro
+          - link "View projects tagged Personal OS" [ref=e75] [cursor=pointer]:
+            - /url: /projects/?tag=Personal%20OS
+            - text: Personal OS
+          - link "View projects tagged TypeScript" [ref=e76] [cursor=pointer]:
+            - /url: /projects/?tag=TypeScript
+            - text: TypeScript
+    - main [ref=e77]:
+      - generic [ref=e79]:
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - img [ref=e82]
+            - text: Projects / Lab Archive
+          - heading "Build log for a personal anime-geek system." [level=1] [ref=e84]
+          - paragraph [ref=e85]: 这里放的不是普通链接，而是我正在把个人审美、内容系统和前端实验拼成一个可展示的站点档案。
+          - generic [ref=e86]:
+            - generic [ref=e87]: 02 builds
+            - generic [ref=e88]: 02 categories
+            - generic [ref=e89]: 08 signals
+          - text: PROJECTS / LAB / ARCHIVE
+        - generic [ref=e90]:
+          - link "01 Site · ACTIVE BUILD Fuwari Personal OS Design / Frontend / Content System 把个人博客改造成二次元审美驱动的技术档案站：主页、文章、动画记录、项目展示都围绕同一套个人世界观重组。 Astro TypeScript Tailwind Swup 自定义首页 Hero 与内容入口 Markdown 文章系统与封面卡片 柔和过渡与深色视觉基调 Astro TypeScript Personal OS 视觉重构中" [ref=e91] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e92]:
+              - generic [ref=e93]:
+                - img [ref=e95]
+                - generic [ref=e97]: "01"
+              - generic [ref=e98]:
+                - generic [ref=e99]:
+                  - generic [ref=e100]:
+                    - generic [ref=e101]: Site · ACTIVE BUILD
+                    - heading "Fuwari Personal OS" [level=2] [ref=e102]
+                  - generic [ref=e103]: Design / Frontend / Content System
+                - paragraph [ref=e104]: 把个人博客改造成二次元审美驱动的技术档案站：主页、文章、动画记录、项目展示都围绕同一套个人世界观重组。
+                - generic [ref=e105]:
+                  - generic [ref=e106]: Astro
+                  - generic [ref=e107]: TypeScript
+                  - generic [ref=e108]: Tailwind
+                  - generic [ref=e109]: Swup
+                - list [ref=e110]:
+                  - listitem [ref=e111]: 自定义首页 Hero 与内容入口
+                  - listitem [ref=e112]: Markdown 文章系统与封面卡片
+                  - listitem [ref=e113]: 柔和过渡与深色视觉基调
+                - generic [ref=e114]:
+                  - generic [ref=e115]: Astro
+                  - generic [ref=e116]: TypeScript
+                  - generic [ref=e117]: Personal OS
+                  - generic [ref=e118]: 视觉重构中
+              - generic [ref=e120]:
+                - text: Enter
+                - img [ref=e121]
+          - link "02 Archive · CURATED ARCHIVE Anime Shelf Data Curation / Interface Design 不是评分表，而是一个持续记录观看痕迹的动画档案库：状态筛选、分页和个人收藏感优先于普通列表效率。 Astro Collection Responsive UI 想看 / 看过 / 在看状态过滤 大量条目的分页浏览 和博客主视觉保持同一套暗色氛围 Anime Archive 个人记录 仍在补完" [ref=e123] [cursor=pointer]:
+            - /url: /anime/
+            - generic [ref=e124]:
+              - generic [ref=e125]:
+                - img [ref=e127]
+                - generic [ref=e129]: "02"
+              - generic [ref=e130]:
+                - generic [ref=e131]:
+                  - generic [ref=e132]:
+                    - generic [ref=e133]: Archive · CURATED ARCHIVE
+                    - heading "Anime Shelf" [level=2] [ref=e134]
+                  - generic [ref=e135]: Data Curation / Interface Design
+                - paragraph [ref=e136]: 不是评分表，而是一个持续记录观看痕迹的动画档案库：状态筛选、分页和个人收藏感优先于普通列表效率。
+                - generic [ref=e137]:
+                  - generic [ref=e138]: Astro
+                  - generic [ref=e139]: Collection
+                  - generic [ref=e140]: Responsive UI
+                - list [ref=e141]:
+                  - listitem [ref=e142]: 想看 / 看过 / 在看状态过滤
+                  - listitem [ref=e143]: 大量条目的分页浏览
+                  - listitem [ref=e144]: 和博客主视觉保持同一套暗色氛围
+                - generic [ref=e145]:
+                  - generic [ref=e146]: Anime
+                  - generic [ref=e147]: Archive
+                  - generic [ref=e148]: 个人记录
+                  - generic [ref=e149]: 仍在补完
+              - generic [ref=e150]:
+                - generic [ref=e151]:
+                  - generic [ref=e152]: STATUS::CURATED ARCHIVE
+                  - generic [ref=e153]: OPEN::/anime/
+                  - generic [ref=e154]: MODE::ARCHIVE_VIEW
+                - generic [ref=e155]:
+                  - text: Enter
+                  - img [ref=e156]
+    - generic [ref=e161]:
+      - text: © 2026 Pan. Built with
+      - link "Astro" [ref=e162] [cursor=pointer]:
+        - /url: https://astro.build
+      - text: . /
+      - link "RSS" [ref=e163] [cursor=pointer]:
+        - /url: /rss.xml
+      - text: /
+      - link "Sitemap" [ref=e164] [cursor=pointer]:
+        - /url: /sitemap-index.xml

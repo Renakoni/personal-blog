@@ -21,10 +21,8 @@ const isHome = variant === "home";
 <section id="home-posts" class:list={["mb-4", { "pt-2": isHome }]}>
 	<div class:list={["mb-4 flex items-end justify-between gap-4 px-1", { "md:mb-6": isHome }]}>
 		<div>
-			<div class="text-xs font-semibold uppercase tracking-[0.24em] text-50">Latest Posts</div>
-			<h2 class="mt-2 text-2xl font-semibold text-90 md:text-3xl">Recent Posts</h2>
+			<h2 class="text-2xl font-semibold text-90 md:text-3xl">最新文章</h2>
 		</div>
-		<div class="hidden text-sm text-50 md:block">Notes, projects, and records.</div>
 	</div>
 	<div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4">
 		{page.data.map((entry: CollectionEntry<"posts">) => (

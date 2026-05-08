@@ -1,0 +1,311 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e6]:
+      - link "Pan" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e8]:
+          - img [ref=e9]
+          - text: Pan
+      - generic [ref=e11]:
+        - link "Blog" [ref=e12] [cursor=pointer]:
+          - /url: /#home-posts
+          - generic [ref=e13]:
+            - img [ref=e14]
+            - generic [ref=e16]: Blog
+        - link "Anime" [ref=e17] [cursor=pointer]:
+          - /url: /anime/
+          - generic [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e21]: Anime
+        - link "Projects" [ref=e22] [cursor=pointer]:
+          - /url: /projects/
+          - generic [ref=e23]:
+            - img [ref=e24]
+            - generic [ref=e26]: Projects
+        - link "About" [ref=e27] [cursor=pointer]:
+          - /url: /about/
+          - generic [ref=e28]:
+            - img [ref=e29]
+            - generic [ref=e31]: About
+        - link "GitHub" [ref=e32] [cursor=pointer]:
+          - /url: https://github.com/Renakoni
+          - generic [ref=e33]:
+            - img [ref=e34]
+            - generic [ref=e36]: GitHub
+            - img [ref=e37]
+      - generic [ref=e39]:
+        - textbox "搜索" [ref=e42]
+        - button "Display Settings" [ref=e43]:
+          - img [ref=e44]
+        - menu [ref=e47]:
+          - menuitem "Light/Dark Mode" [ref=e48]
+          - generic:
+            - generic:
+              - button "亮色"
+              - button "暗色"
+              - button "跟随系统"
+      - generic:
+        - link "Blog":
+          - /url: /#home-posts
+          - generic: Blog
+          - img
+        - link "Anime":
+          - /url: /anime/
+          - generic: Anime
+          - img
+        - link "Projects":
+          - /url: /projects/
+          - generic: Projects
+          - img
+        - link "About":
+          - /url: /about/
+          - generic: About
+          - img
+        - link "GitHub":
+          - /url: https://github.com/Renakoni
+          - generic: GitHub
+          - img
+      - generic [ref=e49]:
+        - generic:
+          - generic:
+            - generic:
+              - text: 主题色
+              - button "Reset to Default"
+            - generic:
+              - generic: "250"
+          - generic:
+            - slider "主题色": "250"
+    - generic [ref=e50]:
+      - main [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e56]:
+              - img "About cover" [ref=e57]
+              - generic [ref=e61]:
+                - generic [ref=e62]:
+                  - generic [ref=e63]: About
+                  - generic [ref=e64]: Pan
+                  - generic [ref=e65]: Archive 01
+                - heading "忘れはしないよ 時が流れても" [level=1] [ref=e67]:
+                  - generic [ref=e68]: 忘れはしないよ
+                  - generic [ref=e69]: 時が流れても
+                - generic [ref=e70]:
+                  - generic [ref=e71]: ACG / Code / Interface
+                  - generic [ref=e72]: Quiet luxury, tuned by hand
+                  - generic [ref=e73]: Low noise, high intent
+            - generic [ref=e74]:
+              - generic [ref=e75]:
+                - generic [ref=e76]: Identity
+                - generic [ref=e78]:
+                  - 'heading "About #" [level=1] [ref=e79]':
+                    - text: About
+                    - link "#" [ref=e80] [cursor=pointer]:
+                      - /url: "#about"
+                  - generic [ref=e81]:
+                    - 'heading "我是谁 #" [level=2] [ref=e82]':
+                      - text: 我是谁
+                      - link "#" [ref=e83] [cursor=pointer]:
+                        - /url: "#我是谁"
+                    - paragraph [ref=e84]: 大多数时候，我在写代码、折腾站点、整理自己的内容系统。
+                    - paragraph [ref=e85]: 我喜欢那种既有结构感、又保留情绪温度的东西：好看的界面、顺手的工具、能长期维护下去的个人项目，以及那些会在很久之后还想再回头看的作品。
+                  - generic [ref=e86]:
+                    - 'heading "这里写什么 #" [level=2] [ref=e87]':
+                      - text: 这里写什么
+                      - link "#" [ref=e88] [cursor=pointer]:
+                        - /url: "#这里写什么"
+                    - paragraph [ref=e89]: 这个站不会只放一种内容。
+                    - list [ref=e90]:
+                      - listitem [ref=e91]:
+                        - strong [ref=e92]: Blog
+                        - text: ：技术记录、站点改造、折腾过程、一些不那么正式的开发笔记
+                      - listitem [ref=e93]:
+                        - strong [ref=e94]: Anime
+                        - text: ：在看、补完、喜欢的作品，以及偶尔留下来的观后感
+                      - listitem [ref=e95]:
+                        - strong [ref=e96]: Projects
+                        - text: ：还在做的、做过的，或者只是暂时想先留个位置的项目和实验
+                    - paragraph [ref=e97]: 它更像一个长期维护中的个人归档，而不是一次性搭完的展示页。
+                  - generic [ref=e98]:
+                    - 'heading "我喜欢什么 #" [level=2] [ref=e99]':
+                      - text: 我喜欢什么
+                      - link "#" [ref=e100] [cursor=pointer]:
+                        - /url: "#我喜欢什么"
+                    - paragraph [ref=e101]: 我偏爱两种看起来不太一样、但其实很容易相遇的气质：
+                    - list [ref=e102]:
+                      - listitem [ref=e103]: 二次元作品里那种细腻、夜色、情绪感与角色感
+                      - listitem [ref=e104]: 极客世界里那种克制、结构、系统感与可维护性
+                    - paragraph [ref=e105]: 所以这个站会自然地长成现在这样：既想保留一点梦和审美，也想把内容整理得足够清楚、足够耐看。
+              - complementary [ref=e106]:
+                - generic [ref=e107]:
+                  - generic [ref=e108]:
+                    - img [ref=e109]
+                    - text: Current Arc
+                  - generic [ref=e111]: still tuning the signal
+                  - list [ref=e112]:
+                    - listitem [ref=e113]:
+                      - generic [ref=e114]: "01"
+                      - generic [ref=e115]: Visual language
+                    - listitem [ref=e116]:
+                      - generic [ref=e117]: "02"
+                      - generic [ref=e118]: Archive structure
+                    - listitem [ref=e119]:
+                      - generic [ref=e120]: "03"
+                      - generic [ref=e121]: Interface detail
+            - generic [ref=e122]:
+              - article [ref=e123]:
+                - generic [ref=e124]:
+                  - generic [ref=e125]: Signal
+                  - img [ref=e127]
+                - heading "夜 / 余白 / 微光" [level=2] [ref=e129]
+                - paragraph [ref=e130]: 情绪感先出现，技术细节随后靠近。
+              - article [ref=e131]:
+                - generic [ref=e132]:
+                  - generic [ref=e133]: Mode
+                  - img [ref=e135]
+                - heading "Designing in layers" [level=2] [ref=e137]
+                - paragraph [ref=e138]: 界面要像作品，不像功能列表。
+              - article [ref=e139]:
+                - generic [ref=e140]:
+                  - generic [ref=e141]: Bias
+                  - img [ref=e143]
+                - heading "Sharp, not loud" [level=2] [ref=e145]
+                - paragraph [ref=e146]: 偏爱锋利的结构，不要廉价的夸张反馈。
+            - generic [ref=e147]:
+              - generic [ref=e149]:
+                - generic [ref=e151]: Tech Fingerprint
+                - generic [ref=e153]:
+                  - generic [ref=e154]:
+                    - heading "Capability, arranged like taste." [level=2] [ref=e155]
+                    - paragraph [ref=e156]: 不是语言统计，也不是仓促罗列；更像一张长期形成的工作纹理。
+                  - generic [ref=e157]:
+                    - generic [ref=e158]:
+                      - generic [ref=e159]: "04"
+                      - generic [ref=e160]: domains
+                    - generic [ref=e161]:
+                      - generic [ref=e162]: 16+
+                      - generic [ref=e163]: tools
+                    - generic [ref=e164]:
+                      - generic [ref=e165]: "01"
+                      - generic [ref=e166]: taste
+                - generic [ref=e167]:
+                  - generic [ref=e168]: Curated
+                  - generic [ref=e169]: Layered
+                  - generic [ref=e170]: Precise
+              - generic [ref=e172]:
+                - article [ref=e173]:
+                  - generic [ref=e175]:
+                    - generic [ref=e176]: Creative Frontend
+                    - heading "Core" [level=3] [ref=e177]
+                  - paragraph [ref=e179]: 负责画面、节奏、交互层级。
+                  - generic [ref=e180]:
+                    - generic [ref=e181]: Astro
+                    - generic [ref=e182]: TypeScript
+                    - generic [ref=e183]: Tailwind
+                    - generic [ref=e184]: Motion
+                - article [ref=e185]:
+                  - generic [ref=e187]:
+                    - generic [ref=e188]: Systems / Automation
+                    - heading "Active" [level=3] [ref=e189]
+                  - paragraph [ref=e191]: 让重复劳动退场，让系统自己运转。
+                  - generic [ref=e192]:
+                    - generic [ref=e193]: Python
+                    - generic [ref=e194]: CLI
+                    - generic [ref=e195]: Scripts
+                    - generic [ref=e196]: Workflows
+                - article [ref=e197]:
+                  - generic [ref=e199]:
+                    - generic [ref=e200]: Data / ML
+                    - heading "Active" [level=3] [ref=e201]
+                  - paragraph [ref=e203]: 偏实验、偏验证，也偏结果表达。
+                  - generic [ref=e204]:
+                    - generic [ref=e205]: PyTorch
+                    - generic [ref=e206]: Pandas
+                    - generic [ref=e207]: Notebook
+                    - generic [ref=e208]: Experiments
+                - article [ref=e209]:
+                  - generic [ref=e211]:
+                    - generic [ref=e212]: Tooling / Workflow
+                    - heading "Exploratory" [level=3] [ref=e213]
+                  - paragraph [ref=e215]: 把个人系统修到顺手，像持续升级装备。
+                  - generic [ref=e216]:
+                    - generic [ref=e217]: Git
+                    - generic [ref=e218]: Design Tokens
+                    - generic [ref=e219]: Content Ops
+                    - generic [ref=e220]: Prompting
+              - generic [ref=e222]:
+                - generic [ref=e223]:
+                  - generic [ref=e224]: Signal Ledger
+                  - generic [ref=e225]:
+                    - generic [ref=e226]:
+                      - generic [ref=e227]:
+                        - generic [ref=e228]: Astro
+                        - generic [ref=e229]: build surface
+                      - generic [ref=e236]: Deep
+                    - generic [ref=e237]:
+                      - generic [ref=e238]:
+                        - generic [ref=e239]: TypeScript
+                        - generic [ref=e240]: interface logic
+                      - generic [ref=e247]: High
+                    - generic [ref=e248]:
+                      - generic [ref=e249]:
+                        - generic [ref=e250]: Python
+                        - generic [ref=e251]: automation / experiments
+                      - generic [ref=e258]: Deep
+                    - generic [ref=e259]:
+                      - generic [ref=e260]:
+                        - generic [ref=e261]: Tailwind
+                        - generic [ref=e262]: rapid detailing
+                      - generic [ref=e269]: High
+                    - generic [ref=e270]:
+                      - generic [ref=e271]:
+                        - generic [ref=e272]: PyTorch
+                        - generic [ref=e273]: research path
+                      - generic [ref=e280]: Mid
+                    - generic [ref=e281]:
+                      - generic [ref=e282]:
+                        - generic [ref=e283]: CSS
+                        - generic [ref=e284]: surface polish
+                      - generic [ref=e291]: High
+                - generic [ref=e292]:
+                  - generic [ref=e293]: Reading
+                  - paragraph [ref=e294]: 我更在意技术如何塑造体验：结构是否干净，界面是否耐看，系统是否值得长期维护。
+                  - generic [ref=e295]:
+                    - generic [ref=e296]:
+                      - generic [ref=e297]: Surface
+                      - generic [ref=e298]: Editorial UI
+                    - generic [ref=e299]:
+                      - generic [ref=e300]: Method
+                      - generic [ref=e301]: Iterate precisely
+                    - generic [ref=e302]:
+                      - generic [ref=e303]: Preference
+                      - generic [ref=e304]: Sharp restraint
+                    - generic [ref=e305]:
+                      - generic [ref=e306]: Noise floor
+                      - generic [ref=e307]: Kept low
+          - generic [ref=e311]:
+            - text: © 2026 Pan. Built with
+            - link "Astro" [ref=e312] [cursor=pointer]:
+              - /url: https://astro.build
+            - text: . /
+            - link "RSS" [ref=e313] [cursor=pointer]:
+              - /url: /rss.xml
+            - text: /
+            - link "Sitemap" [ref=e314] [cursor=pointer]:
+              - /url: /sitemap-index.xml
+      - generic:
+        - generic:
+          - button "Back to Top":
+            - img
+  - generic [ref=e317]:
+    - button "Menu" [ref=e318]:
+      - img [ref=e320]
+      - generic: Menu
+    - button "Inspect" [ref=e324]:
+      - img [ref=e326]
+      - generic: Inspect
+    - button "Audit" [ref=e328]:
+      - img [ref=e330]
+      - generic: Audit
+    - button "Settings" [ref=e333]:
+      - img [ref=e335]
+      - generic: Settings

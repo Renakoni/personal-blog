@@ -1,0 +1,318 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e149]:
+    - generic [ref=e153]:
+      - link "Pan" [ref=e154] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e155]:
+          - img [ref=e156]
+          - text: Pan
+      - generic [ref=e158]:
+        - link "Blog" [ref=e159] [cursor=pointer]:
+          - /url: /#home-posts
+          - generic [ref=e160]:
+            - img [ref=e161]
+            - generic [ref=e163]: Blog
+        - link "Anime" [ref=e164] [cursor=pointer]:
+          - /url: /anime/
+          - generic [ref=e165]:
+            - img [ref=e166]
+            - generic [ref=e168]: Anime
+        - link "Projects" [ref=e169] [cursor=pointer]:
+          - /url: /projects/
+          - generic [ref=e170]:
+            - img [ref=e171]
+            - generic [ref=e173]: Projects
+        - link "About" [ref=e174] [cursor=pointer]:
+          - /url: /about/
+          - generic [ref=e175]:
+            - img [ref=e176]
+            - generic [ref=e178]: About
+        - link "GitHub" [ref=e179] [cursor=pointer]:
+          - /url: https://github.com/Renakoni
+          - generic [ref=e180]:
+            - img [ref=e181]
+            - generic [ref=e183]: GitHub
+            - img [ref=e184]
+      - generic [ref=e186]:
+        - generic [ref=e188]:
+          - img
+          - textbox "搜索" [ref=e189]
+        - button "Display Settings" [ref=e190]:
+          - img [ref=e191]
+        - menu [ref=e194]:
+          - menuitem "Light/Dark Mode" [ref=e195]:
+            - img [ref=e197]
+            - img [ref=e200]
+            - img [ref=e203]
+          - generic:
+            - generic:
+              - button "亮色":
+                - img
+                - text: 亮色
+              - button "暗色":
+                - img
+                - text: 暗色
+              - button "跟随系统":
+                - img
+                - text: 跟随系统
+      - generic:
+        - link "Blog":
+          - /url: /#home-posts
+          - generic: Blog
+          - img
+        - link "Anime":
+          - /url: /anime/
+          - generic: Anime
+          - img
+        - link "Projects":
+          - /url: /projects/
+          - generic: Projects
+          - img
+        - link "About":
+          - /url: /about/
+          - generic: About
+          - img
+        - link "GitHub":
+          - /url: https://github.com/Renakoni
+          - generic: GitHub
+          - img
+      - generic [ref=e205]:
+        - generic:
+          - generic:
+            - generic:
+              - text: 主题色
+              - button "Reset to Default":
+                - generic:
+                  - img
+            - generic:
+              - generic: "250"
+          - generic:
+            - slider "主题色": "250"
+    - main [ref=e206]:
+      - generic [ref=e208]:
+        - generic [ref=e209]:
+          - generic [ref=e210]:
+            - img [ref=e211]
+            - text: Anime
+          - heading "番剧记录" [level=1] [ref=e213]
+          - navigation "Anime filters" [ref=e214]:
+            - link "全部" [ref=e215] [cursor=pointer]:
+              - /url: /anime/
+            - link "想看" [ref=e216] [cursor=pointer]:
+              - /url: /anime/wish/
+            - link "看过" [ref=e217] [cursor=pointer]:
+              - /url: /anime/done/
+            - link "在看" [ref=e218] [cursor=pointer]:
+              - /url: /anime/watching/
+        - generic [ref=e219]:
+          - article [ref=e220]:
+            - generic [ref=e221]:
+              - img "乱步奇谭 拉普拉斯的游戏 cover" [ref=e223]
+              - generic [ref=e224]:
+                - generic [ref=e225]:
+                  - generic [ref=e226]:
+                    - heading "乱步奇谭 拉普拉斯的游戏" [level=2] [ref=e227]
+                    - generic [ref=e228]: 乱歩奇譚 Game of Laplace
+                  - generic [ref=e229]: 看过
+                - generic [ref=e230]:
+                  - generic [ref=e231]: 11话 / 2015年7月2日
+                  - generic [ref=e232]: 岸誠二 / 森田和明
+          - article [ref=e233]:
+            - generic [ref=e234]:
+              - img "虚构推理 cover" [ref=e236]
+              - generic [ref=e237]:
+                - generic [ref=e238]:
+                  - generic [ref=e239]:
+                    - heading "虚构推理" [level=2] [ref=e240]
+                    - generic [ref=e241]: 虚構推理
+                  - generic [ref=e242]: 看过
+                - generic [ref=e243]:
+                  - generic [ref=e244]: 12话 / 2020年1月11日
+                  - generic [ref=e245]: 後藤圭二 / 城平京（講談社タイガ刊）；漫画：片瀬茶柴（講談社『月刊少年マガジン』『少年マガジンR』連載） / 本多孝敏
+          - article [ref=e246]:
+            - generic [ref=e247]:
+              - img "葬送的芙莉莲 cover" [ref=e249]
+              - generic [ref=e250]:
+                - generic [ref=e251]:
+                  - generic [ref=e252]:
+                    - heading "葬送的芙莉莲" [level=2] [ref=e253]
+                    - generic [ref=e254]: 葬送のフリーレン
+                  - generic [ref=e255]: 想看
+                - generic [ref=e256]:
+                  - generic [ref=e257]: 28话 / 2023年9月29日
+                  - generic [ref=e258]: 斎藤圭一郎 / 山田鐘人・アベツカサ（小学館「週刊少年サンデー」連載中） / 鈴木智尋 / 長澤礼子 / MADHOUSE
+          - article [ref=e259]:
+            - generic [ref=e260]:
+              - img "红辣椒 cover" [ref=e262]
+              - generic [ref=e263]:
+                - generic [ref=e264]:
+                  - generic [ref=e265]:
+                    - heading "红辣椒" [level=2] [ref=e266]
+                    - generic [ref=e267]: パプリカ
+                  - generic [ref=e268]: 想看
+                - generic [ref=e269]:
+                  - generic [ref=e270]: 1话 / 2006年11月25日
+                  - generic [ref=e271]: 今敏 / 筒井康隆 / 安藤雅司
+          - article [ref=e272]:
+            - generic [ref=e273]:
+              - img "钢之炼金术师 FULLMETAL ALCHEMIST cover" [ref=e275]
+              - generic [ref=e276]:
+                - generic [ref=e277]:
+                  - generic [ref=e278]:
+                    - heading "钢之炼金术师 FULLMETAL ALCHEMIST" [level=2] [ref=e279]
+                    - generic [ref=e280]: 鋼の錬金術師 FULLMETAL ALCHEMIST
+                  - generic [ref=e281]: 想看
+                - generic [ref=e282]:
+                  - generic [ref=e283]: 64话 / 2009年4月5日
+                  - generic [ref=e284]: 入江泰浩 / 荒川弘（掲載 月刊「少年ガンガン」スクウェア・エニックス刊） / 大野木寛(1-3,7-9,12,14,17,19,30,32,40,46,53,56,58-64,sp1-4)、土屋理敬(4-5,10,18,21,23,26,31,36-37,41,45,50,52,55)、菅正太郎(6,11,13,16,22,28,33-34,42,48,54)、津村米紀(15,20,25,27,38,43,49)、水上清資(24,29,35,39,44,47,51,57) / 菅野宏紀 / BONES
+          - article [ref=e285]:
+            - generic [ref=e286]:
+              - img "命运石之门 cover" [ref=e288]
+              - generic [ref=e289]:
+                - generic [ref=e290]:
+                  - generic [ref=e291]:
+                    - heading "命运石之门" [level=2] [ref=e292]
+                    - generic [ref=e293]: STEINS;GATE
+                  - generic [ref=e294]: 看过
+                - generic [ref=e295]:
+                  - generic [ref=e296]: 25话 / 2011年4月6日
+                  - generic [ref=e297]: 佐藤卓哉・浜崎博嗣 (第1-24话) / 小林智樹 (第25话) / 5pb. / Nitro+ / 花田十輝 / 坂井久太 / WHITE FOX
+          - article [ref=e298]:
+            - generic [ref=e299]:
+              - img "福星小子2 绮丽梦中人 cover" [ref=e301]
+              - generic [ref=e302]:
+                - generic [ref=e303]:
+                  - generic [ref=e304]:
+                    - heading "福星小子2 绮丽梦中人" [level=2] [ref=e305]
+                    - generic [ref=e306]: うる星やつら2 ビューティフル・ドリーマー
+                  - generic [ref=e307]: 在看
+                - generic [ref=e309]: 1话 / 1984年2月11日
+          - article [ref=e310]:
+            - generic [ref=e311]:
+              - img "浪客剑心 追忆篇 cover" [ref=e313]
+              - generic [ref=e314]:
+                - generic [ref=e315]:
+                  - generic [ref=e316]:
+                    - heading "浪客剑心 追忆篇" [level=2] [ref=e317]
+                    - generic [ref=e318]: るろうに剣心 -明治剣客浪漫譚- 追憶編
+                  - generic [ref=e319]: 看过
+                - generic [ref=e320]:
+                  - generic [ref=e321]: 4话 / 1999年2月20日
+                  - generic [ref=e322]: 古橋一浩 / 和月伸宏（集英社「週刊少年ジャンプ」連載） / 柳沢まさひで
+          - article [ref=e323]:
+            - generic [ref=e324]:
+              - img "秒速5厘米 cover" [ref=e326]
+              - generic [ref=e327]:
+                - generic [ref=e328]:
+                  - generic [ref=e329]:
+                    - heading "秒速5厘米" [level=2] [ref=e330]
+                    - generic [ref=e331]: 秒速5センチメートル
+                  - generic [ref=e332]: 看过
+                - generic [ref=e333]:
+                  - generic [ref=e334]: 3话 / 2007年3月3日
+                  - generic [ref=e335]: 新海誠 / 西村貴世
+          - article [ref=e336]:
+            - generic [ref=e337]:
+              - img "我心里危险的东西 cover" [ref=e339]
+              - generic [ref=e340]:
+                - generic [ref=e341]:
+                  - generic [ref=e342]:
+                    - heading "我心里危险的东西" [level=2] [ref=e343]
+                    - generic [ref=e344]: 僕の心のヤバイやつ
+                  - generic [ref=e345]: 看过
+                - generic [ref=e346]:
+                  - generic [ref=e347]: 12话 / 2023年4月1日
+                  - generic [ref=e348]: 赤城博昭 / 桜井のりお（秋田書店「マンガクロス」連載） / 勝又聖人
+          - article [ref=e349]:
+            - generic [ref=e350]:
+              - img "我心里危险的东西 第二季 cover" [ref=e352]
+              - generic [ref=e353]:
+                - generic [ref=e354]:
+                  - generic [ref=e355]:
+                    - heading "我心里危险的东西 第二季" [level=2] [ref=e356]
+                    - generic [ref=e357]: 僕の心のヤバイやつ 第2期
+                  - generic [ref=e358]: 看过
+                - generic [ref=e359]:
+                  - generic [ref=e360]: 13话 / 2024年1月6日
+                  - generic [ref=e361]: 赤城博昭 / 桜井のりお（秋田書店「マンガクロス」連載） / 花田十輝 / 勝又聖人
+          - article [ref=e362]:
+            - generic [ref=e363]:
+              - img "败犬女主太多了！ cover" [ref=e365]
+              - generic [ref=e366]:
+                - generic [ref=e367]:
+                  - generic [ref=e368]:
+                    - heading "败犬女主太多了！" [level=2] [ref=e369]
+                    - generic [ref=e370]: 負けヒロインが多すぎる！
+                  - generic [ref=e371]: 看过
+                - generic [ref=e372]:
+                  - generic [ref=e373]: 12话 / 2024年7月13日
+                  - generic [ref=e374]: 北村翔太郎 / 雨森たきび（小学館「ガガガ文庫」刊） / 川上哲也
+        - navigation "Anime pagination" [ref=e375]:
+          - generic:
+            - img
+          - generic [ref=e376]:
+            - link "1" [ref=e377] [cursor=pointer]:
+              - /url: /anime/
+            - link "2" [ref=e378] [cursor=pointer]:
+              - /url: /anime/page/2/
+            - link "3" [ref=e379] [cursor=pointer]:
+              - /url: /anime/page/3/
+            - link "4" [ref=e380] [cursor=pointer]:
+              - /url: /anime/page/4/
+            - link "5" [ref=e381] [cursor=pointer]:
+              - /url: /anime/page/5/
+            - link "6" [ref=e382] [cursor=pointer]:
+              - /url: /anime/page/6/
+            - link "7" [ref=e383] [cursor=pointer]:
+              - /url: /anime/page/7/
+            - link "8" [ref=e384] [cursor=pointer]:
+              - /url: /anime/page/8/
+            - link "9" [ref=e385] [cursor=pointer]:
+              - /url: /anime/page/9/
+            - link "10" [ref=e386] [cursor=pointer]:
+              - /url: /anime/page/10/
+            - link "11" [ref=e387] [cursor=pointer]:
+              - /url: /anime/page/11/
+            - link "12" [ref=e388] [cursor=pointer]:
+              - /url: /anime/page/12/
+            - link "13" [ref=e389] [cursor=pointer]:
+              - /url: /anime/page/13/
+            - link "14" [ref=e390] [cursor=pointer]:
+              - /url: /anime/page/14/
+            - link "15" [ref=e391] [cursor=pointer]:
+              - /url: /anime/page/15/
+            - link "16" [ref=e392] [cursor=pointer]:
+              - /url: /anime/page/16/
+            - link "17" [ref=e393] [cursor=pointer]:
+              - /url: /anime/page/17/
+            - link "18" [ref=e394] [cursor=pointer]:
+              - /url: /anime/page/18/
+          - link [ref=e395] [cursor=pointer]:
+            - /url: /anime/page/2/
+            - img [ref=e396]
+        - generic [ref=e401]:
+          - text: © 2026 Pan. Built with
+          - link "Astro" [ref=e402] [cursor=pointer]:
+            - /url: https://astro.build
+          - text: . /
+          - link "RSS" [ref=e403] [cursor=pointer]:
+            - /url: /rss.xml
+          - text: /
+          - link "Sitemap" [ref=e404] [cursor=pointer]:
+            - /url: /sitemap-index.xml
+  - paragraph [ref=e147]: "Navigated to: 番剧记录"
+  - generic [ref=e123]:
+    - button "Menu" [ref=e124]:
+      - img [ref=e126]
+      - generic: Menu
+    - button "Inspect" [ref=e130]:
+      - img [ref=e132]
+      - generic: Inspect
+    - button "Audit" [ref=e134]:
+      - generic [ref=e135]:
+        - img [ref=e136]
+        - img [ref=e405]
+      - generic: Audit
+    - button "Settings" [ref=e142]:
+      - img [ref=e144]
+      - generic: Settings

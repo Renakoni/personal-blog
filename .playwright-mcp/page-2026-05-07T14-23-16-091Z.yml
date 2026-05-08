@@ -1,0 +1,200 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e6]:
+      - link "Pan" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e8]:
+          - img [ref=e9]
+          - text: Pan
+      - generic [ref=e11]:
+        - link "Blog" [ref=e12] [cursor=pointer]:
+          - /url: /#home-posts
+          - generic [ref=e13]:
+            - img [ref=e14]
+            - generic [ref=e16]: Blog
+        - link "Anime" [ref=e17] [cursor=pointer]:
+          - /url: /anime/
+          - generic [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e21]: Anime
+        - link "Projects" [ref=e22] [cursor=pointer]:
+          - /url: /projects/
+          - generic [ref=e23]:
+            - img [ref=e24]
+            - generic [ref=e26]: Projects
+        - link "About" [ref=e27] [cursor=pointer]:
+          - /url: /about/
+          - generic [ref=e28]:
+            - img [ref=e29]
+            - generic [ref=e31]: About
+        - link "GitHub" [ref=e32] [cursor=pointer]:
+          - /url: https://github.com/Renakoni
+          - generic [ref=e33]:
+            - img [ref=e34]
+            - generic [ref=e36]: GitHub
+            - img [ref=e37]
+      - generic [ref=e39]:
+        - textbox "搜索" [ref=e42]
+        - button "Display Settings" [ref=e43]:
+          - img [ref=e44]
+        - menu [ref=e47]:
+          - menuitem "Light/Dark Mode" [ref=e48]
+          - generic:
+            - generic:
+              - button "亮色"
+              - button "暗色"
+              - button "跟随系统"
+      - generic:
+        - link "Blog":
+          - /url: /#home-posts
+          - generic: Blog
+          - img
+        - link "Anime":
+          - /url: /anime/
+          - generic: Anime
+          - img
+        - link "Projects":
+          - /url: /projects/
+          - generic: Projects
+          - img
+        - link "About":
+          - /url: /about/
+          - generic: About
+          - img
+        - link "GitHub":
+          - /url: https://github.com/Renakoni
+          - generic: GitHub
+          - img
+      - generic [ref=e49]:
+        - generic:
+          - generic:
+            - generic:
+              - text: 主题色
+              - button "Reset to Default"
+            - generic:
+              - generic: "250"
+          - generic:
+            - slider "主题色": "250"
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e54]:
+            - link "Go to About Page" [ref=e55] [cursor=pointer]:
+              - /url: /about/
+              - generic:
+                - img
+              - img "Profile Image of the Author" [ref=e57]
+            - generic [ref=e58]:
+              - generic [ref=e59]: Lorem Ipsum
+              - generic [ref=e61]: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              - generic [ref=e62]:
+                - link "Twitter" [ref=e63] [cursor=pointer]:
+                  - /url: https://twitter.com
+                  - img [ref=e64]
+                - link "Steam" [ref=e66] [cursor=pointer]:
+                  - /url: https://store.steampowered.com
+                  - img [ref=e67]
+                - link "GitHub" [ref=e69] [cursor=pointer]:
+                  - /url: https://github.com/Renakoni
+                  - img [ref=e70]
+          - generic [ref=e72]:
+            - generic [ref=e73]:
+              - generic [ref=e74]: 分类
+              - generic [ref=e75]:
+                - link "View all posts in the Examples category" [ref=e76] [cursor=pointer]:
+                  - /url: /archive/?category=Examples
+                  - button "Examples 5" [ref=e77]:
+                    - generic [ref=e78]:
+                      - generic [ref=e79]: Examples
+                      - generic [ref=e80]: "5"
+                - link "View all posts in the Guides category" [ref=e81] [cursor=pointer]:
+                  - /url: /archive/?category=Guides
+                  - button "Guides 1" [ref=e82]:
+                    - generic [ref=e83]:
+                      - generic [ref=e84]: Guides
+                      - generic [ref=e85]: "1"
+            - generic [ref=e86]:
+              - generic [ref=e87]: 标签
+              - generic [ref=e89]:
+                - link "View all posts with the Blogging tag" [ref=e90] [cursor=pointer]:
+                  - /url: /archive/?tag=Blogging
+                  - text: Blogging
+                - link "View all posts with the Customization tag" [ref=e91] [cursor=pointer]:
+                  - /url: /archive/?tag=Customization
+                  - text: Customization
+                - link "View all posts with the Demo tag" [ref=e92] [cursor=pointer]:
+                  - /url: /archive/?tag=Demo
+                  - text: Demo
+                - link "View all posts with the Example tag" [ref=e93] [cursor=pointer]:
+                  - /url: /archive/?tag=Example
+                  - text: Example
+                - link "View all posts with the Fuwari tag" [ref=e94] [cursor=pointer]:
+                  - /url: /archive/?tag=Fuwari
+                  - text: Fuwari
+                - link "View all posts with the Markdown tag" [ref=e95] [cursor=pointer]:
+                  - /url: /archive/?tag=Markdown
+                  - text: Markdown
+                - link "View all posts with the Video tag" [ref=e96] [cursor=pointer]:
+                  - /url: /archive/?tag=Video
+                  - text: Video
+        - main [ref=e97]:
+          - generic [ref=e98]:
+            - generic [ref=e99]:
+              - generic [ref=e100]:
+                - generic [ref=e101]:
+                  - img [ref=e102]
+                  - text: Selected Work
+                - heading "Projects" [level=1] [ref=e104]
+                - paragraph [ref=e105]: "A place for things worth keeping visible: tools, experiments, notes, and finished work."
+              - generic [ref=e106]:
+                - link "Building Website Personal Blog A personal site based on Fuwari, redesigned with a stronger visual homepage and custom content pages." [ref=e107] [cursor=pointer]:
+                  - /url: /
+                  - generic [ref=e108]:
+                    - img [ref=e110]
+                    - generic [ref=e112]: Building
+                  - generic [ref=e113]: Website
+                  - heading "Personal Blog" [level=2] [ref=e114]
+                  - paragraph [ref=e115]: A personal site based on Fuwari, redesigned with a stronger visual homepage and custom content pages.
+                - link "Draft Collection Anime Shelf A curated watchlist page for anime notes, scores, and personal impressions." [ref=e116] [cursor=pointer]:
+                  - /url: /anime/
+                  - generic [ref=e117]:
+                    - img [ref=e119]
+                    - generic [ref=e121]: Draft
+                  - generic [ref=e122]: Collection
+                  - heading "Anime Shelf" [level=2] [ref=e123]
+                  - paragraph [ref=e124]: A curated watchlist page for anime notes, scores, and personal impressions.
+                - link "Planned Placeholder Future Project Reserve this slot for a tool, research note, demo, or repository that deserves a short introduction." [ref=e125] [cursor=pointer]:
+                  - /url: https://github.com/saicaca/fuwari
+                  - generic [ref=e126]:
+                    - img [ref=e128]
+                    - generic [ref=e130]: Planned
+                  - generic [ref=e131]: Placeholder
+                  - heading "Future Project" [level=2] [ref=e132]
+                  - paragraph [ref=e133]: Reserve this slot for a tool, research note, demo, or repository that deserves a short introduction.
+            - generic [ref=e137]:
+              - text: © 2026 Pan. Built with
+              - link "Astro" [ref=e138] [cursor=pointer]:
+                - /url: https://astro.build
+              - text: . /
+              - link "RSS" [ref=e139] [cursor=pointer]:
+                - /url: /rss.xml
+              - text: /
+              - link "Sitemap" [ref=e140] [cursor=pointer]:
+                - /url: /sitemap-index.xml
+      - generic:
+        - generic:
+          - button "Back to Top":
+            - img
+  - generic [ref=e143]:
+    - button "Menu" [ref=e144]:
+      - img [ref=e146]
+      - generic: Menu
+    - button "Inspect" [ref=e150]:
+      - img [ref=e152]
+      - generic: Inspect
+    - button "Audit" [ref=e154]:
+      - img [ref=e156]
+      - generic: Audit
+    - button "Settings" [ref=e159]:
+      - img [ref=e161]
+      - generic: Settings
