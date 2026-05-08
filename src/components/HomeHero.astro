@@ -1,23 +1,30 @@
 ---
 import { siteConfig } from "../config";
+import { getInitialHeroImages } from "../utils/initial-hero";
 import ImageWrapper from "./misc/ImageWrapper.astro";
 
-const heroImage =
+const fallbackHeroImage =
 	siteConfig.banner.src || "assets/images/demo-banner.png";
-const heroPosition = siteConfig.banner.position || "center";
+const fallbackHeroPosition = siteConfig.banner.position || "center";
+const heroImages = getInitialHeroImages();
+const initialHeroImage = heroImages[0]?.src || fallbackHeroImage;
+const initialHeroPosition = heroImages[0]?.position || fallbackHeroPosition;
 ---
 
-<section class="home-hero relative min-h-[100svh] overflow-hidden">
+<section class="home-hero relative min-h-[100svh] overflow-hidden" data-hero-images={JSON.stringify(heroImages)}>
 	<div class="absolute inset-0">
 		<ImageWrapper
-			src={heroImage}
-			position={heroPosition}
+			id="home-hero-image"
+			src={initialHeroImage}
+			position={initialHeroPosition}
 			alt={`Hero image for ${siteConfig.title}`}
 			class="h-full w-full"
 		/>
 	</div>
 	<div class="home-hero__veil absolute inset-0"></div>
 	<div class="home-hero__noise absolute inset-0"></div>
+
+	<div class="home-hero__system-label onload-animation" style="animation-delay: 120ms;">PAN ARCHIVE / ONLINE</div>
 
 	<div class="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[var(--page-width)] flex-col justify-end px-6 pb-24 pt-28 md:px-10 md:pb-28 lg:px-14">
 		<div class="home-hero__content max-w-5xl">
@@ -41,3 +48,30 @@ const heroPosition = siteConfig.banner.position || "center";
 		</div>
 	</div>
 </section>
+
+<script>
+	function initRandomHero() {
+		const hero = document.querySelector(".home-hero");
+		const image = document.querySelector("#home-hero-image img");
+		if (!(hero instanceof HTMLElement) || !(image instanceof HTMLImageElement)) return;
+
+		const images = JSON.parse(hero.dataset.heroImages || "[]");
+		if (!Array.isArray(images) || images.length === 0) return;
+
+		const selected = images[Math.floor(Math.random() * images.length)];
+		if (!selected?.src) return;
+
+		image.src = selected.src;
+		image.style.objectPosition = window.matchMedia("(max-width: 768px)").matches
+			? selected.mobilePosition || selected.position || "center"
+			: selected.position || "center";
+	}
+
+	initRandomHero();
+	document.addEventListener("astro:page-load", initRandomHero);
+	if (window.swup?.hooks) {
+		window.swup.hooks.on("page:view", initRandomHero);
+	} else {
+		document.addEventListener("swup:enable", () => window.swup?.hooks?.on("page:view", initRandomHero));
+	}
+</script>

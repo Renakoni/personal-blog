@@ -21,14 +21,6 @@ let links: NavBarLink[] = (customLinks || navBarConfig.links).map(
 	},
 );
 
-const navIcons: Record<string, string> = {
-	Blog: "material-symbols:article-outline-rounded",
-	Anime: "material-symbols:movie-outline",
-	Projects: "material-symbols:code-rounded",
-	About: "material-symbols:person-outline-rounded",
-	GitHub: "fa6-brands:github",
-};
-
 const getActiveNavName = (pathname: string) => {
 	if (pathname.startsWith("/anime")) return "Anime";
 	if (pathname.startsWith("/projects")) return "Projects";
@@ -52,7 +44,6 @@ const activeNavName = getActiveNavName(Astro.url.pathname);
         </a>
         <div class="hidden md:flex">
             {links.map((l) => {
-                const iconName = navIcons[l.name];
                 const isActive = !l.external && l.name === activeNavName;
                 return <a
                           aria-label={l.name}
@@ -65,7 +56,11 @@ const activeNavName = getActiveNavName(Astro.url.pathname);
                           ]}
                 >
                     <div class="flex items-center gap-2">
-                        {iconName && <Icon name={iconName} class="nav-link__icon text-[1.1rem]"></Icon>}
+                        {l.name === "Blog" && <Icon name="material-symbols:article-outline-rounded" class="nav-link__icon text-[1.1rem]"></Icon>}
+                        {l.name === "Anime" && <Icon name="material-symbols:movie-outline" class="nav-link__icon text-[1.1rem]"></Icon>}
+                        {l.name === "Projects" && <Icon name="material-symbols:code-rounded" class="nav-link__icon text-[1.1rem]"></Icon>}
+                        {l.name === "About" && <Icon name="material-symbols:person-outline-rounded" class="nav-link__icon text-[1.1rem]"></Icon>}
+                        {l.name === "GitHub" && <Icon name="fa6-brands:github" class="nav-link__icon text-[1.1rem]"></Icon>}
                         <span>{l.name}</span>
                         {l.external && <Icon name="fa6-solid:arrow-up-right-from-square" class="text-[0.875rem] transition -translate-y-[1px] ml-0.5 opacity-35"></Icon>}
                     </div>

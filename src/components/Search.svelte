@@ -33,6 +33,7 @@ let activeIndex = 0;
 let inputEl: HTMLInputElement;
 let panelEl: HTMLDivElement;
 let searchTimeout: ReturnType<typeof setTimeout>;
+let isCompactScreen = false;
 
 const commandItems: CommandItem[] = [
 	{
@@ -86,24 +87,6 @@ const commandItems: CommandItem[] = [
 	},
 ];
 
-const fakeResult: SearchResult[] = [
-	{
-		url: url("/"),
-		meta: {
-			title: "DEV MODE / Pagefind Offline",
-		},
-		excerpt:
-			"Search index is simulated in <mark>dev</mark>. Build and preview to test production Pagefind.",
-	},
-	{
-		url: url("/archive/"),
-		meta: {
-			title: "Archive Index",
-		},
-		excerpt: "Open the local archive while the full-text index is unavailable.",
-	},
-];
-
 const normalize = (value: string) => value.trim().toLowerCase();
 
 $: normalizedKeyword = normalize(keyword);
@@ -114,13 +97,19 @@ $: filteredCommands = normalizedKeyword
 				.includes(normalizedKeyword),
 		)
 	: commandItems;
+$: visibleCommands = !normalizedKeyword && isCompactScreen
+	? filteredCommands.slice(0, 5)
+	: filteredCommands;
 $: postItems = result.map<PostItem>((item) => ({
 	kind: "post",
 	title: item.meta.title,
 	description: item.excerpt,
 	href: item.url,
 }));
-$: paletteItems = [...filteredCommands, ...postItems];
+$: hasPostSearchQuery = !!normalizedKeyword;
+$: showDevPostNotice = import.meta.env.DEV && hasPostSearchQuery;
+$: showPostSearchUnavailable = !import.meta.env.DEV && hasPostSearchQuery && initialized && !pagefindLoaded;
+$: paletteItems = [...visibleCommands, ...postItems];
 $: if (activeIndex >= paletteItems.length) {
 	activeIndex = Math.max(0, paletteItems.length - 1);
 }
@@ -186,10 +175,7 @@ const search = async (searchKeyword: string): Promise<void> => {
 			searchResults = await Promise.all(
 				response.results.map((item) => item.data()),
 			);
-		} else if (import.meta.env.DEV) {
-			searchResults = fakeResult;
-		} else {
-			searchResults = [];
+		} else if (!import.meta.env.DEV) {
 			console.error("Pagefind is not available in production environment.");
 		}
 
@@ -258,6 +244,12 @@ onMount(() => {
 		if (keyword) void search(keyword);
 	};
 
+	const updateCompactScreen = () => {
+		isCompactScreen = window.matchMedia("(max-width: 767px)").matches;
+	};
+
+	updateCompactScreen();
+	window.addEventListener("resize", updateCompactScreen);
 	document.addEventListener("keydown", handleKeydown);
 
 	const observer = new MutationObserver(() => {
@@ -282,6 +274,7 @@ onMount(() => {
 
 	return () => {
 		clearTimeout(searchTimeout);
+		window.removeEventListener("resize", updateCompactScreen);
 		document.removeEventListener("keydown", handleKeydown);
 		document.removeEventListener("pagefindready", initializeSearch);
 		document.removeEventListener("pagefindloaderror", initializeSearch);
@@ -300,8 +293,7 @@ onMount(() => {
 		bg-black/[0.04] hover:bg-black/[0.06] focus-visible:bg-black/[0.06]
 		dark:bg-white/5 dark:hover:bg-white/10 dark:focus-visible:bg-white/10"
 	>
-		<Icon icon="material-symbols:search" class="text-[1.2rem] text-black/35 dark:text-white/35" />
-		<span class="text-sm font-semibold text-black/55 dark:text-white/55">Quick Access</span>
+		<Icon icon="material-symbols:search" class="text-[1.2rem] text-black/45 dark:text-white/45" />
 		<span class="command-trigger__key">⌘K</span>
 	</button>
 
@@ -317,13 +309,13 @@ onMount(() => {
 	<div
 		bind:this={panelEl}
 		id="search-panel"
-		class="float-panel float-panel-closed search-panel command-palette absolute w-[calc(100vw-2rem)] md:w-[34rem]
-		top-20 right-0 shadow-2xl rounded-2xl p-2"
+		class="float-panel float-panel-closed search-panel command-palette fixed lg:absolute w-[calc(100vw-1.5rem)] md:w-[34rem]
+		top-24 left-3 right-3 lg:left-auto lg:right-0 shadow-2xl rounded-2xl p-2"
 	>
 		<div class="command-palette__header">
 			<div>
-				<div class="system-label">Quick Access Terminal</div>
-				<div class="command-palette__subtitle">Search posts, routes, and archive nodes</div>
+				<div class="system-label">Command Center</div>
+				<div class="command-palette__subtitle">Jump to pages or search indexed posts</div>
 			</div>
 			<div class="command-palette__shortcut">ESC</div>
 		</div>
@@ -332,7 +324,7 @@ onMount(() => {
 			<Icon icon="material-symbols:terminal-rounded" class="command-palette__input-icon" />
 			<input
 				bind:this={inputEl}
-				placeholder="Type a command or keyword..."
+				placeholder="Jump to a page or search posts..."
 				bind:value={keyword}
 				on:input={handleInput}
 				class="command-palette__input"
@@ -348,9 +340,9 @@ onMount(() => {
 		</div>
 
 		<div id="command-palette-results" class="command-palette__results" role="listbox">
-			{#if filteredCommands.length}
-				<div class="command-palette__section">Quick Access</div>
-				{#each filteredCommands as item, index}
+			{#if visibleCommands.length}
+				<div class="command-palette__section">Quick Jump</div>
+				{#each visibleCommands as item, index}
 					<button
 						type="button"
 						class:command-palette__row--active={activeIndex === index}
@@ -370,10 +362,27 @@ onMount(() => {
 				{/each}
 			{/if}
 
-			{#if postItems.length}
-				<div class="command-palette__section">Archive Index</div>
+				{#if hasPostSearchQuery}
+					<div class="command-palette__section">Post Search</div>
+					{#if showDevPostNotice}
+						<div class="command-palette__notice">
+							<div class="system-label">Dev Index Offline</div>
+							<p>Full-text post search is available after build preview. Quick Jump still works here.</p>
+						</div>
+					{:else if showPostSearchUnavailable}
+						<div class="command-palette__notice">
+							<div class="system-label">Post Index Unavailable</div>
+							<p>Pagefind did not load, so only Quick Jump results are available.</p>
+						</div>
+					{/if}
+				{/if}
+
+				{#if postItems.length}
+					{#if !hasPostSearchQuery}
+						<div class="command-palette__section">Post Search</div>
+					{/if}
 				{#each postItems as item, index}
-					{@const itemIndex = filteredCommands.length + index}
+					{@const itemIndex = visibleCommands.length + index}
 					<button
 						type="button"
 						class:command-palette__row--active={activeIndex === itemIndex}
@@ -393,7 +402,7 @@ onMount(() => {
 				{/each}
 			{/if}
 
-			{#if !paletteItems.length}
+			{#if !paletteItems.length && !showDevPostNotice && !showPostSearchUnavailable}
 				<div class="command-palette__empty">
 					<div class="system-label">No Signal</div>
 					<p>No matching command or indexed post.</p>

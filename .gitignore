@@ -29,3 +29,11 @@ yarn.lock
 # ide
 .idea
 *.iml
+
+# Claude / local tooling
+.claude/settings.local.json
+.claude/worktrees/
+.playwright-mcp/
+
+# local visual check artifacts
+/*.png

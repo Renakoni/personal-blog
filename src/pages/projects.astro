@@ -1,8 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import ButtonLink from "../components/control/ButtonLink.astro";
-import ButtonTag from "../components/control/ButtonTag.astro";
-import WidgetLayout from "../components/widget/WidgetLayout.astro";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { projects } from "../utils/projects";
 
@@ -16,45 +13,108 @@ const countValues = (values: string[]) => {
 
 const categories = countValues(projects.map((project) => project.category));
 const tags = countValues(projects.flatMap((project) => project.tags));
+const activeCount = projects.filter((project) => project.status.toLowerCase().includes("active") || project.status.toLowerCase().includes("build")).length;
 const filterUrl = (key: "category" | "tag", value: string) => `/projects/?${key}=${encodeURIComponent(value)}`;
 ---
 
 <MainGridLayout title="Projects" description="Projects, experiments, and selected work">
 	<div slot="sidebar" id="sidebar" class="mb-4 row-start-2 row-end-3 col-span-2 w-full lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation">
-		<div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4">
-			<WidgetLayout name="Project Categories" id="project-categories" isCollapsed={false}>
-				<ButtonLink url="/projects/" badge={String(projects.length)} label="View all projects">All</ButtonLink>
-				{categories.map((category) => (
-					<ButtonLink
-						url={filterUrl("category", category.name)}
-						badge={String(category.count)}
-						label={`View ${category.name} projects`}
-					>
-						{category.name}
-					</ButtonLink>
-				))}
-			</WidgetLayout>
+		<aside id="sidebar-sticky" class="project-rail transition-all duration-700 flex flex-col w-full gap-3 top-4 sticky top-4" aria-label="Project archive controls">
+			<section class="project-rail__module" aria-labelledby="project-categories-title">
+				<div class="project-rail__header">
+					<div>
+						<span>Module</span>
+						<h2 id="project-categories-title">Categories</h2>
+					</div>
+					<strong>{String(categories.length).padStart(2, "0")}</strong>
+				</div>
 
-			<WidgetLayout name="Project Tags" id="project-tags" isCollapsed={false}>
-				<div class="flex gap-2 flex-wrap">
-					{tags.map((tag) => (
-						<ButtonTag href={filterUrl("tag", tag.name)} label={`View projects tagged ${tag.name}`}>
-							{tag.name}
-						</ButtonTag>
+				<div class="project-rail__list">
+					<a class="project-rail__row" href="/projects/" aria-label="View all projects">
+						<span>00</span>
+						<strong>All</strong>
+						<em>{String(projects.length).padStart(2, "0")}</em>
+					</a>
+					{categories.map((category, index) => (
+						<a class="project-rail__row" href={filterUrl("category", category.name)} aria-label={`View ${category.name} projects`}>
+							<span>{String(index + 1).padStart(2, "0")}</span>
+							<strong>{category.name}</strong>
+							<em>{String(category.count).padStart(2, "0")}</em>
+						</a>
 					))}
 				</div>
-			</WidgetLayout>
-		</div>
+			</section>
+
+			<section class="project-rail__module" aria-labelledby="project-tags-title">
+				<div class="project-rail__header">
+					<div>
+						<span>Index</span>
+						<h2 id="project-tags-title">Tags</h2>
+					</div>
+					<strong>{String(tags.length).padStart(2, "0")}</strong>
+				</div>
+
+				<div class="project-rail__tags">
+					{tags.map((tag) => (
+						<a href={filterUrl("tag", tag.name)} aria-label={`View projects tagged ${tag.name}`}>
+							<span>#</span>{tag.name}
+						</a>
+					))}
+				</div>
+			</section>
+		</aside>
 	</div>
 
 	<section class="projects-page space-y-5">
 		<h1 class="sr-only">Projects</h1>
 		<header class="projects-intro projects-intro--showcase card-base border border-black/8 px-6 py-7 dark:border-white/8 md:px-8 md:py-8">
-			<div class="projects-intro__label">
-				<Icon name="material-symbols:code-rounded" class="text-[1.1rem] text-[var(--primary)]" />
-				Projects / Lab Archive
+			<div class="projects-intro__layout">
+				<div class="projects-intro__copy">
+					<div class="projects-intro__label">
+						<Icon name="material-symbols:code-rounded" class="text-[1.1rem] text-[var(--primary)]" />
+						Project Case Files
+					</div>
+					<h2 class="projects-intro__title mt-4"><span>Interfaces</span><span>Archives</span><span>Systems</span></h2>
+				</div>
+
+				<div class="projects-intro__dossier" aria-label="Project archive summary">
+					<div class="projects-intro__dossier-label">Indexed files</div>
+					<div class="projects-intro__dossier-number">{String(projects.length).padStart(2, "0")}</div>
+					<div class="projects-intro__readout">
+						<div>
+							<span>Active</span>
+							<strong>{String(activeCount).padStart(2, "0")}</strong>
+						</div>
+						<div>
+							<span>Types</span>
+							<strong>{String(categories.length).padStart(2, "0")}</strong>
+						</div>
+					</div>
+					<div class="projects-intro__mobile-readout">
+						<div>
+							<span>Total</span>
+							<strong>{String(projects.length).padStart(2, "0")}</strong>
+						</div>
+						<div>
+							<span>Active</span>
+							<strong>{String(activeCount).padStart(2, "0")}</strong>
+						</div>
+						<div>
+							<span>Types</span>
+							<strong>{String(categories.length).padStart(2, "0")}</strong>
+						</div>
+					</div>
+				</div>
 			</div>
 		</header>
+
+		<div class="projects-filter-context card-base border border-black/8 px-4 py-3 dark:border-white/8" data-project-filter-context hidden>
+			<div>
+				<span>Filter</span>
+				<strong data-project-filter-label></strong>
+			</div>
+			<a href="/projects/">Clear</a>
+		</div>
 
 		<div class="projects-empty card-base border border-black/8 px-6 py-7 text-sm text-50 dark:border-white/8 md:px-8" hidden>
 			没有匹配当前分类或标签的项目。
@@ -68,7 +128,7 @@ const filterUrl = (key: "category" | "tag", value: string) => `/projects/?${key}
 					data-category={project.category}
 					data-tags={project.tags.join(",")}
 					class:list={[
-						"projects-entry projects-entry--showcase surface-hover group block card-base border border-black/8 px-6 py-6 dark:border-white/8 md:px-8 md:py-7",
+						"projects-entry projects-entry--showcase surface-hover group block card-base border border-black/8 px-5 py-5 dark:border-white/8 md:px-7 md:py-6",
 						{ "projects-entry--with-image": !!project.image },
 					]}
 					style={project.image ? `--project-image: url(${project.image})` : undefined}
@@ -78,24 +138,27 @@ const filterUrl = (key: "category" | "tag", value: string) => `/projects/?${key}
 							<div class="projects-entry__icon">
 								<Icon name={project.icon} class="text-[1.35rem]" />
 							</div>
-							<div class="projects-entry__index">{String(index + 1).padStart(2, "0")}</div>
+							<div class="projects-entry__index">CASE {String(index + 1).padStart(2, "0")}</div>
 						</div>
 
 						<div class="projects-entry__content">
 							<div class="projects-entry__kicker">{project.category} · {project.status}</div>
-							<div class="projects-entry__title-row mt-2">
-								<h2 class="projects-entry__title">{project.name}</h2>
-								<div class="projects-entry__open">
-									Open case
-									<Icon name="material-symbols:arrow-forward-rounded" class="text-[1.05rem]" />
-								</div>
-							</div>
+							<h2 class="projects-entry__title mt-2">{project.name}</h2>
 							<p class="projects-entry__description mt-4">{project.description}</p>
 
-							<div class="projects-entry__stack mt-5">
-								{project.tags.map((tag) => (
-									<span>{tag}</span>
-								))}
+							<div class="projects-entry__record mt-5">
+								<div class="projects-entry__role-panel">
+									<span>Role</span>
+									<strong>{project.role}</strong>
+								</div>
+								<div class="projects-entry__stack-panel">
+									<span>Stack</span>
+									<div class="projects-entry__stack">
+										{project.tags.map((tag) => (
+											<span>{tag}</span>
+										))}
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -108,6 +171,8 @@ const filterUrl = (key: "category" | "tag", value: string) => `/projects/?${key}
 <script>
 	function syncProjectFilters() {
 		const emptyMessage = document.querySelector<HTMLElement>(".projects-empty");
+		const filterContext = document.querySelector<HTMLElement>("[data-project-filter-context]");
+		const filterLabel = document.querySelector<HTMLElement>("[data-project-filter-label]");
 		if (!emptyMessage) return;
 
 		const params = new URLSearchParams(window.location.search);
@@ -122,6 +187,12 @@ const filterUrl = (key: "category" | "tag", value: string) => `/projects/?${key}
 			entry.hidden = !isVisible;
 			visibleCount += isVisible ? 1 : 0;
 		});
+
+		if (filterContext && filterLabel) {
+			const label = category ? `Category / ${category}` : tag ? `Tag / ${tag}` : "";
+			filterContext.hidden = !label;
+			filterLabel.textContent = label;
+		}
 
 		emptyMessage.hidden = visibleCount > 0;
 	}

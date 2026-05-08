@@ -1,5 +1,0 @@
-[    2936ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:3000/src/components/Search.svelte:135
-[    2937ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:3000/src/components/Search.svelte:128
-[   38311ms] [WARNING] SwupA11yPlugin: No main heading (h1) found on new page @ http://127.0.0.1:3000/node_modules/.vite/deps/@swup_astro_client_SwupA11yPlugin.js?v=9344cd7a:174
-[   50393ms] [LOG] Pagefind is not available in development mode. Using mock data. @ http://127.0.0.1:3000/src/components/Search.svelte:135
-[   50394ms] [LOG] Pagefind status on init: false @ http://127.0.0.1:3000/src/components/Search.svelte:128

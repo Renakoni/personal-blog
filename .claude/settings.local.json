@@ -37,7 +37,10 @@
       "Bash(git diff *)",
       "Bash(pnpm check *)",
       "mcp__playwright__browser_press_key",
-      "mcp__playwright__browser_type"
+      "mcp__playwright__browser_type",
+      "Bash(tee /tmp/fuwari-check.log)",
+      "Bash(powershell.exe *)",
+      "mcp__playwright__browser_run_code_unsafe"
     ]
   },
   "skillOverrides": {

@@ -181,34 +181,38 @@ const bannerOffset =
 	'banner-height-home': `${BANNER_HEIGHT_HOME}vh`,
 	'banner-height': `${BANNER_HEIGHT}vh`,
 }}>
-	@reference "../styles/main.css";
-	@layer components {
-	.enable-banner.is-home #banner-wrapper {
-		@apply h-[var(--banner-height-home)] translate-y-[var(--banner-height-extend)]
-	}
-	.enable-banner #banner-wrapper {
-		@apply h-[var(--banner-height-home)]
-	}
+		@layer components {
+		.enable-banner.is-home #banner-wrapper {
+			height: var(--banner-height-home);
+			transform: translateY(var(--banner-height-extend));
+		}
+		.enable-banner #banner-wrapper {
+			height: var(--banner-height-home);
+		}
 
-	.enable-banner.is-home #banner {
-		@apply h-[var(--banner-height-home)] translate-y-0
+		.enable-banner.is-home #banner {
+			height: var(--banner-height-home);
+			transform: translateY(0);
+		}
+		.enable-banner #banner {
+			height: var(--banner-height-home);
+			transform: translateY(var(--bannerOffset));
+		}
+		.enable-banner.is-home #main-grid {
+			transform: translateY(var(--banner-height-extend));
+		}
+		.enable-banner #top-row {
+			height: calc(var(--banner-height-home) - 4.5rem);
+			transition: all var(--motion-duration-base, 300ms) var(--motion-ease-standard, ease);
+		}
+		.enable-banner.is-home #sidebar-sticky {
+			top: calc(1rem - var(--banner-height-extend));
+		}
+		.navbar-hidden {
+			opacity: 0;
+			transform: translateY(-4rem);
+		}
 	}
-	.enable-banner #banner {
-		@apply h-[var(--banner-height-home)] translate-y-[var(--bannerOffset)]
-	}
-	.enable-banner.is-home #main-grid {
-		@apply translate-y-[var(--banner-height-extend)];
-	}
-	.enable-banner #top-row {
-		@apply h-[calc(var(--banner-height-home)_-_4.5rem)] transition-all duration-300
-	}
-	.enable-banner.is-home #sidebar-sticky {
-		@apply top-[calc(1rem_-_var(--banner-height-extend))]
-	}
-	.navbar-hidden {
-		@apply opacity-0 -translate-y-16
-	}
-}
 </style>
 
 <script>
@@ -369,6 +373,35 @@ function initCustomScrollbar() {
 	});
 }
 
+function initMotionReveal() {
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const targets = Array.from(document.querySelectorAll<HTMLElement>('.anime-entry, .projects-entry, #home-posts > *'))
+		.filter((element) => !element.hasAttribute('data-motion-reveal-bound'));
+
+	targets.forEach((element, index) => {
+		element.setAttribute('data-motion-reveal-bound', 'true');
+		element.style.setProperty('--motion-reveal-index', String(Math.min(index % 8, 7)));
+		if (!element.classList.contains('onload-animation')) {
+			element.classList.add('motion-reveal');
+		}
+	});
+
+	if (reduceMotion || targets.length === 0) {
+		targets.forEach((element) => element.classList.add('motion-reveal--visible'));
+		return;
+	}
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (!entry.isIntersecting) return;
+			entry.target.classList.add('motion-reveal--visible');
+			observer.unobserve(entry.target);
+		});
+	}, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+
+	targets.forEach((element) => observer.observe(element));
+}
+
 function showBanner() {
 	if (!siteConfig.banner.enable) return;
 
@@ -386,6 +419,7 @@ function init() {
 	loadTheme();
 	loadHue();
 	initCustomScrollbar();
+	initMotionReveal();
 	showBanner();
 	document.documentElement.classList.add('swup-ready');
 }
@@ -428,6 +462,7 @@ const setup = () => {
 		loadTheme();
 		loadHue();
 		initCustomScrollbar();
+		initMotionReveal();
 	})
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
 		// change banner height immediately when a link is clicked

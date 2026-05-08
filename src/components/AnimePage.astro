@@ -57,24 +57,40 @@ const statusTone: Record<number, string> = {
 							Anime Archive
 						</div>
 
-						<div class="anime-hero__grid mt-5">
-							<div>
+						<div class="anime-hero__grid mt-6">
+							<div class="anime-hero__copy">
 								<h1 class="anime-hero__title">番剧记录</h1>
+								<div class="anime-hero__subtitle">WATCH / SHELF / MEMORY</div>
 							</div>
 
-							<div class="anime-hero__readout" aria-label="Anime archive summary">
-								<div>
-									<span>Filter</span>
-									<strong>{activeFilterLabel}</strong>
+							<div class="anime-control-panel" aria-label="Anime archive control panel">
+								<div class="anime-control-panel__readout" aria-label="Anime archive summary">
+									<div>
+										<span>Filter</span>
+										<strong>{activeFilterLabel}</strong>
+									</div>
+									<div>
+										<span>Entries</span>
+										<strong>{totalItems}</strong>
+									</div>
+									<div>
+										<span>Page</span>
+										<strong>{currentPage}/{totalPages}</strong>
+									</div>
 								</div>
-								<div>
-									<span>Entries</span>
-									<strong>{totalItems}</strong>
-								</div>
-								<div>
-									<span>Page</span>
-									<strong>{currentPage}/{totalPages}</strong>
-								</div>
+
+								<nav class="anime-filter" aria-label="Anime filters">
+									{animeFilters.map((filter) => (
+										<a
+											href={getAnimePageUrl(filter.key, 1)}
+											class:list={["anime-filter__item", { "anime-filter__item--active": filter.key === activeFilter }]}
+											aria-current={filter.key === activeFilter ? "page" : undefined}
+										>
+											<span>{filter.label}</span>
+											<small>{filter.key}</small>
+										</a>
+									))}
+								</nav>
 							</div>
 						</div>
 
@@ -84,19 +100,6 @@ const statusTone: Record<number, string> = {
 								{state.message}
 							</div>
 						)}
-
-						<nav class="anime-filter mt-6" aria-label="Anime filters">
-							{animeFilters.map((filter) => (
-								<a
-									href={getAnimePageUrl(filter.key, 1)}
-									class:list={["anime-filter__item", { "anime-filter__item--active": filter.key === activeFilter }]}
-									aria-current={filter.key === activeFilter ? "page" : undefined}
-								>
-									<span>{filter.label}</span>
-									<small>{filter.key}</small>
-								</a>
-							))}
-						</nav>
 					</header>
 
 					<div class="anime-archive__range">
