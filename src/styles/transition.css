@@ -5,8 +5,10 @@
     --motion-duration-fast: 160ms;
     --motion-duration-base: 260ms;
     --motion-duration-slow: 520ms;
+    --motion-duration-cinematic: 860ms;
     --motion-stagger-step: 58ms;
     --motion-enter-distance: 1.15rem;
+    --motion-emphasis-distance: 1.75rem;
     --motion-panel-distance: 0.42rem;
     --motion-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
     --motion-ease-emphatic: cubic-bezier(0.16, 1, 0.3, 1);
@@ -112,7 +114,9 @@ html.swup-ready #post-container :nth-child(n) {
     html.is-changing #swup-content,
     html.is-animating #swup-content,
     .onload-animation,
-    #post-container :nth-child(n) {
+    #post-container :nth-child(n),
+    .pan-wordmark__letter,
+    .pan-wordmark__ornaments {
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;

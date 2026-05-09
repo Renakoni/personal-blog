@@ -25,6 +25,12 @@
     }
 }
 
+html.route-scrollbar-stable .os-scrollbar {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity var(--motion-duration-fast, 160ms) var(--motion-ease-standard, ease) !important;
+}
+
 .os-scrollbar {
     &.scrollbar-auto {
         --os-handle-bg: var(--scrollbar-bg);

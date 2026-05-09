@@ -465,7 +465,8 @@ const setup = () => {
 		initMotionReveal();
 	})
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
-		// change banner height immediately when a link is clicked
+		document.documentElement.classList.add('route-scrollbar-stable')
+			// change banner height immediately when a link is clicked
 		const bodyElement = document.querySelector('body')
 		const targetUrl = new URL(visit.to.url, window.location.origin)
 		if (pathsEqual(targetUrl.pathname, url('/'))) {
@@ -492,6 +493,9 @@ const setup = () => {
 		if (heightExtend) {
 			heightExtend.classList.add('hidden')
 		}
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => document.documentElement.classList.remove('route-scrollbar-stable'))
+		})
 	});
 	window.swup.hooks.on('visit:end', (_visit: {to: {url: string}}) => {
 		setTimeout(() => {
