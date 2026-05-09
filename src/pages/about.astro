@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
+import ResponsivePicture from "../components/ResponsivePicture.astro";
 
 const currentArc = ["站点视觉调整中", "文章与项目持续整理", "动画记录慢慢补完"];
 
@@ -79,7 +80,14 @@ const stackMarquee = [
 	<div class="about-page mx-auto w-full max-w-6xl space-y-6 md:space-y-7">
 		<section class="about-hero card-base relative overflow-hidden border border-black/8 onload-animation dark:border-white/8">
 			<div class="relative h-[18rem] w-full md:h-[24rem]">
-				<img src="/about-cover.png" alt="About cover" class="h-full w-full object-cover object-[center_58%]" />
+				<ResponsivePicture
+						name="about-cover"
+						alt="About cover"
+						class="h-full w-full object-cover object-[center_58%]"
+						position="center 58%"
+						sizes="(max-width: 768px) 100vw, 72rem"
+						loading="eager"
+					/>
 				<div class="about-hero__veil absolute inset-0"></div>
 				<div class="about-hero__noise absolute inset-0"></div>
 				<div class="about-hero__glow absolute inset-0"></div>

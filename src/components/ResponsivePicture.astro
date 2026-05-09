@@ -1,0 +1,50 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+
+type Loading = "eager" | "lazy";
+type Decoding = "sync" | "async" | "auto";
+
+interface Props {
+	name: string;
+	alt: string;
+	class?: string;
+	sizes?: string;
+	widths?: number[];
+	loading?: Loading;
+	decoding?: Decoding;
+	fallback?: string;
+	position?: string;
+}
+
+const {
+	name,
+	alt,
+	sizes = "100vw",
+	widths = [640, 960, 1280, 1600, 1920],
+	loading = "lazy",
+	decoding = "async",
+	fallback,
+	position = "center",
+} = Astro.props;
+const className = Astro.props.class;
+
+const basePath = `/optimized/covers/${name}`;
+const optimizedDir = path.join(process.cwd(), "public", "optimized", "covers", name);
+const hasOptimized = fs.existsSync(path.join(optimizedDir, "fallback.webp"));
+const srcset = (format: "avif" | "webp") => widths.map((width) => `${basePath}/${width}.${format} ${width}w`).join(", ");
+const fallbackSrc = hasOptimized ? `${basePath}/fallback.webp` : fallback || `${basePath}/fallback.webp`;
+---
+
+<picture>
+	{hasOptimized && <source type="image/avif" srcset={srcset("avif")} sizes={sizes} />}
+	{hasOptimized && <source type="image/webp" srcset={srcset("webp")} sizes={sizes} />}
+	<img
+		src={fallbackSrc}
+		alt={alt}
+		class={className}
+		loading={loading}
+		decoding={decoding}
+		style={`object-position: ${position};`}
+	/>
+</picture>

@@ -39,6 +39,8 @@ const activeFilterLabel = animeFilters.find((filter) => filter.key === activeFil
 const visibleRangeStart = totalItems === 0 ? 0 : (currentPage - 1) * ANIME_PAGE_SIZE + 1;
 const visibleRangeEnd = totalItems === 0 ? 0 : Math.min((currentPage - 1) * ANIME_PAGE_SIZE + items.length, totalItems);
 
+const getCoverAlt = (anime: AnimeItem) => `${anime.title} cover`;
+
 const statusTone: Record<number, string> = {
 	1: "anime-entry--wish",
 	2: "anime-entry--done",
@@ -114,13 +116,27 @@ const statusTone: Record<number, string> = {
 
 								<div class="anime-entry__cover-wrap">
 									{anime.cover ? (
-										<img
-											src={anime.cover}
-											alt={`${anime.title} cover`}
-											loading="lazy"
-											referrerpolicy="no-referrer"
-											class="anime-entry__cover"
-										/>
+										typeof anime.cover === "string" ? (
+											<img
+												src={anime.cover}
+												alt={getCoverAlt(anime)}
+												loading="lazy"
+												referrerpolicy="no-referrer"
+												class="anime-entry__cover"
+											/>
+										) : (
+											<picture>
+												<source type="image/avif" srcset={anime.cover.avif} sizes="(max-width: 768px) 7.5rem, 7.25rem" />
+												<source type="image/webp" srcset={anime.cover.webp} sizes="(max-width: 768px) 7.5rem, 7.25rem" />
+												<img
+													src={anime.cover.fallback}
+													alt={getCoverAlt(anime)}
+													loading="lazy"
+													referrerpolicy="no-referrer"
+													class="anime-entry__cover"
+												/>
+											</picture>
+										)
 									) : (
 										<div class="anime-entry__cover anime-entry__cover--empty">
 											<Icon name="material-symbols:movie-outline" class="text-[2rem]" />

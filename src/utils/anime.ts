@@ -20,6 +20,12 @@ type BangumiSubject = {
 	name_cn?: string;
 };
 
+export type AnimeCover = string | {
+	fallback: string;
+	avif: string;
+	webp: string;
+};
+
 export type AnimeItem = {
 	id: number | string;
 	title: string;
@@ -31,7 +37,7 @@ export type AnimeItem = {
 	details: string;
 	detailsPrimary: string;
 	detailsSecondary: string;
-	cover: string;
+	cover: AnimeCover;
 };
 
 export type LoadState = {

@@ -2,6 +2,9 @@
 dist/
 /dist.zip
 
+# local source image library
+/raw_cover/
+
 # generated types
 .astro/
 

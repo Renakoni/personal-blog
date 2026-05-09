@@ -3,6 +3,7 @@ import { mkdir, writeFile, readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
+import sharp from "sharp";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, "..");
@@ -13,6 +14,7 @@ const envPath = path.join(projectRoot, ".env");
 const pageSize = 50;
 const maxPages = 20;
 const detailConcurrency = 8;
+const animeCoverWidths = [240, 360, 480];
 
 function parseEnv(source) {
 	const entries = {};
@@ -202,21 +204,57 @@ async function mapWithConcurrency(items, limit, mapper) {
 	return results;
 }
 
-function createCoverFileName(id, imageUrl) {
+function createCoverFileBaseName(id, imageUrl) {
 	const normalized = normalizeCover(imageUrl);
 	const hash = createHash("sha1").update(normalized).digest("hex").slice(0, 10);
+	return `${id}-${hash}`;
+}
+
+function createCoverFileName(id, imageUrl) {
+	const normalized = normalizeCover(imageUrl);
 	const extension = path.extname(new URL(normalized).pathname) || ".jpg";
-	return `${id}-${hash}${extension}`;
+	return `${createCoverFileBaseName(id, normalized)}${extension}`;
+}
+
+function buildCoverSources(baseName) {
+	const srcset = (format) => animeCoverWidths.map((width) => `/anime-covers/${baseName}-${width}.${format} ${width}w`).join(", ");
+	return {
+		fallback: `/anime-covers/${baseName}-${animeCoverWidths[0]}.webp`,
+		avif: srcset("avif"),
+		webp: srcset("webp"),
+	};
+}
+
+async function writeOptimizedCoverVariants(baseName, buffer) {
+	const image = sharp(buffer, { animated: false }).rotate();
+	const metadata = await image.metadata();
+	const sourceWidth = metadata.width || Math.max(...animeCoverWidths);
+	const widths = animeCoverWidths.filter((width) => width <= sourceWidth);
+	const targetWidths = widths.length > 0 ? widths : [sourceWidth];
+
+	await Promise.all(targetWidths.flatMap((width) => {
+		const resized = image.clone().resize({ width, withoutEnlargement: true });
+		return [
+			resized.clone().avif({ quality: 48, effort: 5 }).toFile(path.join(coverDir, `${baseName}-${width}.avif`)),
+			resized.clone().webp({ quality: 76, effort: 5 }).toFile(path.join(coverDir, `${baseName}-${width}.webp`)),
+		];
+	}));
 }
 
 async function ensureLocalCover(id, imageUrl) {
 	const normalized = normalizeCover(imageUrl);
 	if (!normalized) return "";
+	const baseName = createCoverFileBaseName(id, normalized);
 	const fileName = createCoverFileName(id, normalized);
 	const filePath = path.join(coverDir, fileName);
 	try {
 		await stat(filePath);
-		return `/anime-covers/${fileName}`;
+		try {
+			await stat(path.join(coverDir, `${baseName}-${animeCoverWidths[0]}.webp`));
+		} catch {
+			await writeOptimizedCoverVariants(baseName, await readFile(filePath));
+		}
+		return buildCoverSources(baseName);
 	} catch {}
 
 	const response = await fetch(normalized, {
@@ -228,7 +266,8 @@ async function ensureLocalCover(id, imageUrl) {
 	if (!response.ok) return normalized;
 	const buffer = Buffer.from(await response.arrayBuffer());
 	await writeFile(filePath, buffer);
-	return `/anime-covers/${fileName}`;
+	await writeOptimizedCoverVariants(baseName, buffer);
+	return buildCoverSources(baseName);
 }
 
 const baseItems = [];
