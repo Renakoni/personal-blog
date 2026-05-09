@@ -47,15 +47,19 @@ export const navBarConfig: NavBarConfig = {
 	links: [
 		{
 			name: "Blog",
-			url: "/#home-posts",
+			url: "/archive/",
 		},
 		{
-			name: "Anime",
-			url: "/anime/",
+			name: "Notes",
+			url: "/notes/",
 		},
 		{
 			name: "Projects",
 			url: "/projects/",
+		},
+		{
+			name: "Anime",
+			url: "/anime/",
 		},
 		{
 			name: "About",

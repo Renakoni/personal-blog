@@ -1,17 +1,9 @@
 ---
-
-import I18nKey from "../../i18n/i18nKey";
-import { i18n } from "../../i18n/translation";
 import { getTagList } from "../../utils/content-utils";
 import { getTagUrl } from "../../utils/url-utils";
-import ButtonTag from "../control/ButtonTag.astro";
-import WidgetLayout from "./WidgetLayout.astro";
 
 const tags = await getTagList();
-
-const COLLAPSED_HEIGHT = "7.5rem";
-
-const isCollapsed = tags.length >= 20;
+const maxCount = Math.max(...tags.map((tag) => tag.count), 1);
 
 interface Props {
 	class?: string;
@@ -20,12 +12,125 @@ interface Props {
 const className = Astro.props.class;
 const style = Astro.props.style;
 ---
-<WidgetLayout name={i18n(I18nKey.tags)} id="tags" isCollapsed={isCollapsed} collapsedHeight={COLLAPSED_HEIGHT} class={className} style={style}>
-    <div class="flex gap-2 flex-wrap">
-        {tags.map(t => (
-            <ButtonTag href={getTagUrl(t.name)} label={`View all posts with the ${t.name.trim()} tag`}>
-                {t.name.trim()}
-            </ButtonTag>
-        ))}
-    </div>
-</WidgetLayout>
+
+<section class:list={["tag-cloud-panel card-base", className]} style={style} aria-labelledby="taxonomy-tags-title">
+	<header class="tag-cloud-panel__header">
+		<div>
+			<span>Signal</span>
+			<h2 id="taxonomy-tags-title">Tags</h2>
+		</div>
+		<strong>{String(tags.length).padStart(2, "0")}</strong>
+	</header>
+
+	<div class="tag-cloud" aria-label="Tags">
+		{tags.map((tag) => {
+			const weight = Math.max(0.18, tag.count / maxCount);
+			return (
+				<a href={getTagUrl(tag.name)} class="tag-chip" style={`--tag-weight: ${weight};`} aria-label={`View ${tag.name.trim()} posts`}>
+					<span>#</span>{tag.name.trim()}
+				</a>
+			);
+		})}
+	</div>
+</section>
+
+<style>
+	.tag-cloud-panel {
+		position: relative;
+		overflow: hidden;
+		padding: 1rem;
+		border: 1px solid rgb(15 23 42 / 0.08);
+		background:
+			radial-gradient(circle at 80% 12%, color-mix(in oklch, var(--primary) 13%, transparent), transparent 32%),
+			var(--card-bg);
+	}
+	:root.dark .tag-cloud-panel {
+		border-color: rgb(255 255 255 / 0.08);
+		background:
+			radial-gradient(circle at 80% 12%, color-mix(in oklch, var(--primary) 16%, transparent), transparent 32%),
+			var(--card-bg);
+	}
+	.tag-cloud-panel::before {
+		content: "";
+		position: absolute;
+		inset: auto -15% -35% 18%;
+		height: 7rem;
+		border-radius: 999px;
+		background: color-mix(in oklch, var(--primary) 10%, transparent);
+		filter: blur(30px);
+		pointer-events: none;
+	}
+	.tag-cloud-panel__header,
+	.tag-cloud {
+		position: relative;
+		z-index: 1;
+	}
+	.tag-cloud-panel__header {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.9rem;
+	}
+	.tag-cloud-panel__header span,
+	.tag-cloud-panel__header strong,
+	.tag-chip {
+		font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	}
+	.tag-cloud-panel__header span {
+		display: block;
+		color: rgb(15 23 42 / 0.42);
+		font-size: 0.62rem;
+		font-weight: 850;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+	}
+	:root.dark .tag-cloud-panel__header span { color: rgb(255 255 255 / 0.42); }
+	.tag-cloud-panel__header h2 {
+		margin-top: 0.18rem;
+		color: rgb(15 23 42 / 0.9);
+		font-size: 1.08rem;
+		font-weight: 880;
+		letter-spacing: -0.03em;
+	}
+	:root.dark .tag-cloud-panel__header h2 { color: rgb(255 255 255 / 0.9); }
+	.tag-cloud-panel__header strong {
+		display: grid;
+		min-width: 2.15rem;
+		height: 2.15rem;
+		place-items: center;
+		border-radius: 0.72rem;
+		background: color-mix(in oklch, var(--primary) 16%, transparent);
+		color: var(--primary);
+		font-size: 0.8rem;
+	}
+	.tag-cloud {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.48rem;
+	}
+	.tag-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.22rem;
+		border: 1px solid color-mix(in oklch, var(--primary) calc(8% + var(--tag-weight) * 20%), transparent);
+		border-radius: 0.75rem;
+		background: color-mix(in oklch, var(--primary) calc(5% + var(--tag-weight) * 10%), transparent);
+		padding: 0.43rem 0.58rem;
+		color: rgb(15 23 42 / calc(0.54 + var(--tag-weight) * 0.28));
+		font-size: calc(0.72rem + var(--tag-weight) * 0.08rem);
+		font-weight: 800;
+		line-height: 1;
+	}
+	:root.dark .tag-chip { color: rgb(255 255 255 / calc(0.54 + var(--tag-weight) * 0.28)); }
+	.tag-chip:hover {
+		border-color: color-mix(in oklch, var(--primary) 42%, transparent);
+		background: color-mix(in oklch, var(--primary) 18%, transparent);
+		color: var(--primary);
+		transform: translateY(-1px);
+	}
+	.tag-chip span {
+		color: var(--primary);
+		opacity: 0.7;
+	}
+</style>

@@ -568,6 +568,15 @@
         transform: scale(1) !important;
         background: color-mix(in oklch, var(--primary) 10%, transparent) !important;
     }
+    .nav-link__icon--anime {
+        width: 1.1rem;
+        min-width: 1.1rem;
+        transform: translateY(-0.02rem);
+    }
+    .nav-link__icon--anime svg,
+    svg.nav-link__icon--anime {
+        overflow: visible;
+    }
     .nav-link--active .nav-link__icon {
         opacity: 1;
         filter: drop-shadow(0 0 6px color-mix(in oklch, var(--primary) 38%, transparent));
@@ -1827,16 +1836,25 @@ body.lg\:is-home #top-row {
     position: absolute;
     inset: 0 auto 0 0;
     width: 0.28rem;
-    background: var(--primary);
-    opacity: 0.72;
-    transition: width var(--motion-duration-base) var(--motion-ease-emphatic), opacity var(--motion-duration-base) var(--motion-ease-standard), box-shadow var(--motion-duration-base) var(--motion-ease-standard);
+    border: 0;
+    border-radius: 0;
+    background: var(--anime-status-color, var(--primary));
+    opacity: 1;
+    mask: none;
+    -webkit-mask: none;
+    transform: none;
+    z-index: 2;
+    transition: width var(--motion-duration-base) var(--motion-ease-emphatic), box-shadow var(--motion-duration-base) var(--motion-ease-standard);
 }
 
 .anime-entry:hover::before {
     width: 0.42rem;
-    opacity: 1;
-    box-shadow: 0 0 22px color-mix(in oklch, var(--primary) 42%, transparent);
+    box-shadow: 0 0 22px color-mix(in oklch, var(--anime-status-color, var(--primary)) 28%, transparent);
 }
+
+.anime-entry--wish { --anime-status-color: var(--anime-wish); }
+.anime-entry--done { --anime-status-color: var(--anime-done); }
+.anime-entry--watching { --anime-status-color: var(--anime-watching); }
 
 .anime-entry--wish::before { background: var(--anime-wish); }
 .anime-entry--done::before { background: var(--anime-done); }

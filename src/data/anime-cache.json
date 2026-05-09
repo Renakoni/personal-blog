@@ -1,7 +1,46 @@
 {
-  "generatedAt": "2026-05-07T06:49:43.079Z",
+  "generatedAt": "2026-05-09T07:58:33.137Z",
   "userId": "521064",
   "items": [
+    {
+      "id": 356774,
+      "title": "彻夜之歌",
+      "originalTitle": "よふかしのうた",
+      "status": "看过",
+      "type": 2,
+      "date": "2022年7月7日",
+      "episodes": "13话",
+      "cover": "/anime-covers/356774-6b21dab3f9.jpg",
+      "details": "13话 / 2022年7月7日 / 板村智幸 / コトヤマ（小学館「週刊少年サンデー」連載中） / 佐川遥",
+      "detailsPrimary": "13话 / 2022年7月7日",
+      "detailsSecondary": "板村智幸 / コトヤマ（小学館「週刊少年サンデー」連載中） / 佐川遥"
+    },
+    {
+      "id": 328674,
+      "title": "夏日幽灵",
+      "originalTitle": "サマーゴースト",
+      "status": "看过",
+      "type": 2,
+      "date": "2021年11月12日",
+      "episodes": "1话",
+      "cover": "/anime-covers/328674-92f6104e1a.jpg",
+      "details": "1话 / 2021年11月12日 / loundraw / 安達寛高(乙一)",
+      "detailsPrimary": "1话 / 2021年11月12日",
+      "detailsSecondary": "loundraw / 安達寛高(乙一)"
+    },
+    {
+      "id": 498947,
+      "title": "咔嗒咔嗒",
+      "originalTitle": "ガチアクタ",
+      "status": "看过",
+      "type": 2,
+      "date": "2025年7月6日",
+      "episodes": "24话",
+      "cover": "/anime-covers/498947-cec1dd3e84.jpg",
+      "details": "24话 / 2025年7月6日 / 菅沼芙実彦 / 裏那圭；graffiti design：晏童秀吉（講談社「週刊少年マガジン」連載中） / 石野聡",
+      "detailsPrimary": "24话 / 2025年7月6日",
+      "detailsSecondary": "菅沼芙実彦 / 裏那圭；graffiti design：晏童秀吉（講談社「週刊少年マガジン」連載中） / 石野聡"
+    },
     {
       "id": 118785,
       "title": "乱步奇谭 拉普拉斯的游戏",
@@ -89,9 +128,9 @@
       "date": "1984年2月11日",
       "episodes": "1话",
       "cover": "/anime-covers/40003-7135edc152.jpg",
-      "details": "1话 / 1984年2月11日",
+      "details": "1话 / 1984年2月11日 / 押井守 / 高橋留美子 / やまざきかずお",
       "detailsPrimary": "1话 / 1984年2月11日",
-      "detailsSecondary": ""
+      "detailsSecondary": "押井守 / 高橋留美子 / やまざきかずお"
     },
     {
       "id": 1728,
@@ -401,9 +440,9 @@
       "date": "2017年8月26日",
       "episodes": "1话",
       "cover": "/anime-covers/193373-a3c5958738.jpg",
-      "details": "1话 / 2017年8月26日 / 大沼心 / ひろやまひろし・TYPE-MOON / 平田和也",
+      "details": "1话 / 2017年8月26日 / 大沼心 / ひろやまひろし・TYPE-MOON / 井上堅二、水瀬葉月 / 平田和也 / SILVER LINK.",
       "detailsPrimary": "1话 / 2017年8月26日",
-      "detailsSecondary": "大沼心 / ひろやまひろし・TYPE-MOON / 平田和也"
+      "detailsSecondary": "大沼心 / ひろやまひろし・TYPE-MOON / 井上堅二、水瀬葉月 / 平田和也 / SILVER LINK."
     },
     {
       "id": 426123,
@@ -1740,9 +1779,9 @@
       "date": "2016年7月6日",
       "episodes": "12话",
       "cover": "/anime-covers/147466-256d909684.jpg",
-      "details": "12话 / 2016年7月6日 / 高橋賢・神保昌登 / ひろやまひろし・TYPE-MOON / 井上堅二 / 平田和也；副：山吉一幸、澤入祐樹、佐藤香織 / SILVER LINK.",
+      "details": "12话 / 2016年7月6日 / 高橋賢・神保昌登 / ひろやまひろし・TYPE-MOON / 井上堅二 / 平田和也 / SILVER LINK.",
       "detailsPrimary": "12话 / 2016年7月6日",
-      "detailsSecondary": "高橋賢・神保昌登 / ひろやまひろし・TYPE-MOON / 井上堅二 / 平田和也；副：山吉一幸、澤入祐樹、佐藤香織 / SILVER LINK."
+      "detailsSecondary": "高橋賢・神保昌登 / ひろやまひろし・TYPE-MOON / 井上堅二 / 平田和也 / SILVER LINK."
     },
     {
       "id": 113134,
@@ -2663,9 +2702,9 @@
       "date": "2019年11月27日",
       "episodes": "1话",
       "cover": "/anime-covers/227263-3edd7a77ce.jpg",
-      "details": "1话 / 2019年11月27日 / 大沼心 / ひろやまひろし・TYPE-MOON / 井上堅二、水瀬葉月 / 平田和也 / SILVER LINK.",
+      "details": "1话 / 2019年11月27日 / 大沼心 / ひろやまひろし・TYPE-MOON (株式会社KADOKAWA 月刊コンプエース連載・角川コミックス・エース刊) / 井上堅二、水瀬葉月 / 平田和也 / SILVER LINK.",
       "detailsPrimary": "1话 / 2019年11月27日",
-      "detailsSecondary": "大沼心 / ひろやまひろし・TYPE-MOON / 井上堅二、水瀬葉月 / 平田和也 / SILVER LINK."
+      "detailsSecondary": "大沼心 / ひろやまひろし・TYPE-MOON (株式会社KADOKAWA 月刊コンプエース連載・角川コミックス・エース刊) / 井上堅二、水瀬葉月 / 平田和也 / SILVER LINK."
     },
     {
       "id": 43951,

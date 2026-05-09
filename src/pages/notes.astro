@@ -1,0 +1,579 @@
+---
+import { Icon } from "astro-icon/components";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import Profile from "../components/widget/Profile.astro";
+import { getSortedPosts } from "../utils/content-utils";
+import { getPostUrlBySlug } from "../utils/url-utils";
+
+const notes = (await getSortedPosts()).filter((entry) => entry.data.category?.toLowerCase() === "notes");
+
+const notebookThemes = [
+	{ accent: "#5fb3ff", icon: "material-symbols:functions-rounded" },
+	{ accent: "#8f7cff", icon: "material-symbols:translate-rounded" },
+	{ accent: "#f2b84b", icon: "material-symbols:menu-book-outline-rounded" },
+	{ accent: "#72d6a3", icon: "material-symbols:biotech-outline-rounded" },
+	{ accent: "#ff7ea8", icon: "material-symbols:draw-outline-rounded" },
+];
+
+const groupedNotes = [...notes.reduce((groups, note) => {
+	const notebook = note.data.notebook || note.data.tags[0] || "Misc";
+	const group = groups.get(notebook) ?? [];
+	group.push(note);
+	groups.set(notebook, group);
+	return groups;
+}, new Map<string, typeof notes>()).entries()].map(([name, entries], index) => ({
+	name,
+	entries,
+	latest: entries[0]?.data.published,
+	...notebookThemes[index % notebookThemes.length],
+}));
+
+const recentNotes = notes.slice(0, 6);
+const notebookCount = groupedNotes.length;
+const noteTags = [...notes.reduce((tags, note) => {
+	note.data.tags.forEach((tag) => tags.set(tag, (tags.get(tag) ?? 0) + 1));
+	return tags;
+}, new Map<string, number>()).entries()]
+	.sort(([, a], [, b]) => b - a)
+	.slice(0, 12)
+	.map(([name, count]) => ({ name, count }));
+---
+
+<MainGridLayout title="Notes" description="Notes">
+	<div slot="sidebar" id="sidebar" class="mb-4 row-start-2 row-end-3 col-span-2 w-full lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation">
+		<div class="flex flex-col w-full gap-4 mb-4">
+			<Profile />
+		</div>
+		<div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4">
+			<section class="note-side-panel card-base">
+				<header>
+					<div>
+						<span>Library</span>
+						<h2>Notebooks</h2>
+					</div>
+					<strong>{String(notebookCount).padStart(2, "0")}</strong>
+				</header>
+				<nav class="note-side-list" aria-label="Notebooks">
+					{groupedNotes.map((notebook, index) => (
+						<a href={`#notebook-${index}`} style={`--side-accent: ${notebook.accent};`}>
+							<span>{String(index + 1).padStart(2, "0")}</span>
+							<strong>{notebook.name}</strong>
+							<em>{String(notebook.entries.length).padStart(2, "0")}</em>
+						</a>
+					))}
+					{groupedNotes.length === 0 && <div class="note-side-empty">Empty</div>}
+				</nav>
+			</section>
+
+			<section class="note-side-panel note-side-panel--signals card-base">
+				<header>
+					<div>
+						<span>Signal</span>
+						<h2>Tags</h2>
+					</div>
+					<strong>{String(noteTags.length).padStart(2, "0")}</strong>
+				</header>
+				<div class="note-side-tags" aria-label="Note tags">
+					{noteTags.map((tag) => (
+						<span><em>#</em>{tag.name}</span>
+					))}
+					{noteTags.length === 0 && <div class="note-side-empty">Empty</div>}
+				</div>
+			</section>
+		</div>
+	</div>
+	<section class="notes-library space-y-6">
+		<header class="notes-library__hero card-base">
+			<div>
+				<div class="notes-library__eyebrow">
+					<Icon name="material-symbols:library-books-outline-rounded" />
+					Library
+				</div>
+				<h1>Notes</h1>
+			</div>
+			<div class="notes-library__metrics" aria-label="Notes summary">
+				<div>
+					<span>Notebooks</span>
+					<strong>{String(notebookCount).padStart(2, "0")}</strong>
+				</div>
+				<div>
+					<span>Notes</span>
+					<strong>{String(notes.length).padStart(2, "0")}</strong>
+				</div>
+			</div>
+		</header>
+
+		{notes.length > 0 ? (
+			<>
+				<section class="notes-shelf card-base" aria-labelledby="notebook-shelf-title">
+					<div class="notes-section-head">
+						<h2 id="notebook-shelf-title">Bookshelf</h2>
+						<span>{String(notebookCount).padStart(2, "0")}</span>
+					</div>
+					<div class="notes-shelf__rail">
+						{groupedNotes.map((notebook, index) => (
+							<a
+								href={`#notebook-${index}`}
+								class="notes-book surface-hover"
+								style={`--book-accent: ${notebook.accent}; --book-delay: ${index * 45}ms;`}
+							>
+								<span class="notes-book__stripe"></span>
+								<Icon name={notebook.icon} />
+								<strong>{notebook.name}</strong>
+								<em>{String(notebook.entries.length).padStart(2, "0")}</em>
+							</a>
+						))}
+					</div>
+				</section>
+
+				<section class="notes-desk" aria-labelledby="recent-notes-title">
+					<div class="notes-section-head">
+						<h2 id="recent-notes-title">Recent</h2>
+						<span>{String(recentNotes.length).padStart(2, "0")}</span>
+					</div>
+					<div class="notes-card-grid">
+						{recentNotes.map((note, index) => (
+							<a href={getPostUrlBySlug(note.slug)} class="note-index-card surface-hover" style={`--note-delay: ${index * 50}ms;`}>
+								<span>{note.data.published.toLocaleDateString("en", { month: "2-digit", day: "2-digit" })}</span>
+								<strong>{note.data.title}</strong>
+								{note.data.tags.length > 0 && <em>{note.data.tags.slice(0, 2).join(" / ")}</em>}
+							</a>
+						))}
+					</div>
+				</section>
+
+				<section class="notes-stacks" aria-labelledby="notebook-stacks-title">
+					<div class="notes-section-head">
+						<h2 id="notebook-stacks-title">Stacks</h2>
+						<span>{String(notebookCount).padStart(2, "0")}</span>
+					</div>
+					<div class="notes-stack-list">
+						{groupedNotes.map((notebook, index) => (
+							<article id={`notebook-${index}`} class="notes-stack card-base" style={`--stack-accent: ${notebook.accent};`}>
+								<div class="notes-stack__spine" aria-hidden="true"></div>
+								<header>
+									<div>
+										<span>Notebook</span>
+										<h3>{notebook.name}</h3>
+									</div>
+									<strong>{String(notebook.entries.length).padStart(2, "0")}</strong>
+								</header>
+								<div class="notes-stack__entries">
+									{notebook.entries.map((note) => (
+										<a href={getPostUrlBySlug(note.slug)}>
+											<time>{note.data.published.toLocaleDateString("en", { year: "2-digit", month: "2-digit", day: "2-digit" })}</time>
+											<span>{note.data.title}</span>
+											<Icon name="material-symbols:chevron-right-rounded" />
+										</a>
+									))}
+								</div>
+							</article>
+						))}
+					</div>
+				</section>
+			</>
+		) : (
+			<div class="notes-empty card-base">
+				<Icon name="material-symbols:shelves-rounded" />
+				<strong>No notes yet.</strong>
+			</div>
+		)}
+	</section>
+</MainGridLayout>
+
+<style>
+	.note-side-panel {
+		position: relative;
+		overflow: hidden;
+		padding: 1rem;
+		border: 1px solid rgb(15 23 42 / 0.08);
+		background:
+			linear-gradient(135deg, color-mix(in oklch, var(--primary) 10%, transparent), transparent 38%),
+			var(--card-bg);
+	}
+	:root.dark .note-side-panel {
+		border-color: rgb(255 255 255 / 0.08);
+		background:
+			linear-gradient(135deg, color-mix(in oklch, var(--primary) 13%, transparent), transparent 42%),
+			var(--card-bg);
+	}
+	.note-side-panel::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 2.15rem);
+		pointer-events: none;
+	}
+	.note-side-panel header,
+	.note-side-list,
+	.note-side-tags {
+		position: relative;
+		z-index: 1;
+	}
+	.note-side-panel header {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.85rem;
+	}
+	.note-side-panel header span,
+	.note-side-panel header strong,
+	.note-side-list span,
+	.note-side-list em,
+	.note-side-tags,
+	.note-side-empty {
+		font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	}
+	.note-side-panel header span {
+		display: block;
+		color: rgb(15 23 42 / 0.42);
+		font-size: 0.62rem;
+		font-weight: 850;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+	}
+	:root.dark .note-side-panel header span { color: rgb(255 255 255 / 0.42); }
+	.note-side-panel header h2 {
+		margin-top: 0.18rem;
+		color: rgb(15 23 42 / 0.9);
+		font-size: 1.08rem;
+		font-weight: 880;
+		letter-spacing: -0.03em;
+	}
+	:root.dark .note-side-panel header h2 { color: rgb(255 255 255 / 0.9); }
+	.note-side-panel header strong {
+		display: grid;
+		min-width: 2.15rem;
+		height: 2.15rem;
+		place-items: center;
+		border-radius: 0.72rem;
+		background: color-mix(in oklch, var(--primary) 16%, transparent);
+		color: var(--primary);
+		font-size: 0.8rem;
+	}
+	.note-side-list {
+		display: grid;
+		gap: 0.34rem;
+	}
+	.note-side-list a {
+		display: grid;
+		grid-template-columns: 2rem minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 0.58rem;
+		border-left: 0.22rem solid var(--side-accent);
+		border-radius: 0.82rem;
+		padding: 0.62rem 0.64rem 0.62rem 0.7rem;
+		background: color-mix(in oklch, var(--side-accent) 7%, transparent);
+		color: rgb(15 23 42 / 0.72);
+	}
+	:root.dark .note-side-list a { color: rgb(255 255 255 / 0.72); }
+	.note-side-list a:hover {
+		background: color-mix(in oklch, var(--side-accent) 13%, transparent);
+		color: rgb(15 23 42 / 0.92);
+		transform: translateX(1px);
+	}
+	:root.dark .note-side-list a:hover { color: rgb(255 255 255 / 0.92); }
+	.note-side-list span,
+	.note-side-list em {
+		color: rgb(15 23 42 / 0.38);
+		font-size: 0.64rem;
+		font-style: normal;
+		font-weight: 850;
+	}
+	:root.dark .note-side-list span,
+	:root.dark .note-side-list em { color: rgb(255 255 255 / 0.38); }
+	.note-side-list strong {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-size: 0.9rem;
+		font-weight: 780;
+	}
+	.note-side-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.46rem;
+	}
+	.note-side-tags span {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.22rem;
+		border-radius: 0.72rem;
+		background: rgb(15 23 42 / 0.055);
+		padding: 0.42rem 0.55rem;
+		color: rgb(15 23 42 / 0.64);
+		font-size: 0.72rem;
+		font-weight: 800;
+	}
+	:root.dark .note-side-tags span {
+		background: rgb(255 255 255 / 0.055);
+		color: rgb(255 255 255 / 0.64);
+	}
+	.note-side-tags em {
+		color: var(--primary);
+		font-style: normal;
+		opacity: 0.74;
+	}
+	.note-side-empty {
+		border: 1px dashed rgb(15 23 42 / 0.1);
+		border-radius: 0.9rem;
+		padding: 0.72rem;
+		color: rgb(15 23 42 / 0.42);
+		font-size: 0.72rem;
+		font-weight: 850;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	:root.dark .note-side-empty {
+		border-color: rgb(255 255 255 / 0.1);
+		color: rgb(255 255 255 / 0.42);
+	}
+	.notes-library {
+		--shelf-line: color-mix(in oklch, var(--primary) 22%, transparent);
+	}
+	.notes-library__hero {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: 1.75rem;
+		border: 1px solid rgb(15 23 42 / 0.08);
+		background:
+			linear-gradient(135deg, color-mix(in oklch, var(--primary) 12%, transparent), transparent 38%),
+			repeating-linear-gradient(90deg, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 42px),
+			var(--card-bg);
+	}
+	:root.dark .notes-library__hero { border-color: rgb(255 255 255 / 0.08); }
+	.notes-library__eyebrow,
+	.notes-section-head,
+	.notes-library__metrics span,
+	.notes-stack header span,
+	.note-index-card span,
+	.note-index-card em,
+	.notes-stack__entries time {
+		font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	}
+	.notes-library__eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		margin-bottom: 0.9rem;
+		color: var(--primary);
+		font-size: 0.78rem;
+		font-weight: 850;
+	}
+	.notes-library__eyebrow svg { width: 1rem; height: 1rem; }
+	.notes-library__hero h1 {
+		font-size: clamp(2.3rem, 7vw, 5.2rem);
+		font-weight: 900;
+		letter-spacing: -0.08em;
+		line-height: 0.86;
+		color: rgb(15 23 42 / 0.9);
+	}
+	:root.dark .notes-library__hero h1,
+	:root.dark .notes-library__metrics strong,
+	:root.dark .notes-book,
+	:root.dark .note-index-card strong,
+	:root.dark .notes-stack header h3 {
+		color: rgb(255 255 255 / 0.9);
+	}
+	:root.dark .notes-section-head,
+	:root.dark .notes-stack__entries a,
+	:root.dark .notes-empty {
+		color: rgb(255 255 255 / 0.68);
+	}
+	:root.dark .notes-library__metrics span,
+	:root.dark .notes-book em,
+	:root.dark .note-index-card span,
+	:root.dark .note-index-card em,
+	:root.dark .notes-stack header span,
+	:root.dark .notes-stack__entries time {
+		color: rgb(255 255 255 / 0.42);
+	}
+	.notes-library__metrics {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(5rem, 1fr));
+		gap: 0.75rem;
+	}
+	.notes-library__metrics div {
+		border: 1px solid rgb(15 23 42 / 0.08);
+		border-radius: 1.2rem;
+		padding: 0.85rem 1rem;
+		min-width: 6.5rem;
+		background: rgb(255 255 255 / 0.28);
+	}
+	:root.dark .notes-library__metrics div {
+		border-color: rgb(255 255 255 / 0.08);
+		background: rgb(255 255 255 / 0.035);
+	}
+	.notes-library__metrics span {
+		display: block;
+		color: rgb(var(--text-color) / 0.42);
+		font-size: 0.64rem;
+		font-weight: 850;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+	}
+	.notes-library__metrics strong {
+		display: block;
+		margin-top: 0.25rem;
+		font-size: 1.7rem;
+		line-height: 1;
+		color: rgb(15 23 42 / 0.9);
+	}
+	.notes-section-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.9rem;
+		padding: 0 0.2rem;
+		color: rgb(var(--text-color) / 0.52);
+		font-size: 0.72rem;
+		font-weight: 850;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+	}
+	.notes-section-head h2 { color: rgb(var(--text-color) / 0.72); font-size: inherit; font-weight: inherit; }
+	.notes-shelf {
+		padding: 1.15rem;
+		background:
+			linear-gradient(180deg, transparent calc(100% - 1.45rem), color-mix(in oklch, var(--primary) 18%, rgb(20 28 38)) calc(100% - 1.45rem)),
+			var(--card-bg);
+	}
+	.notes-shelf__rail {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(5.2rem, 1fr));
+		align-items: end;
+		gap: 0.75rem;
+		padding: 0.35rem 0.2rem 1.4rem;
+	}
+	.notes-book {
+		position: relative;
+		display: flex;
+		min-height: 9rem;
+		flex-direction: column;
+		justify-content: space-between;
+		overflow: hidden;
+		border-radius: 0.75rem 0.45rem 0.45rem 0.75rem;
+		border: 1px solid color-mix(in oklch, var(--book-accent) 32%, transparent);
+		background:
+			linear-gradient(90deg, color-mix(in oklch, var(--book-accent) 24%, transparent), transparent 34%),
+			linear-gradient(180deg, rgb(255 255 255 / 0.08), transparent),
+			rgb(255 255 255 / 0.035);
+		padding: 0.8rem 0.72rem;
+		color: rgb(15 23 42 / 0.9);
+		animation: shelf-book-in 520ms var(--motion-ease-emphatic) both;
+		animation-delay: var(--book-delay);
+	}
+	.notes-book__stripe {
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: 0.38rem;
+		background: var(--book-accent);
+		opacity: 0.78;
+	}
+	.notes-book svg { width: 1.18rem; height: 1.18rem; color: var(--book-accent); }
+	.notes-book strong {
+		font-size: 0.92rem;
+		font-weight: 850;
+		line-height: 1.08;
+		writing-mode: vertical-rl;
+		text-orientation: mixed;
+	}
+	.notes-book em {
+		font-style: normal;
+		font-size: 0.72rem;
+		font-weight: 900;
+		color: rgb(var(--text-color) / 0.48);
+	}
+	.notes-card-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.8rem;
+	}
+	.note-index-card {
+		display: flex;
+		min-height: 8.25rem;
+		flex-direction: column;
+		justify-content: space-between;
+		border-radius: 1.15rem;
+		border: 1px solid rgb(15 23 42 / 0.08);
+		background:
+			linear-gradient(135deg, rgb(255 255 255 / 0.36), transparent),
+			var(--card-bg);
+		padding: 1rem;
+		animation: note-card-in 520ms var(--motion-ease-emphatic) both;
+		animation-delay: var(--note-delay);
+	}
+	:root.dark .note-index-card { border-color: rgb(255 255 255 / 0.08); background: linear-gradient(135deg, rgb(255 255 255 / 0.055), transparent), var(--card-bg); }
+	.note-index-card span,
+	.note-index-card em { color: rgb(var(--text-color) / 0.42); font-size: 0.68rem; font-style: normal; font-weight: 750; }
+	.note-index-card strong { color: rgb(15 23 42 / 0.9); font-size: 1.05rem; font-weight: 850; line-height: 1.22; }
+	.notes-stack-list { display: grid; gap: 0.9rem; }
+	.notes-stack {
+		position: relative;
+		overflow: hidden;
+		padding: 1.1rem 1.1rem 1.1rem 1.55rem;
+		border: 1px solid rgb(15 23 42 / 0.08);
+	}
+	:root.dark .notes-stack { border-color: rgb(255 255 255 / 0.08); }
+	.notes-stack__spine {
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: 0.38rem;
+		background: var(--stack-accent);
+		opacity: 0.78;
+	}
+	.notes-stack header {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.95rem;
+	}
+	.notes-stack header span { color: rgb(var(--text-color) / 0.42); font-size: 0.62rem; font-weight: 850; letter-spacing: 0.18em; text-transform: uppercase; }
+	.notes-stack header h3 { margin-top: 0.18rem; color: rgb(15 23 42 / 0.9); font-size: 1.18rem; font-weight: 880; }
+	.notes-stack header strong { color: var(--stack-accent); font-size: 1.45rem; line-height: 1; }
+	.notes-stack__entries { display: grid; gap: 0.3rem; }
+	.notes-stack__entries a {
+		display: grid;
+		grid-template-columns: 4.6rem minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 0.65rem;
+		border-radius: 0.75rem;
+		padding: 0.62rem 0.65rem;
+		color: rgb(var(--text-color) / 0.74);
+	}
+	.notes-stack__entries a:hover { background: color-mix(in oklch, var(--stack-accent) 12%, transparent); color: rgb(15 23 42 / 0.9); }
+	.notes-stack__entries time { color: rgb(var(--text-color) / 0.38); font-size: 0.66rem; font-weight: 800; }
+	.notes-stack__entries span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 720; }
+	.notes-stack__entries svg { width: 1.1rem; height: 1.1rem; color: var(--stack-accent); opacity: 0.65; }
+	.notes-empty {
+		display: grid;
+		place-items: center;
+		gap: 0.7rem;
+		min-height: 14rem;
+		padding: 2rem;
+		color: rgb(var(--text-color) / 0.7);
+	}
+	.notes-empty svg { width: 2rem; height: 2rem; color: var(--primary); }
+	@keyframes shelf-book-in {
+		from { opacity: 0; transform: translateY(0.8rem) rotate(-1.5deg); }
+		to { opacity: 1; transform: translateY(0) rotate(0); }
+	}
+	@keyframes note-card-in {
+		from { opacity: 0; transform: translateY(0.7rem); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+	@media (max-width: 768px) {
+		.notes-library__hero { align-items: stretch; flex-direction: column; padding: 1.35rem; }
+		.notes-library__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.notes-card-grid { grid-template-columns: 1fr; }
+		.notes-shelf__rail { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+		.notes-book { min-height: 7.6rem; }
+		.notes-stack__entries a { grid-template-columns: minmax(0, 1fr) auto; }
+		.notes-stack__entries time { display: none; }
+	}
+</style>

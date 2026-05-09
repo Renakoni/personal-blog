@@ -24,8 +24,10 @@ let links: NavBarLink[] = (customLinks || navBarConfig.links).map(
 const getActiveNavName = (pathname: string) => {
 	if (pathname.startsWith("/anime")) return "Anime";
 	if (pathname.startsWith("/projects")) return "Projects";
+	if (pathname.startsWith("/notes")) return "Notes";
 	if (pathname.startsWith("/about")) return "About";
-	if (pathname.startsWith("/posts") || pathsEqual(pathname, "/")) return "Blog";
+	if (pathname.startsWith("/archive") || pathname.startsWith("/posts")) return "Blog";
+	if (pathsEqual(pathname, "/")) return "Home";
 	return "";
 };
 
@@ -56,8 +58,10 @@ const activeNavName = getActiveNavName(Astro.url.pathname);
                           ]}
                 >
                     <div class="flex items-center gap-2">
+                        {l.name === "Home" && <Icon name="material-symbols:home-outline-rounded" class="nav-link__icon text-[1.1rem]"></Icon>}
                         {l.name === "Blog" && <Icon name="material-symbols:article-outline-rounded" class="nav-link__icon text-[1.1rem]"></Icon>}
-                        {l.name === "Anime" && <Icon name="material-symbols:movie-outline" class="nav-link__icon text-[1.1rem]"></Icon>}
+                        {l.name === "Notes" && <Icon name="material-symbols:edit-note-rounded" class="nav-link__icon text-[1.1rem]"></Icon>}
+                        {l.name === "Anime" && <Icon name="material-symbols:movie-outline" class="nav-link__icon nav-link__icon--anime text-[1.1rem]"></Icon>}
                         {l.name === "Projects" && <Icon name="material-symbols:code-rounded" class="nav-link__icon text-[1.1rem]"></Icon>}
                         {l.name === "About" && <Icon name="material-symbols:person-outline-rounded" class="nav-link__icon text-[1.1rem]"></Icon>}
                         {l.name === "GitHub" && <Icon name="fa6-brands:github" class="nav-link__icon text-[1.1rem]"></Icon>}
@@ -111,8 +115,10 @@ function loadButtonScript() {
 function getActiveNavName(pathname: string) {
     if (pathname.startsWith("/anime")) return "Anime";
     if (pathname.startsWith("/projects")) return "Projects";
+    if (pathname.startsWith("/notes")) return "Notes";
     if (pathname.startsWith("/about")) return "About";
-    if (pathname.startsWith("/posts") || pathname === "/") return "Blog";
+    if (pathname.startsWith("/archive") || pathname.startsWith("/posts")) return "Blog";
+    if (pathname === "/") return "Home";
     return "";
 }
 

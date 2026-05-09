@@ -18,6 +18,7 @@ const { links, activeNavName = "" } = Astro.props;
             "group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition",
             { "nav-menu-link--active": isActive },
         ]}
+           aria-label={link.name}
            aria-current={isActive ? "page" : null}
            target={link.external ? "_blank" : null}
         >
