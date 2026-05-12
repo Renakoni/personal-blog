@@ -26,7 +26,7 @@ const getActiveNavName = (pathname: string) => {
 	if (pathname.startsWith("/projects")) return "Projects";
 	if (pathname.startsWith("/notes")) return "Notes";
 	if (pathname.startsWith("/about")) return "About";
-	if (pathname.startsWith("/archive") || pathname.startsWith("/posts")) return "Blog";
+	if (pathname.startsWith("/blog") || pathname.startsWith("/archive") || pathname.startsWith("/posts")) return "Blog";
 	if (pathsEqual(pathname, "/")) return "Home";
 	return "";
 };
@@ -117,7 +117,7 @@ function getActiveNavName(pathname: string) {
     if (pathname.startsWith("/projects")) return "Projects";
     if (pathname.startsWith("/notes")) return "Notes";
     if (pathname.startsWith("/about")) return "About";
-    if (pathname.startsWith("/archive") || pathname.startsWith("/posts")) return "Blog";
+    if (pathname.startsWith("/blog") || pathname.startsWith("/archive") || pathname.startsWith("/posts")) return "Blog";
     if (pathname === "/") return "Home";
     return "";
 }

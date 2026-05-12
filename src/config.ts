@@ -47,7 +47,7 @@ export const navBarConfig: NavBarConfig = {
 	links: [
 		{
 			name: "Blog",
-			url: "/archive/",
+			url: "/blog/",
 		},
 		{
 			name: "Notes",

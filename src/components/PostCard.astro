@@ -42,7 +42,7 @@ const coverWidth = "28%";
 
 const { remarkPluginFrontmatter } = await entry.render();
 ---
-<div class:list={["post-card card-base surface-hover flex flex-col-reverse md:flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative", className]} style={style}>
+<div class:list={["post-card card-base surface-hover flex flex-col-reverse md:flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative cursor-pointer", className]} style={style} data-post-card-url={url}>
     <div class:list={["post-card__body pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative", {"w-full md:w-[calc(100%_-_52px_-_12px)]": !hasCover, "w-full md:w-[calc(100%_-_var(--coverWidth)_-_12px)]": hasCover}]}>
         <a href={url}
            class="transition group w-full block font-bold mb-3 text-3xl text-90
@@ -57,7 +57,7 @@ const { remarkPluginFrontmatter } = await entry.render();
         </a>
 
         <!-- metadata -->
-        <PostMetadata published={published} updated={updated} tags={tags} category={category} hideTagsForMobile={true} hideUpdateDate={true} class="mb-4"></PostMetadata>
+        <PostMetadata published={published} updated={updated} tags={tags} category={category} hideTagsForMobile={true} hideUpdateDate={true} disableLinks={true} class="mb-4"></PostMetadata>
 
         <!-- description -->
         <div class:list={["transition text-75 mb-3.5 pr-4", {"line-clamp-2 md:line-clamp-1": !description}]}>
@@ -105,6 +105,16 @@ const { remarkPluginFrontmatter } = await entry.render();
     }
 </div>
 <div class="transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] last:border-t-0 md:hidden"></div>
+
+<script>
+	document.querySelectorAll<HTMLElement>("[data-post-card-url]").forEach((card) => {
+		card.addEventListener("click", (event) => {
+			const target = event.target as HTMLElement;
+			if (target.closest("a, button")) return;
+			window.location.href = card.dataset.postCardUrl || "";
+		});
+	});
+</script>
 
 <style define:vars={{coverWidth}}>
 </style>

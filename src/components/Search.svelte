@@ -38,11 +38,11 @@ let isCompactScreen = false;
 const commandItems: CommandItem[] = [
 	{
 		kind: "command",
-		title: "Home / Blog",
-		description: "Return to the main transmission feed",
-		href: url("/#home-posts"),
+		title: "Blog",
+		description: "Open the card article feed",
+		href: url("/blog/"),
 		icon: "material-symbols:article-outline-rounded",
-		badge: "MAIN",
+		badge: "BLOG",
 	},
 	{
 		kind: "command",

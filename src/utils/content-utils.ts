@@ -31,12 +31,24 @@ export async function getSortedPosts() {
 
 	return sorted;
 }
+
+const isNoteEntry = (post: CollectionEntry<"posts">) =>
+	post.data.category?.trim().toLowerCase() === "notes";
+
+export async function getSortedBlogPosts() {
+	return (await getSortedPosts()).filter((post) => !isNoteEntry(post));
+}
+
+export async function getSortedNotePosts() {
+	return (await getSortedPosts()).filter(isNoteEntry);
+}
+
 export type PostForList = {
 	slug: string;
 	data: CollectionEntry<"posts">["data"];
 };
 export async function getSortedPostsList(): Promise<PostForList[]> {
-	const sortedFullPosts = await getRawSortedPosts();
+	const sortedFullPosts = await getSortedBlogPosts();
 
 	// delete post.body
 	const sortedPostsList = sortedFullPosts.map((post) => ({

@@ -8,29 +8,18 @@ import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
 import Layout from "../layouts/Layout.astro";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-import { getSortedPosts } from "../utils/content-utils";
+import { getSortedBlogPosts } from "../utils/content-utils";
 
 export const getStaticPaths = (async ({ paginate }) => {
-	const allBlogPosts = await getSortedPosts();
+	const allBlogPosts = await getSortedBlogPosts();
 	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 // https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
 const { page } = Astro.props;
 
-const hiddenHomeSlugs = new Set([
-	"guide",
-	"markdown-extended",
-	"expressive-code",
-	"markdown",
-	"video",
-]);
-
 const isFirstPage = page.currentPage === 1;
-const homePageData = isFirstPage
-	? page.data.filter((post) => !hiddenHomeSlugs.has(post.slug))
-	: page.data;
-const len = isFirstPage ? homePageData.length : page.data.length;
+const len = page.data.length;
 ---
 
 {isFirstPage ? (
@@ -41,7 +30,7 @@ const len = isFirstPage ? homePageData.length : page.data.length;
 
 			<main>
 				<div id="content-wrapper" class="home-content onload-animation mx-auto w-full max-w-[var(--page-width)] px-4 pb-16 pt-10 md:px-6 md:pt-14">
-					<PostPage page={{ ...page, data: homePageData }} variant="home" />
+					<PostPage page={page} variant="home" />
 					{len > 0 && (
 						<Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${len * 50}ms)`} />
 					)}
