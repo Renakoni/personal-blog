@@ -207,7 +207,7 @@ import 'overlayscrollbars/overlayscrollbars.css';
 import {
 	OverlayScrollbars,
 } from 'overlayscrollbars';
-import { initFloatingPanels } from "../scripts/layout/panels";
+import { closeFloatingPanels, initFloatingPanels } from "../scripts/layout/panels";
 import { initMotionReveal } from "../scripts/layout/motion-reveal";
 import {getHue, getStoredTheme, setHue, setTheme} from "../utils/setting-utils";
 import {pathsEqual, url} from "../utils/url-utils";
@@ -220,6 +220,8 @@ import {
 import { siteConfig } from '../config';
 
 const bannerEnabled = !!document.getElementById('banner-wrapper')
+let katexObserver: IntersectionObserver | undefined;
+let visitEndTimeout: ReturnType<typeof setTimeout> | undefined;
 
 initFloatingPanels()
 
@@ -234,6 +236,7 @@ function loadHue() {
 }
 
 function initCustomScrollbar() {
+	katexObserver?.disconnect();
 	const bodyElement = document.querySelector('body');
 	if (!bodyElement) return;
 	OverlayScrollbars(
@@ -284,7 +287,7 @@ function initCustomScrollbar() {
 		element.setAttribute('data-scrollbar-initialized', 'true');
 	};
 
-	const katexObserver = new IntersectionObserver((entries, observer) => {
+	katexObserver = new IntersectionObserver((entries, observer) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 			processKatexElement(entry.target as HTMLElement);
@@ -294,7 +297,7 @@ function initCustomScrollbar() {
 	}, katexObserverOptions);
 
 	katexElements.forEach(element => {
-		katexObserver.observe(element);
+		katexObserver?.observe(element);
 	});
 }
 
@@ -336,6 +339,12 @@ function setTocReady(isReady: boolean) {
 	}
 }
 
+const sectionRoutePrefixes = [url('/notes'), url('/projects'), url('/anime')];
+
+function isSectionRoute(pathname: string) {
+	return sectionRoutePrefixes.some((prefix) => pathname.startsWith(prefix));
+}
+
 function updateBannerHeightExtend() {
 	let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
 	offset = offset - offset % 4;
@@ -353,8 +362,9 @@ function init() {
 init();
 
 const setupSwupHooks = () => {
+	if (window.__panSwupHooksReady) return;
+	window.__panSwupHooksReady = true;
 	window.swup.hooks.on('link:click', () => {
-		// Remove the delay for the first time page load
 		document.documentElement.style.setProperty('--content-delay', '0ms')
 
 		// prevent elements from overlapping the navbar
@@ -376,9 +386,12 @@ const setupSwupHooks = () => {
 		initMotionReveal();
 	})
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
+		closeFloatingPanels();
+		if (visitEndTimeout) clearTimeout(visitEndTimeout);
 		document.documentElement.classList.add('route-scrollbar-stable')
 		const bodyElement = document.querySelector('body')
 		const targetUrl = new URL(visit.to.url, window.location.origin)
+		document.documentElement.classList.toggle('section-route-transition', isSectionRoute(window.location.pathname) && isSectionRoute(targetUrl.pathname))
 		if (pathsEqual(targetUrl.pathname, url('/'))) {
 			bodyElement!.classList.add('lg:is-home');
 		} else {
@@ -391,20 +404,24 @@ const setupSwupHooks = () => {
 	window.swup.hooks.on('page:view', () => {
 		hidePageHeightExtend()
 		requestAnimationFrame(() => {
-			requestAnimationFrame(() => document.documentElement.classList.remove('route-scrollbar-stable'))
+			requestAnimationFrame(() => {
+				document.documentElement.classList.remove('route-scrollbar-stable')
+				document.documentElement.classList.remove('section-route-transition')
+			})
 		})
 	});
 	window.swup.hooks.on('visit:end', (_visit: {to: {url: string}}) => {
-		setTimeout(() => {
+		visitEndTimeout = setTimeout(() => {
 			hidePageHeightExtend()
 			setTocReady(true)
+			visitEndTimeout = undefined
         }, 200)
 	});
 }
 if (window?.swup?.hooks) {
 	setupSwupHooks()
 } else {
-	document.addEventListener('swup:enable', setupSwupHooks)
+	document.addEventListener('swup:enable', setupSwupHooks, { once: true })
 }
 
 let backToTopBtn = document.getElementById('back-to-top-btn');

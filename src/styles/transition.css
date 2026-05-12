@@ -15,6 +15,13 @@
     --motion-ease-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+html,
+body,
+#page-shell,
+#swup-content {
+    background: var(--page-bg);
+}
+
 /* Page transition animations with Swup */
 html.is-changing #swup-content {
     transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
@@ -23,6 +30,10 @@ html.is-changing #swup-content {
 }
 html.is-animating #swup-content {
     opacity: 0;
+}
+html.section-route-transition.is-leaving #swup-content {
+    transition-duration: var(--motion-duration-instant);
+    visibility: hidden;
 }
 html.swup-ready .onload-animation,
 html.swup-ready #post-container :nth-child(n) {

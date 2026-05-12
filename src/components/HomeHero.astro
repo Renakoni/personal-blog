@@ -65,40 +65,6 @@ const initialHeroPosition = initialHeroImage?.position || fallbackHeroPosition;
 		</div>
 	</div>
 </section>
-
-<script>
-	function initRandomHero() {
-		const hero = document.querySelector(".home-hero");
-		const container = document.querySelector("#home-hero-image");
-			const image = container instanceof HTMLImageElement ? container : container?.querySelector("img");
-		if (!(hero instanceof HTMLElement) || !(image instanceof HTMLImageElement)) return;
-
-		const images = JSON.parse(hero.dataset.heroImages || "[]");
-		if (!Array.isArray(images) || images.length === 0) return;
-
-		const selected = images[Math.floor(Math.random() * images.length)];
-		if (!selected?.src) return;
-
-					const picture = image.closest("picture");
-			const avifSource = picture?.querySelector('source[type="image/avif"]');
-			const webpSource = picture?.querySelector('source[type="image/webp"]');
-			if (selected.avif && avifSource instanceof HTMLSourceElement) avifSource.srcset = selected.avif;
-			if (selected.webp && webpSource instanceof HTMLSourceElement) webpSource.srcset = selected.webp;
-
-			image.src = selected.src;
-		image.style.objectPosition = window.matchMedia("(max-width: 768px)").matches
-			? selected.mobilePosition || selected.position || "center"
-			: selected.position || "center";
-	}
-
-	initRandomHero();
-	document.addEventListener("astro:page-load", initRandomHero);
-	if (window.swup?.hooks) {
-		window.swup.hooks.on("page:view", initRandomHero);
-	} else {
-		document.addEventListener("swup:enable", () => window.swup?.hooks?.on("page:view", initRandomHero));
-	}
-</script>
 	<script>
 		function initRandomHero() {
 			const hero = document.querySelector(".home-hero");

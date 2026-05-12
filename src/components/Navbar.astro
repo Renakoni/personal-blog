@@ -72,7 +72,6 @@ const activeNavName = getActiveNavName(Astro.url.pathname);
             })}
         </div>
         <div class="flex">
-            <!--<SearchPanel client:load>-->
             <Search client:load></Search>
             {!siteConfig.themeColor.fixed && (
                     <button aria-label="Display Settings" class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90" id="display-settings-switch">

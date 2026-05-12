@@ -65,7 +65,7 @@ const animeCoverDir = path.join(projectRoot, "public", "anime-covers");
 
 export const fallbackAnimeList: AnimeItem[] = [
 	{
-		id: "demo-1",
+		id: "fallback-ranpo-kitan",
 		title: "乱步奇谭 拉普拉斯的游戏",
 		originalTitle: "乱歩奇譚 Game of Laplace",
 		status: "看过",
@@ -78,7 +78,7 @@ export const fallbackAnimeList: AnimeItem[] = [
 		cover: "https://lain.bgm.tv/r/400/pic/cover/l/c9/76/278614_jcIuC.jpg",
 	},
 	{
-		id: "demo-2",
+		id: "fallback-kyokou-suiri",
 		title: "虚构推理",
 		originalTitle: "虚構推理",
 		status: "看过",
@@ -91,7 +91,7 @@ export const fallbackAnimeList: AnimeItem[] = [
 		cover: "https://lain.bgm.tv/r/400/pic/cover/l/e9/53/289906_6DZN6.jpg",
 	},
 	{
-		id: "demo-3",
+		id: "fallback-frieren",
 		title: "葬送的芙莉莲",
 		originalTitle: "葬送のフリーレン",
 		status: "想看",

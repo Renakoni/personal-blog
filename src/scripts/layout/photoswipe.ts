@@ -2,6 +2,7 @@ import PhotoSwipeLightbox from "photoswipe/lightbox"
 import "photoswipe/style.css"
 
 let lightbox: PhotoSwipeLightbox
+let photoSwipeHooksReady = false
 let pswp = import("photoswipe")
 
 function createPhotoSwipe() {
@@ -36,6 +37,8 @@ function createPhotoSwipe() {
 }
 
 const setupPhotoSwipe = () => {
+	if (photoSwipeHooksReady) return
+	photoSwipeHooksReady = true
 	if (!lightbox) {
 		createPhotoSwipe()
 	}
@@ -56,6 +59,6 @@ export function initPhotoSwipe() {
 	if (window.swup) {
 		setupPhotoSwipe()
 	} else {
-		document.addEventListener("swup:enable", setupPhotoSwipe)
+		document.addEventListener("swup:enable", setupPhotoSwipe, { once: true })
 	}
 }

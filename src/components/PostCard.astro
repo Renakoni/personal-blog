@@ -108,6 +108,8 @@ const { remarkPluginFrontmatter } = await entry.render();
 
 <script>
 	document.querySelectorAll<HTMLElement>("[data-post-card-url]").forEach((card) => {
+		if (card.dataset.postCardBound) return;
+		card.dataset.postCardBound = "true";
 		card.addEventListener("click", (event) => {
 			const target = event.target as HTMLElement;
 			if (target.closest("a, button")) return;

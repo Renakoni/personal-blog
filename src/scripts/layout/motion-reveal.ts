@@ -1,4 +1,7 @@
+let motionRevealObserver: IntersectionObserver | undefined;
+
 export function initMotionReveal() {
+	motionRevealObserver?.disconnect();
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const targets = Array.from(document.querySelectorAll<HTMLElement>('.anime-entry, .projects-entry, #home-posts > *'))
 		.filter((element) => !element.hasAttribute('data-motion-reveal-bound'));
@@ -16,13 +19,13 @@ export function initMotionReveal() {
 		return;
 	}
 
-	const observer = new IntersectionObserver((entries) => {
+	motionRevealObserver = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
 			if (!entry.isIntersecting) return;
 			entry.target.classList.add('motion-reveal--visible');
-			observer.unobserve(entry.target);
+			motionRevealObserver?.unobserve(entry.target);
 		});
 	}, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
 
-	targets.forEach((element) => observer.observe(element));
+	targets.forEach((element) => motionRevealObserver?.observe(element));
 }

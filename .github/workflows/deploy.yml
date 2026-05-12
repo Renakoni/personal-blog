@@ -3,6 +3,8 @@ name: Deploy Blog
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - ".admin/drafts/**"
   schedule:
     - cron: "0 16 * * *"
   workflow_dispatch:

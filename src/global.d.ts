@@ -4,6 +4,8 @@ declare global {
 	interface Window {
 		// type from '@swup/astro' is incorrect
 		swup: AstroIntegration;
+		__panMarkdownCopyReady?: boolean;
+		__panSwupHooksReady?: boolean;
 		pagefind: {
 			search: (query: string) => Promise<{
 				results: Array<{
