@@ -191,6 +191,8 @@
     .fuwari-evidence,
     .fuwari-figure,
     .fuwari-gallery,
+    .fuwari-tabs,
+    .fuwari-metric,
     .fuwari-video {
         margin: 1.5rem 0;
         border: 1px solid rgb(15 23 42 / 0.08);
@@ -207,6 +209,8 @@
     :root.dark & .fuwari-evidence,
     :root.dark & .fuwari-figure,
     :root.dark & .fuwari-gallery,
+    :root.dark & .fuwari-tabs,
+    :root.dark & .fuwari-metric,
     :root.dark & .fuwari-video {
         border-color: rgb(255 255 255 / 0.08);
         background:
@@ -306,6 +310,133 @@
         height: 100%;
         margin: 0;
         border: 0;
+    }
+
+    .fuwari-tabs,
+    .fuwari-metric {
+        padding: 1rem;
+    }
+
+    .fuwari-tabs__rail {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .fuwari-tabs__rail span,
+    .fuwari-tabs__label,
+    .fuwari-metric__label,
+    .fuwari-metric__head,
+    .fuwari-metric__stat span {
+        font-family: "JetBrains Mono Variable", ui-monospace, monospace;
+    }
+
+    .fuwari-tabs__rail span {
+        border: 1px solid rgb(15 23 42 / 0.08);
+        border-radius: 999px;
+        padding: 0.35rem 0.72rem;
+        color: rgb(var(--text-color) / 0.52);
+        font-size: 0.72rem;
+        font-weight: 850;
+    }
+
+    :root.dark & .fuwari-tabs__rail span { border-color: rgb(255 255 255 / 0.08); }
+
+    .fuwari-tabs__rail span.active {
+        background: color-mix(in oklch, var(--primary) 15%, transparent);
+        color: var(--primary);
+    }
+
+    .fuwari-tabs__panel {
+        display: none;
+    }
+
+    .fuwari-tabs__panel.active {
+        display: block;
+    }
+
+    .fuwari-tabs__label,
+    .fuwari-metric__label {
+        margin-bottom: 0.55rem;
+        color: var(--primary);
+        font-size: 0.68rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+    }
+
+    .fuwari-tabs pre {
+        margin: 0;
+        border-radius: 0.85rem;
+        background: var(--codeblock-bg);
+        padding: 0.85rem 1rem;
+    }
+
+    .fuwari-metric__row + .fuwari-metric__row { margin-top: 0.8rem; }
+
+    .fuwari-metric__head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        color: rgb(var(--text-color) / 0.68);
+        font-size: 0.72rem;
+        font-weight: 850;
+    }
+
+    .fuwari-metric__head strong { color: var(--primary); }
+
+    .fuwari-metric__track {
+        height: 0.48rem;
+        margin-top: 0.45rem;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgb(15 23 42 / 0.08);
+    }
+
+    :root.dark & .fuwari-metric__track { background: rgb(255 255 255 / 0.08); }
+
+    .fuwari-metric__track span {
+        display: block;
+        width: var(--metric-value);
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, color-mix(in oklch, var(--primary) 70%, white), var(--primary));
+    }
+
+    .fuwari-metric__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+        gap: 0.7rem;
+    }
+
+    .fuwari-metric__stat {
+        border: 1px solid rgb(15 23 42 / 0.08);
+        border-radius: 0.9rem;
+        padding: 0.8rem;
+        background: rgb(255 255 255 / 0.24);
+    }
+
+    :root.dark & .fuwari-metric__stat {
+        border-color: rgb(255 255 255 / 0.08);
+        background: rgb(255 255 255 / 0.035);
+    }
+
+    .fuwari-metric__stat span {
+        display: block;
+        color: rgb(var(--text-color) / 0.45);
+        font-size: 0.68rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .fuwari-metric__stat strong {
+        display: block;
+        margin-top: 0.35rem;
+        color: rgb(var(--text-color) / 0.9);
+        font-size: 1.45rem;
+        line-height: 1;
     }
 
 }

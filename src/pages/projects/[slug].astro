@@ -1,20 +1,23 @@
 ---
+import Markdown from "@components/misc/Markdown.astro";
 import { Icon } from "astro-icon/components";
-import type { GetStaticPaths } from "astro";
 import MainGridLayout from "../../layouts/MainGridLayout.astro";
-import { projects } from "../../utils/projects";
+import { getProjects } from "../../utils/projects";
 
-export const getStaticPaths = (() =>
-	projects.map((project) => ({
+export async function getStaticPaths() {
+	const projects = await getProjects();
+	return projects.map((project) => ({
 		params: { slug: project.slug },
-		props: { project },
-	}))) satisfies GetStaticPaths;
+		props: { project, projects },
+	}));
+}
 
-const { project } = Astro.props;
+const { project, projects } = Astro.props;
+const { Content } = await project.render();
 const relatedProjects = projects.filter((item) => item.slug !== project.slug).slice(0, 2);
 ---
 
-<MainGridLayout title={project.name} description={project.description} showSidebar={false}>
+<MainGridLayout title={project.data.name} description={project.data.description} showSidebar={false}>
 	<section class="project-case mx-auto w-full max-w-[58rem] space-y-5 px-4 pb-16 pt-2 md:px-6">
 		<a href="/projects/" class="project-case__back">
 			<Icon name="material-symbols:arrow-back-rounded" class="text-[1.05rem]" />
@@ -23,24 +26,24 @@ const relatedProjects = projects.filter((item) => item.slug !== project.slug).sl
 
 		<article class="project-case__hero card-base border border-black/8 px-6 py-7 dark:border-white/8 md:px-8 md:py-8">
 			<div class="project-case__label">
-				<Icon name={project.icon} class="text-[1.15rem] text-[var(--primary)]" />
-				{project.category} · {project.status}
+				<Icon name={project.data.icon} class="text-[1.15rem] text-[var(--primary)]" />
+				{project.data.category} · {project.data.status}
 			</div>
 			<div class="project-case__hero-grid mt-5">
 				<div>
-					<h1 class="project-case__title">{project.name}</h1>
-					<p class="project-case__description mt-5">{project.description}</p>
+					<h1 class="project-case__title">{project.data.name}</h1>
+					<p class="project-case__description mt-5">{project.data.description}</p>
 				</div>
 				<div class="project-case__role">
 					<span>Role</span>
-					<strong>{project.role}</strong>
+					<strong>{project.data.role}</strong>
 				</div>
 			</div>
 		</article>
 
-		{project.image && (
+		{project.data.image && (
 			<div class="project-case__image-wrap card-base border border-black/8 dark:border-white/8">
-				<img src={project.image} alt={`${project.name} preview`} class="project-case__image" />
+				<img src={project.data.image} alt={`${project.data.name} preview`} class="project-case__image" />
 			</div>
 		)}
 
@@ -48,15 +51,20 @@ const relatedProjects = projects.filter((item) => item.slug !== project.slug).sl
 			<aside class="project-case__section project-case__side card-base border border-black/8 px-6 py-6 dark:border-white/8 md:px-7">
 				<h2>Tags</h2>
 				<div class="project-case__tags mt-5">
-					{project.tags.map((tag) => (
+					{project.data.tags.map((tag: string) => (
 						<span>{tag}</span>
 					))}
 				</div>
-				<a href={project.link} class="project-case__visit mt-6">
-					Visit related page
-					<Icon name="material-symbols:arrow-forward-rounded" class="text-[1.05rem]" />
-				</a>
+				{project.data.link && (
+					<a href={project.data.link} class="project-case__visit mt-6">
+						Visit related page
+						<Icon name="material-symbols:arrow-forward-rounded" class="text-[1.05rem]" />
+					</a>
+				)}
 			</aside>
+			<Markdown class="project-case__section project-case__content card-base border border-black/8 px-6 py-6 dark:border-white/8 md:px-7">
+				<Content />
+			</Markdown>
 		</div>
 
 		{relatedProjects.length > 0 && (
@@ -65,8 +73,8 @@ const relatedProjects = projects.filter((item) => item.slug !== project.slug).sl
 				<div class="project-case__related-list mt-4">
 					{relatedProjects.map((item) => (
 						<a href={`/projects/${item.slug}/`}>
-							<span>{item.category}</span>
-							<strong>{item.name}</strong>
+							<span>{item.data.category}</span>
+							<strong>{item.data.name}</strong>
 						</a>
 					))}
 				</div>

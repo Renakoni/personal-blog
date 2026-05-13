@@ -1,10 +1,12 @@
 import { defineCollection, z } from "astro:content";
 
-const postsCollection = defineCollection({
+const dateValue = z.union([z.date(), z.string()]).transform((value) => new Date(value));
+
+const postsCollection: ReturnType<typeof defineCollection> = defineCollection({
 	schema: z.object({
 		title: z.string(),
-		published: z.date(),
-		updated: z.date().optional(),
+		published: dateValue,
+		updated: dateValue.optional(),
 		draft: z.boolean().optional().default(false),
 		description: z.string().optional().default(""),
 		image: z.string().optional().default(""),
@@ -20,10 +22,29 @@ const postsCollection = defineCollection({
 		nextSlug: z.string().default(""),
 	}),
 });
-const specCollection = defineCollection({
+const projectsCollection: ReturnType<typeof defineCollection> = defineCollection({
+	schema: z.object({
+		name: z.string(),
+		category: z.string(),
+		status: z.string(),
+		role: z.string(),
+		description: z.string(),
+		tags: z.array(z.string()).optional().default([]),
+		link: z.string().optional().default(""),
+		icon: z.string().optional().default("material-symbols:article-outline"),
+		image: z.string().optional().default(""),
+		draft: z.boolean().optional().default(false),
+	}),
+});
+const specCollection: ReturnType<typeof defineCollection> = defineCollection({
 	schema: z.object({}),
 });
-export const collections = {
+export const collections: {
+	posts: typeof postsCollection;
+	projects: typeof projectsCollection;
+	spec: typeof specCollection;
+} = {
 	posts: postsCollection,
+	projects: projectsCollection,
 	spec: specCollection,
 };

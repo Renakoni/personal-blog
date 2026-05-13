@@ -27,9 +27,14 @@ import {
 	FuwariFigureComponent,
 	FuwariGalleryComponent,
 	FuwariMarkComponent,
+	FuwariRatingComponent,
+	FuwariStatComponent,
+	FuwariTabsComponent,
 	FuwariVideoComponent,
 } from "./src/plugins/rehype-component-fuwari.mjs";
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
+import { remarkAdminBlocks } from "./src/plugins/remark-admin-blocks.js";
+import { remarkAdminInline } from "./src/plugins/remark-admin-inline.js";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
@@ -115,6 +120,8 @@ export default defineConfig({
 			remarkReadingTime,
 			remarkExcerpt,
 			remarkGithubAdmonitionsToDirectives,
+			remarkAdminBlocks,
+			remarkAdminInline,
 			remarkDirective,
 			remarkSectionize,
 			parseDirectiveNode,
@@ -135,6 +142,9 @@ export default defineConfig({
 						evidence: FuwariEvidenceComponent,
 						figure: FuwariFigureComponent,
 						gallery: FuwariGalleryComponent,
+						tabs: FuwariTabsComponent,
+						rating: FuwariRatingComponent,
+						stat: FuwariStatComponent,
 						video: FuwariVideoComponent,
 						note: (x, y) => AdmonitionComponent(x, y, "note"),
 						tip: (x, y) => AdmonitionComponent(x, y, "tip"),

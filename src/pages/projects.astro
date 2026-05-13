@@ -1,7 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-import { projects } from "../utils/projects";
+import { getProjects } from "../utils/projects";
+
+const projects = await getProjects();
 
 const countValues = (values: string[]) => {
 	const countMap = new Map<string, number>();
@@ -11,9 +13,9 @@ const countValues = (values: string[]) => {
 		.map(([name, count]) => ({ name, count }));
 };
 
-const categories = countValues(projects.map((project) => project.category));
-const tags = countValues(projects.flatMap((project) => project.tags));
-const activeCount = projects.filter((project) => project.status.toLowerCase().includes("active") || project.status.toLowerCase().includes("build")).length;
+const categories = countValues(projects.map((project) => project.data.category));
+const tags = countValues(projects.flatMap((project) => project.data.tags));
+const activeCount = projects.filter((project) => project.data.status.toLowerCase().includes("active") || project.data.status.toLowerCase().includes("build")).length;
 const filterUrl = (key: "category" | "tag", value: string) => `/projects/?${key}=${encodeURIComponent(value)}`;
 ---
 
@@ -125,36 +127,36 @@ const filterUrl = (key: "category" | "tag", value: string) => `/projects/?${key}
 				<a
 					href={`/projects/${project.slug}/`}
 					data-project-entry
-					data-category={project.category}
-					data-tags={project.tags.join(",")}
+					data-category={project.data.category}
+					data-tags={project.data.tags.join(",")}
 					class:list={[
 						"projects-entry projects-entry--showcase surface-hover group block card-base border border-black/8 px-5 py-5 dark:border-white/8 md:px-7 md:py-6",
-						{ "projects-entry--with-image": !!project.image },
+						{ "projects-entry--with-image": !!project.data.image },
 					]}
-					style={project.image ? `--project-image: url(${project.image})` : undefined}
+					style={project.data.image ? `--project-image: url(${project.data.image})` : undefined}
 				>
 					<div class="projects-entry__showcase-grid">
 						<div class="projects-entry__meta">
 							<div class="projects-entry__icon">
-								<Icon name={project.icon} class="text-[1.35rem]" />
+								<Icon name={project.data.icon} class="text-[1.35rem]" />
 							</div>
 							<div class="projects-entry__index">CASE {String(index + 1).padStart(2, "0")}</div>
 						</div>
 
 						<div class="projects-entry__content">
-							<div class="projects-entry__kicker">{project.category} · {project.status}</div>
-							<h2 class="projects-entry__title mt-2">{project.name}</h2>
-							<p class="projects-entry__description mt-4">{project.description}</p>
+							<div class="projects-entry__kicker">{project.data.category} · {project.data.status}</div>
+							<h2 class="projects-entry__title mt-2">{project.data.name}</h2>
+							<p class="projects-entry__description mt-4">{project.data.description}</p>
 
 							<div class="projects-entry__record mt-5">
 								<div class="projects-entry__role-panel">
 									<span>Role</span>
-									<strong>{project.role}</strong>
+									<strong>{project.data.role}</strong>
 								</div>
 								<div class="projects-entry__stack-panel">
 									<span>Stack</span>
 									<div class="projects-entry__stack">
-										{project.tags.map((tag) => (
+										{project.data.tags.map((tag: string) => (
 											<span>{tag}</span>
 										))}
 									</div>

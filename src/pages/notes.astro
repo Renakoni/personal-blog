@@ -30,7 +30,7 @@ const groupedNotes = [...notes.reduce((groups, note) => {
 const recentNotes = notes.slice(0, 6);
 const notebookCount = groupedNotes.length;
 const noteTags = [...notes.reduce((tags, note) => {
-	note.data.tags.forEach((tag) => tags.set(tag, (tags.get(tag) ?? 0) + 1));
+	note.data.tags.forEach((tag: string) => tags.set(tag, (tags.get(tag) ?? 0) + 1));
 	return tags;
 }, new Map<string, number>()).entries()]
 	.sort(([, a], [, b]) => b - a)
