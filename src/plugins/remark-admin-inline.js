@@ -6,7 +6,10 @@ function inlineNode(tagName, value) {
 	return {
 		type: "text",
 		value,
-		data: { hName: tagName },
+		data: {
+			hName: tagName,
+			hProperties: tagName === "spoiler" ? { tabIndex: 0 } : undefined,
+		},
 	};
 }
 

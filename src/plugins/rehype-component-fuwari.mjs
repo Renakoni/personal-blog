@@ -50,11 +50,52 @@ function textFromNode(node) {
 	return "";
 }
 
+function normalizeLines(value) {
+	return String(value || "").replace(/\r\n?/g, "\n");
+}
+
+function guessTabLang(label, body) {
+	const value = `${label} ${body}`.toLowerCase();
+	if (/\b(pnpm|npm|yarn|bun|npx|node|git|cd|mkdir|rm|cp|mv)\b/.test(value)) return "shell";
+	if (/\b(import|export|const|let|function|return|=>)\b/.test(body)) return "ts";
+	return "text";
+}
+
 function splitInlineTabs(value) {
-	return String(value || "").split("\n").flatMap((line) => {
+	return normalizeLines(value).split("\n").flatMap((line) => {
 		const match = line.match(/^([^=\n]+?)\s*=\s*(.+)$/);
-		return match ? [{ label: match[1].trim(), body: match[2].trim() }] : [];
+		if (!match) return [];
+		const label = match[1].trim();
+		const body = match[2].trim();
+		return [{ label, body, lang: guessTabLang(label, body) }];
 	});
+}
+
+function splitSectionTabs(value) {
+	const tabs = [];
+	let current = null;
+	for (const line of normalizeLines(value).split("\n")) {
+		const match = line.match(/^\\?==\s+(.+)$/);
+		if (match) {
+			if (current) {
+				const body = current.lines.join("\n").trim();
+				tabs.push({ label: current.label, body, lang: guessTabLang(current.label, body) });
+			}
+			current = { label: match[1].trim(), lines: [] };
+			continue;
+		}
+		current?.lines.push(line);
+	}
+	if (current) {
+		const body = current.lines.join("\n").trim();
+		tabs.push({ label: current.label, body, lang: guessTabLang(current.label, body) });
+	}
+	return tabs.filter((tab) => tab.label);
+}
+
+function splitTabs(value) {
+	const sectionTabs = splitSectionTabs(value);
+	return sectionTabs.length > 0 ? sectionTabs : splitInlineTabs(value);
 }
 
 function parseMetricLines(value) {
@@ -132,34 +173,40 @@ export function FuwariGalleryComponent(properties, children) {
 
 export function FuwariVideoComponent(properties, children) {
 	const src = properties?.src || properties?.url;
-	const title = properties?.title || "Embedded video";
+	const title = properties?.title || properties?.caption || "Video player";
 	if (!src) {
-		return h("div", { class: "hidden" }, 'Invalid video directive. Use ::video{src="https://..."}');
+		return h("div", { class: "hidden" }, 'Invalid video directive. Use ```video with src: https://...');
 	}
-	return h("div", { class: "fuwari-video" }, [
-		h("div", { class: "fuwari-video__frame" }, [
-			h("iframe", {
-				src,
-				title,
-				loading: "lazy",
-				allowfullscreen: true,
-				allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-			}),
-		]),
-		properties?.caption ? h("figcaption", { class: "fuwari-video__caption" }, String(properties.caption)) : null,
+	return h("section", { class: "fuwari-video" }, [
+		h("iframe", {
+			src,
+			title,
+			loading: "lazy",
+			allowfullscreen: true,
+			allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+		}),
+		properties?.caption ? h("p", String(properties.caption)) : null,
 		...children,
 	].filter(Boolean));
 }
 
-export function FuwariTabsComponent(_properties, children) {
-	const tabs = splitInlineTabs(textFromChildren(children));
-	if (tabs.length === 0) return h("div", { class: "hidden" }, 'Invalid tabs block. Use "label = content" lines.');
-	return h("div", { class: "fuwari-tabs" }, [
-		h("div", { class: "fuwari-tabs__rail" }, tabs.map((tab, index) => h("span", { class: index === 0 ? "active" : "" }, tab.label))),
-		...tabs.map((tab, index) => h("section", { class: `fuwari-tabs__panel${index === 0 ? " active" : ""}` }, [
-			h("div", { class: "fuwari-tabs__label" }, tab.label),
-			h("pre", [h("code", tab.body)]),
+export function FuwariTabsComponent(properties, children) {
+	const tabs = splitTabs(textFromChildren(children));
+	if (tabs.length === 0) return h("div", { class: "hidden" }, 'Invalid tabs block. Use "label = content" lines or "== Tab" sections.');
+	const name = `fuwari-tabs-${String(properties?.id || tabs.map((tab) => tab.label).join("-")).toLowerCase().replace(/[^a-z0-9_-]+/g, "-")}`;
+	return h("section", { class: "fuwari-tabs" }, [
+		...tabs.map((tab, index) => h("input", { id: `${name}-${index}`, name, type: "radio", checked: index === 0 })),
+		h("div", { class: "fuwari-tabs-rail", role: "tablist", ariaLabel: "Tabs" }, tabs.map((tab, index) => h("label", { for: `${name}-${index}`, role: "tab" }, tab.label))),
+		...tabs.map((tab, index) => h("div", { class: "fuwari-tab-panel", role: "tabpanel", dataTabIndex: String(index) }, [
+			tab.lang === "text" ? h("p", tab.body) : h("pre", [h("code", { class: `language-${tab.lang}` }, tab.body)]),
 		])),
+	]);
+}
+
+export function FuwariMathComponent(_properties, children) {
+	return h("figure", { class: "fuwari-math-block" }, [
+		h("figcaption", "LaTeX"),
+		h("div", { class: "fuwari-math-formula" }, children),
 	]);
 }
 

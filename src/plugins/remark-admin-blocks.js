@@ -12,6 +12,7 @@ function normalizeGithubRepo(value) {
 
 function parseKeyValueLines(value) {
 	return String(value || "")
+		.replace(/\r\n?/g, "\n")
 		.split("\n")
 		.map((line) => line.match(/^([^=:\n]+?)\s*[:=]\s*(.+)$/))
 		.filter(Boolean)
@@ -69,7 +70,7 @@ function adminBlockNode(node) {
 	if (!specialLanguages.has(language)) return node;
 
 	if (language === "fuwari-latex") {
-		return { ...node, lang: "latex" };
+		return elementNode("latex", {}, [textNode(value)]);
 	}
 
 	if (language === "github") {
@@ -106,7 +107,7 @@ function adminBlockNode(node) {
 		.filter((line) => !/^title\s*:/i.test(line.trim()))
 		.join("\n")
 		.trim();
-	const type = language === "proof" ? "note" : language;
+	const type = language === "proof" ? "proof" : language;
 	const title = titleMatch?.[1]?.trim() || (language === "proof" ? "PROOF" : language.toUpperCase());
 	return divNode({ className: ["fuwari-callout", `fuwari-callout--${type}`] }, [
 		divNode({ className: ["fuwari-callout__title"] }, [textNode(title)]),

@@ -191,9 +191,7 @@
     .fuwari-evidence,
     .fuwari-figure,
     .fuwari-gallery,
-    .fuwari-tabs,
-    .fuwari-metric,
-    .fuwari-video {
+    .fuwari-metric {
         margin: 1.5rem 0;
         border: 1px solid rgb(15 23 42 / 0.08);
         border-radius: 1.15rem;
@@ -209,9 +207,7 @@
     :root.dark & .fuwari-evidence,
     :root.dark & .fuwari-figure,
     :root.dark & .fuwari-gallery,
-    :root.dark & .fuwari-tabs,
-    :root.dark & .fuwari-metric,
-    :root.dark & .fuwari-video {
+    :root.dark & .fuwari-metric {
         border-color: rgb(255 255 255 / 0.08);
         background:
             radial-gradient(circle at 0% 0%, color-mix(in oklch, var(--primary) 12%, transparent), transparent 40%),
@@ -263,11 +259,11 @@
     .fuwari-callout--caution { --primary: oklch(0.78 0.15 75); }
     .fuwari-callout--danger { --primary: oklch(0.68 0.19 27); }
     .fuwari-callout--tip { --primary: oklch(0.72 0.14 155); }
+    .fuwari-callout--proof,
     .fuwari-callout--idea { --primary: oklch(0.75 0.15 310); }
 
     .fuwari-figure,
-    .fuwari-gallery,
-    .fuwari-video {
+    .fuwari-gallery {
         padding: 0.7rem;
     }
 
@@ -290,88 +286,320 @@
     }
 
     .fuwari-figure__caption,
-    .fuwari-gallery__caption,
-    .fuwari-video__caption {
+    .fuwari-gallery__caption {
         margin: 0.7rem 0 0.1rem;
     }
 
-    .fuwari-video__frame {
-        position: relative;
-        aspect-ratio: 16 / 9;
-        overflow: hidden;
-        border-radius: 0.85rem;
-        background: rgb(0 0 0 / 0.24);
+    .fuwari-video {
+        margin: 1.6rem 0;
+        max-width: 52rem;
     }
 
-    .fuwari-video__frame iframe {
-        position: absolute;
-        inset: 0;
+    .fuwari-video iframe {
+        display: block;
         width: 100%;
-        height: 100%;
-        margin: 0;
-        border: 0;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        min-height: 18rem;
+        border: 1px solid rgb(15 23 42 / 0.08);
+        border-radius: 1.1rem;
+        background: rgb(0 0 0 / 0.2);
+        box-shadow: 0 18px 50px rgb(15 23 42 / 0.08);
     }
 
-    .fuwari-tabs,
+    :root.dark & .fuwari-video iframe {
+        border-color: rgb(255 255 255 / 0.08);
+        box-shadow: 0 18px 50px rgb(0 0 0 / 0.18);
+    }
+
+    .fuwari-video > p {
+        margin: 0.64rem auto 0;
+        max-width: 42rem;
+        color: rgb(var(--text-color) / 0.52);
+        font-size: 0.84rem;
+        line-height: 1.65;
+        text-align: center;
+    }
+
+    .fuwari-math-block {
+        margin: 1.5rem 0;
+        border: 1px solid rgb(15 23 42 / 0.08);
+        border-radius: 1.05rem;
+        background: rgb(255 255 255 / 0.52);
+        padding: 1rem;
+        overflow-x: auto;
+    }
+
+    :root.dark & .fuwari-math-block {
+        border-color: rgb(255 255 255 / 0.08);
+        background: rgb(255 255 255 / 0.035);
+    }
+
+    .fuwari-math-block figcaption {
+        margin-bottom: 0.65rem;
+        color: rgb(var(--text-color) / 0.45);
+        font-family: "JetBrains Mono Variable", ui-monospace, monospace;
+        font-size: 0.68rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .fuwari-math-formula {
+        font-size: 1.05rem;
+    }
+
+    a.card-github {
+        display: block;
+        position: relative;
+        margin: 1.35rem 0;
+        border: 1px solid rgb(15 23 42 / 0.08);
+        border-radius: 1.15rem;
+        background:
+            radial-gradient(circle at 0% 0%, color-mix(in oklch, var(--primary) 11%, transparent), transparent 38%),
+            rgb(255 255 255 / 0.52);
+        padding: 1.05rem 1.15rem;
+        color: rgb(var(--text-color) / 0.84);
+        text-decoration: none;
+        box-shadow: 0 18px 45px rgb(15 23 42 / 0.055);
+        overflow: hidden;
+    }
+
+    :root.dark & a.card-github {
+        border-color: rgb(255 255 255 / 0.08);
+        background:
+            radial-gradient(circle at 0% 0%, color-mix(in oklch, var(--primary) 12%, transparent), transparent 40%),
+            rgb(255 255 255 / 0.035);
+        box-shadow: 0 18px 45px rgb(0 0 0 / 0.18);
+    }
+
+    a.card-github:hover {
+        border-color: color-mix(in oklch, var(--primary) 28%, transparent);
+        background-color: color-mix(in oklch, var(--primary) 8%, transparent);
+        transform: translateY(-1px);
+    }
+
+    a.card-github:active { transform: scale(0.99); }
+
+    a.card-github .gc-titlebar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.62rem;
+        color: rgb(var(--text-color) / 0.9);
+        font-size: 1.12rem;
+        font-weight: 850;
+        letter-spacing: -0.025em;
+    }
+
+    a.card-github .gc-titlebar-left,
+    a.card-github .gc-owner {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        gap: 0.45rem;
+    }
+
+    a.card-github .gc-owner { font-weight: 650; }
+    a.card-github .gc-repo { font-weight: 900; }
+    a.card-github .gc-divider { color: rgb(var(--text-color) / 0.38); }
+
+    a.card-github .gc-avatar {
+        width: 1.55rem;
+        height: 1.55rem;
+        flex: 0 0 auto;
+        border-radius: 999px;
+        background-color: color-mix(in oklch, var(--primary) 28%, transparent);
+        background-position: center;
+        background-size: cover;
+        box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14);
+    }
+
+    a.card-github .github-logo::before,
+    a.card-github .gc-stars::before,
+    a.card-github .gc-forks::before,
+    a.card-github .gc-license::before {
+        content: "";
+        display: inline-block;
+        width: 1.1em;
+        height: 1.1em;
+        margin-right: 0.36rem;
+        vertical-align: -0.18em;
+        background-color: currentColor;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: contain;
+    }
+
+    a.card-github .github-logo::before {
+        width: 1.35rem;
+        height: 1.35rem;
+        margin-right: 0;
+        color: var(--primary);
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='31' height='32' viewBox='0 0 496 512'%3E%3Cpath d='M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2c12.8 2.3 17.3-5.6 17.3-12.1c0-6.2-.3-40.4-.3-61.4c0 0-70 15-84.7-29.8c0 0-11.4-29.1-27.8-36.6c0 0-22.9-15.7 1.6-15.4c0 0 24.9 2 38.6 25.8c21.9 38.6 58.6 27.5 72.9 20.9c2.3-16 8.8-27.1 16-33.7c-55.9-6.2-112.3-14.3-112.3-110.5c0-27.5 7.6-41.3 23.6-58.9c-2.6-6.5-11.1-33.3 2.6-67.9c20.9-6.5 69 27 69 27c20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27c13.7 34.7 5.2 61.4 2.6 67.9c16 17.7 25.8 31.5 25.8 58.9c0 96.5-58.9 104.2-114.8 110.5c9.2 7.9 17 22.9 17 46.4c0 33.7-.3 75.4-.3 83.6c0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252C496 113.3 383.5 8 244.8 8Z'/%3E%3C/svg%3E");
+    }
+
+    a.card-github .gc-description {
+        margin-bottom: 0.78rem;
+        color: rgb(var(--text-color) / 0.62);
+        font-size: 0.94rem;
+        font-weight: 500;
+        line-height: 1.55;
+    }
+
+    a.card-github .gc-infobar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.15rem;
+        color: rgb(var(--text-color) / 0.58);
+        font-family: "JetBrains Mono Variable", ui-monospace, monospace;
+        font-size: 0.76rem;
+        font-weight: 850;
+    }
+
+    a.card-github .gc-language { display: none; }
+    a.card-github .gc-stars::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='16' viewBox='0 0 16 16' width='16'%3E%3Cpath d='M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z'/%3E%3C/svg%3E"); }
+    a.card-github .gc-forks::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='16' viewBox='0 0 16 16' width='16'%3E%3Cpath d='M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0Z'/%3E%3C/svg%3E"); }
+    a.card-github .gc-license::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='16' viewBox='0 0 16 16' width='16'%3E%3Cpath d='M8.75.75V2h.985c.304 0 .603.08.867.231l1.29.736c.038.022.08.033.124.033h2.234a.75.75 0 0 1 0 1.5h-.427l2.111 4.692a.75.75 0 0 1-.154.838A4.498 4.498 0 0 1 13 11a4.498 4.498 0 0 1-2.023-.454 3.544 3.544 0 0 1-.911-.516.75.75 0 0 1-.154-.838L12.178 4.5h-.162c-.305 0-.604-.079-.868-.231l-1.29-.736a.245.245 0 0 0-.124-.033H8.75V13h2.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5h2.5V3.5h-.984a.245.245 0 0 0-.124.033l-1.289.737c-.265.15-.564.23-.869.23h-.162l2.112 4.692a.75.75 0 0 1-.154.838A4.498 4.498 0 0 1 3 11a4.498 4.498 0 0 1-2.023-.454 3.544 3.544 0 0 1-.911-.516.75.75 0 0 1-.154-.838L2.178 4.5H1.75a.75.75 0 0 1 0-1.5h2.234a.249.249 0 0 0 .125-.033l1.288-.737c.265-.15.564-.23.869-.23h.984V.75a.75.75 0 0 1 1.5 0Z'/%3E%3C/svg%3E"); }
+
+    a.card-github.fetch-waiting {
+        pointer-events: none;
+        opacity: 0.74;
+    }
+
+    a.card-github.fetch-waiting .gc-description,
+    a.card-github.fetch-waiting .gc-infobar,
+    a.card-github.fetch-waiting .gc-avatar {
+        border-radius: 0.55rem;
+        background-color: rgb(var(--text-color) / 0.24);
+        color: transparent;
+        animation: github-card-pulse 2s infinite linear;
+        user-select: none;
+    }
+
+    a.card-github.fetch-waiting .gc-description::before,
+    a.card-github.fetch-waiting .gc-infobar ::before { background-color: transparent; }
+
+    .card-github,
+    .gc-description,
+    .gc-titlebar,
+    .gc-stars,
+    .gc-forks,
+    .gc-license,
+    .gc-avatar,
+    .github-logo {
+        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     .fuwari-metric {
         padding: 1rem;
     }
 
-    .fuwari-tabs__rail {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.45rem;
-        margin-bottom: 0.85rem;
+    .fuwari-tabs {
+        margin: 1.25rem 0;
+        border: 1px solid rgb(15 23 42 / 0.08);
+        border-radius: 1.05rem;
+        background: rgb(255 255 255 / 0.52);
+        padding: 0.55rem;
     }
 
-    .fuwari-tabs__rail span,
-    .fuwari-tabs__label,
+    :root.dark & .fuwari-tabs {
+        border-color: rgb(255 255 255 / 0.08);
+        background: rgb(255 255 255 / 0.035);
+    }
+
+    .fuwari-tabs-rail {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        border-bottom: 1px solid rgb(15 23 42 / 0.08);
+        padding-bottom: 0.5rem;
+    }
+
+    :root.dark & .fuwari-tabs-rail { border-bottom-color: rgb(255 255 255 / 0.08); }
+
+    .fuwari-tabs > input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .fuwari-tabs-rail label,
     .fuwari-metric__label,
     .fuwari-metric__head,
     .fuwari-metric__stat span {
         font-family: "JetBrains Mono Variable", ui-monospace, monospace;
     }
 
-    .fuwari-tabs__rail span {
-        border: 1px solid rgb(15 23 42 / 0.08);
+    .fuwari-tabs-rail label {
+        border: 1px solid transparent;
         border-radius: 999px;
-        padding: 0.35rem 0.72rem;
-        color: rgb(var(--text-color) / 0.52);
-        font-size: 0.72rem;
-        font-weight: 850;
+        padding: 0.28rem 0.68rem;
+        color: rgb(var(--text-color) / 0.64);
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-weight: 600;
+        opacity: 0.72;
+        transition: background 140ms ease, border-color 140ms ease, color 140ms ease, opacity 140ms ease;
     }
 
-    :root.dark & .fuwari-tabs__rail span { border-color: rgb(255 255 255 / 0.08); }
-
-    .fuwari-tabs__rail span.active {
-        background: color-mix(in oklch, var(--primary) 15%, transparent);
-        color: var(--primary);
+    .fuwari-tabs-rail label:hover {
+        border-color: color-mix(in oklch, var(--primary) 18%, transparent);
+        opacity: 0.9;
     }
 
-    .fuwari-tabs__panel {
+    .fuwari-tab-panel {
         display: none;
+        margin-top: 0.7rem;
+        border-left: 2px solid var(--primary);
+        padding: 0.05rem 0 0.05rem 0.9rem;
     }
 
-    .fuwari-tabs__panel.active {
+    .fuwari-tabs > input:nth-of-type(1):checked ~ .fuwari-tabs-rail label:nth-of-type(1),
+    .fuwari-tabs > input:nth-of-type(2):checked ~ .fuwari-tabs-rail label:nth-of-type(2),
+    .fuwari-tabs > input:nth-of-type(3):checked ~ .fuwari-tabs-rail label:nth-of-type(3),
+    .fuwari-tabs > input:nth-of-type(4):checked ~ .fuwari-tabs-rail label:nth-of-type(4),
+    .fuwari-tabs > input:nth-of-type(5):checked ~ .fuwari-tabs-rail label:nth-of-type(5) {
+        border-color: var(--primary);
+        background: color-mix(in oklch, var(--primary) 12%, transparent);
+        color: rgb(var(--text-color) / 0.86);
+        opacity: 1;
+    }
+
+    .fuwari-tabs > input:nth-of-type(1):checked ~ .fuwari-tab-panel[data-tab-index="0"],
+    .fuwari-tabs > input:nth-of-type(2):checked ~ .fuwari-tab-panel[data-tab-index="1"],
+    .fuwari-tabs > input:nth-of-type(3):checked ~ .fuwari-tab-panel[data-tab-index="2"],
+    .fuwari-tabs > input:nth-of-type(4):checked ~ .fuwari-tab-panel[data-tab-index="3"],
+    .fuwari-tabs > input:nth-of-type(5):checked ~ .fuwari-tab-panel[data-tab-index="4"] {
         display: block;
     }
 
-    .fuwari-tabs__label,
     .fuwari-metric__label {
-        margin-bottom: 0.55rem;
-        color: var(--primary);
-        font-size: 0.68rem;
-        font-weight: 900;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+        color: rgb(var(--text-color) / 0.86);
+        font-size: 0.78rem;
+        font-weight: 700;
     }
 
-    .fuwari-tabs pre {
-        margin: 0;
-        border-radius: 0.85rem;
-        background: var(--codeblock-bg);
-        padding: 0.85rem 1rem;
+    .fuwari-tab-panel > :last-child {
+        margin-bottom: 0;
     }
+
+    .fuwari-tab-panel p {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .fuwari-tab-panel pre {
+        margin: 0;
+        border: 1px solid rgb(15 23 42 / 0.08);
+        border-radius: 0.72rem;
+        background: var(--codeblock-bg);
+        padding: 0.7rem 0.78rem;
+    }
+
+    :root.dark & .fuwari-tab-panel pre { border-color: rgb(255 255 255 / 0.08); }
 
     .fuwari-metric__row + .fuwari-metric__row { margin-top: 0.8rem; }
 
@@ -402,6 +630,13 @@
         height: 100%;
         border-radius: inherit;
         background: linear-gradient(90deg, color-mix(in oklch, var(--primary) 70%, white), var(--primary));
+    }
+
+    .fuwari-metric__note {
+        margin: 0.7rem 0 0;
+        color: rgb(var(--text-color) / 0.56);
+        font-size: 0.84rem;
+        line-height: 1.65;
     }
 
     .fuwari-metric__grid {
@@ -439,5 +674,10 @@
         line-height: 1;
     }
 
+}
+
+@keyframes github-card-pulse {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.28; }
 }
 

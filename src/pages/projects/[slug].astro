@@ -47,25 +47,23 @@ const relatedProjects = projects.filter((item) => item.slug !== project.slug).sl
 			</div>
 		)}
 
-		<div class="project-case__body-grid">
-			<aside class="project-case__section project-case__side card-base border border-black/8 px-6 py-6 dark:border-white/8 md:px-7">
-				<h2>Tags</h2>
-				<div class="project-case__tags mt-5">
-					{project.data.tags.map((tag: string) => (
-						<span>{tag}</span>
-					))}
-				</div>
-				{project.data.link && (
-					<a href={project.data.link} class="project-case__visit mt-6">
-						Visit related page
-						<Icon name="material-symbols:arrow-forward-rounded" class="text-[1.05rem]" />
-					</a>
-				)}
-			</aside>
-			<Markdown class="project-case__section project-case__content card-base border border-black/8 px-6 py-6 dark:border-white/8 md:px-7">
-				<Content />
-			</Markdown>
-		</div>
+		<Markdown class="project-case__section project-case__content card-base border border-black/8 px-6 py-6 dark:border-white/8 md:px-8 md:py-8">
+			<Content />
+		</Markdown>
+
+		<footer class="project-case__meta">
+			<div class="project-case__tags">
+				{project.data.tags.map((tag: string) => (
+					<span>{tag}</span>
+				))}
+			</div>
+			{project.data.link && (
+				<a href={project.data.link} class="project-case__visit">
+					Visit related page
+					<Icon name="material-symbols:arrow-forward-rounded" class="text-[1.05rem]" />
+				</a>
+			)}
+		</footer>
 
 		{relatedProjects.length > 0 && (
 			<nav class="project-case__related card-base border border-black/8 px-6 py-6 dark:border-white/8 md:px-7" aria-label="Related projects">

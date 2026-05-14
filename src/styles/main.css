@@ -1452,9 +1452,11 @@ body.lg\:is-home #top-row {
 }
 
 .custom-md spoiler {
-  @apply bg-[var(--codeblock-bg)] hover:bg-transparent px-1 py-0.5 overflow-hidden rounded-md transition-all duration-150;
+  @apply bg-[var(--codeblock-bg)] hover:bg-transparent focus:bg-transparent px-1 py-0.5 overflow-hidden rounded-md transition-all duration-150;
+  cursor: help;
+  outline: none;
 
-  &:not(:hover) {
+  &:not(:hover):not(:focus) {
     color: var(--codeblock-bg);
     * {
         color: var(--codeblock-bg);
@@ -3612,23 +3614,25 @@ body.lg\:is-home #top-row {
     object-fit: cover;
 }
 
-.project-case__body-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(14rem, 20rem);
-    gap: 1rem;
-    align-items: start;
+.project-case__content {
+    max-width: 48rem;
+    margin-inline: auto;
 }
 
-.project-case__section h2 {
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgb(15 23 42 / 0.44);
+.project-case__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.25rem;
+    max-width: 48rem;
+    margin-inline: auto;
+    border-top: 1px solid rgb(15 23 42 / 0.08);
+    padding-top: 1.25rem;
 }
 
-:root.dark .project-case__section h2 {
-    color: rgb(255 255 255 / 0.44);
+:root.dark .project-case__meta {
+    border-top-color: rgb(255 255 255 / 0.08);
 }
 
 .project-case__tags {
@@ -3707,9 +3711,13 @@ body.lg\:is-home #top-row {
 }
 
 @media (max-width: 768px) {
-    .project-case__hero-grid,
-    .project-case__body-grid {
+    .project-case__hero-grid {
         grid-template-columns: 1fr;
+    }
+
+    .project-case__meta {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .project-case__role {
