@@ -16,30 +16,71 @@ const { page, variant = "default" } = Astro.props as Props;
 let delay = 0;
 const interval = 50;
 const isHome = variant === "home";
+const formatDate = (date: Date) =>
+	date.toLocaleDateString("en-CA", {
+		year: "numeric",
+		month: "2-digit",
+		day: "2-digit",
+	});
+const homeCuts = page.data.map((entry, index) => ({
+	entry,
+	episode: String(index + 1).padStart(2, "0"),
+	tag: entry.data.category || entry.data.tags?.[0] || "NOTE",
+	url: getPostUrlBySlug(entry.slug),
+}));
 ---
 
-<section id={isHome ? "recent-updates" : "home-posts"} class:list={["mb-4", { "pt-2": isHome }]}>
-	<div class:list={["mb-4 flex items-end justify-between gap-4 px-1", { "md:mb-6": isHome }]}>
-		<div>
-			<h2 class="text-2xl font-semibold text-90 md:text-3xl">{isHome ? "Recent Updates" : "最新文章"}</h2>
+{isHome ? (
+	<section id="recent-updates" class="home-log mb-4 pt-2">
+		<div class="home-log__header onload-animation" style="animation-delay: calc(var(--content-delay) + 20ms);">
+			<div>
+				<p class="home-log__eyebrow">ON AIR</p>
+				<h2>Recent Cuts</h2>
+			</div>
+			<a class="home-log__archive-link" href="/blog/">Archive</a>
 		</div>
-	</div>
-	<div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4">
-		{page.data.map((entry: CollectionEntry<"posts">) => (
-			<PostCard
-				entry={entry}
-				title={entry.data.title}
-				tags={entry.data.tags}
-				category={entry.data.category}
-				published={entry.data.published}
-				updated={entry.data.updated}
-				url={getPostUrlBySlug(entry.slug)}
-				image={entry.data.image}
-				description={entry.data.description}
-				draft={entry.data.draft}
-				class:list="onload-animation"
-				style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
-			/>
-		))}
-	</div>
-</section>
+		<div class="home-log__reel">
+			{homeCuts.map(({ entry, episode, tag, url }, index) => (
+				<a
+					href={url}
+					class="home-log__cut onload-animation"
+					data-episode={episode}
+					style={`--cut-index: ${index}; animation-delay: calc(var(--content-delay) + ${80 + delay++ * interval}ms);`}
+				>
+					<span class="home-log__episode">EP.{episode}</span>
+					<span class="home-log__main">
+						<span class="home-log__title">{entry.data.title}</span>
+						<span class="home-log__meta">{formatDate(entry.data.published)} / {tag}</span>
+					</span>
+					<span class="home-log__mark" aria-hidden="true">Open</span>
+				</a>
+			))}
+		</div>
+	</section>
+) : (
+	<section id="home-posts" class="mb-4">
+		<div class="mb-4 flex items-end justify-between gap-4 px-1">
+			<div>
+				<h2 class="text-2xl font-semibold text-90 md:text-3xl">最新文章</h2>
+			</div>
+		</div>
+		<div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4">
+			{page.data.map((entry: CollectionEntry<"posts">) => (
+				<PostCard
+					entry={entry}
+					title={entry.data.title}
+					tags={entry.data.tags}
+					category={entry.data.category}
+					published={entry.data.published}
+					updated={entry.data.updated}
+					url={getPostUrlBySlug(entry.slug)}
+					image={entry.data.image}
+					description={entry.data.description}
+					draft={entry.data.draft}
+					class:list="onload-animation"
+					style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
+				/>
+			))}
+		</div>
+	</section>
+)}

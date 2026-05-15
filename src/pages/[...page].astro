@@ -41,15 +41,33 @@ const len = page.data.length;
 			<BackToTop />
 		</div>
 		<script>
-			function updateHomeNavbar() {
+			let cleanupHomeNavbar: (() => void) | undefined;
+
+			function initHomeNavbar() {
+				cleanupHomeNavbar?.();
 				const navbar = document.querySelector(".home-navbar");
-				if (!navbar) return;
-				navbar.classList.toggle("home-navbar-scrolled", window.scrollY > window.innerHeight * 0.72);
+				if (!(navbar instanceof HTMLElement)) return;
+
+				const updateHomeNavbar = () => {
+					navbar.classList.toggle("home-navbar-scrolled", window.scrollY > window.innerHeight * 0.72);
+				};
+
+				updateHomeNavbar();
+				window.addEventListener("scroll", updateHomeNavbar, { passive: true });
+				window.addEventListener("resize", updateHomeNavbar);
+				cleanupHomeNavbar = () => {
+					window.removeEventListener("scroll", updateHomeNavbar);
+					window.removeEventListener("resize", updateHomeNavbar);
+				};
 			}
 
-			updateHomeNavbar();
-			window.addEventListener("scroll", updateHomeNavbar, { passive: true });
-			window.addEventListener("resize", updateHomeNavbar);
+			initHomeNavbar();
+			document.addEventListener("astro:page-load", initHomeNavbar);
+			if (window.swup?.hooks) {
+				window.swup.hooks.on("page:view", initHomeNavbar);
+			} else {
+				document.addEventListener("swup:enable", () => window.swup?.hooks?.on("page:view", initHomeNavbar));
+			}
 		</script>
 	</Layout>
 ) : (

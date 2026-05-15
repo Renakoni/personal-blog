@@ -36,9 +36,12 @@ const initialHeroPosition = initialHeroImage?.position || fallbackHeroPosition;
 		)}
 	</div>
 	<div class="home-hero__veil absolute inset-0"></div>
+	<div class="home-hero__scan absolute inset-0" aria-hidden="true"></div>
 	<div class="home-hero__noise absolute inset-0"></div>
 
-	<div class="home-hero__system-label onload-animation" style="animation-delay: 120ms;">PAN ARCHIVE / ONLINE</div>
+	<div class="home-hero__frame-label home-hero__frame-label--top onload-animation" style="animation-delay: 120ms;">PAN//01</div>
+	<div class="home-hero__frame-label home-hero__frame-label--side onload-animation" style="animation-delay: 180ms;">SIGNAL</div>
+	<div class="home-hero__frame-corners" aria-hidden="true"></div>
 
 	<div class="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[var(--page-width)] flex-col justify-end px-6 pb-24 pt-28 md:px-10 md:pb-28 lg:px-14">
 		<div class="home-hero__content max-w-5xl">

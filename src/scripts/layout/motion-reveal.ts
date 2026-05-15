@@ -3,7 +3,7 @@ let motionRevealObserver: IntersectionObserver | undefined;
 export function initMotionReveal() {
 	motionRevealObserver?.disconnect();
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	const targets = Array.from(document.querySelectorAll<HTMLElement>('.anime-entry, .projects-entry, #home-posts > *'))
+	const targets = Array.from(document.querySelectorAll<HTMLElement>('.anime-entry, .projects-entry, #home-posts > *, .home-hero-bridge, .home-log__header, .home-log__cut, .about-reveal'))
 		.filter((element) => !element.hasAttribute('data-motion-reveal-bound'));
 
 	targets.forEach((element, index) => {

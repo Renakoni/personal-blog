@@ -1,47 +1,8 @@
 ---
-import { Icon } from "astro-icon/components";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-import ResponsivePicture from "../components/ResponsivePicture.astro";
-
-const currentArc = ["站点视觉调整中", "文章与项目持续整理", "动画记录慢慢补完"];
-
-const identityLead = {
-	label: "Identity",
-	title: "我是谁",
-	support:
-		"平时主要写代码、改站，也会慢慢整理文章、项目和自己想留下来的东西。",
-};
-
-const identitySections = [
-	{
-		label: "About",
-		title: "这里写什么",
-		items: [
-			{
-				name: "Blog",
-				text: "技术记录、站点改造、折腾过程，还有一些不那么正式的开发笔记。",
-			},
-			{
-				name: "Anime",
-				text: "在看、补完、喜欢的作品，以及偶尔留下来的观后感。",
-			},
-			{
-				name: "Projects",
-				text: "正在做的、做过的，或者暂时先留个位置的项目和实验。",
-			},
-		],
-	},
-	{
-		label: "Preference",
-		title: "我喜欢什么",
-		paragraphs: [
-			"我偏爱两种看起来不太一样、但其实很容易相遇的气质：二次元作品里的细腻、夜色、情绪感与角色感，以及极客世界里的克制、结构、系统感与可维护性。",
-			"所以这个站会自然地长成现在这样：想保留一点梦和审美，也想把内容整理得足够清楚、足够耐看。",
-		],
-	},
-];
+import { url } from "../utils/url-utils";
 
 const stackColumns = [
 	{
@@ -77,128 +38,288 @@ const stackMarquee = [
 ];
 ---
 <MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)} showSidebar={false}>
-	<div class="about-page mx-auto w-full max-w-6xl space-y-6 md:space-y-7">
-		<section class="about-hero card-base relative overflow-hidden border border-black/8 onload-animation dark:border-white/8">
-			<div class="relative h-[18rem] w-full md:h-[24rem]">
-				<ResponsivePicture
-						name="about-cover"
-						alt="About cover"
-						class="h-full w-full object-cover object-[center_58%]"
-						position="center 58%"
-						sizes="(max-width: 768px) 100vw, 72rem"
-						loading="eager"
-					/>
-				<div class="about-hero__veil absolute inset-0"></div>
-				<div class="about-hero__noise absolute inset-0"></div>
-				<div class="about-hero__glow absolute inset-0"></div>
-				<div class="about-hero__content absolute inset-x-0 bottom-0 p-7 md:p-10 lg:p-12">
-					<div class="about-hero__meta onload-animation" style="animation-delay: 120ms;">
-						<span>About</span>
-						<span>Pan</span>
+	<div class="about-page about-page--stage">
+		<div class="about-deck" aria-label="About Pan presentation">
+			<section class="about-slide about-slide--cover" aria-labelledby="about-cover-title">
+				<div class="about-cover-paper" aria-hidden="true">
+					<div class="about-cover-registration about-cover-registration--tl"></div>
+					<div class="about-cover-registration about-cover-registration--tr"></div>
+					<div class="about-cover-registration about-cover-registration--bl"></div>
+					<div class="about-cover-registration about-cover-registration--br"></div>
+					<div class="about-cover-tape about-cover-tape--top"></div>
+					<div class="about-cover-tape about-cover-tape--side"></div>
+					<svg class="about-cover-pencil-lines" viewBox="0 0 1200 760" preserveAspectRatio="none" focusable="false">
+						<path d="M92 132 C 248 106, 424 112, 582 150 S 910 192, 1094 136" />
+						<path d="M160 612 C 286 552, 412 534, 560 572 S 846 668, 1028 594" />
+						<path d="M182 228 L 1048 228" />
+						<path d="M182 468 L 1048 468" />
+						<path d="M286 88 L 286 684" />
+						<path d="M904 86 L 904 684" />
+						<circle cx="916" cy="248" r="88" />
+						<path d="M864 332 C 938 312, 1016 330, 1064 384" />
+					</svg>
+					<svg class="about-cover-pan-mark about-reveal" viewBox="0 0 920 360" role="img" aria-labelledby="about-cover-title" style="--motion-reveal-index: 1;">
+						<title>PAN</title>
+						<g class="about-cover-pan-mark__draft">
+							<path d="M76 302 L 76 58 C 124 45, 232 43, 266 102 C 306 172, 232 236, 78 220" />
+							<path d="M334 306 L 442 52 L 552 306 M386 202 C 432 190, 484 190, 528 204" />
+							<path d="M642 306 L 642 58 L 814 304 L 814 52" />
+						</g>
+						<g class="about-cover-pan-mark__ink">
+							<path d="M72 300 L 72 62 C 122 50, 226 46, 262 104 C 302 168, 230 228, 74 216" />
+							<path d="M330 304 L 438 56 L 548 304 M384 198 C 430 188, 482 188, 526 202" />
+							<path d="M638 304 L 638 60 L 812 302 L 812 56" />
+						</g>
+						<g class="about-cover-pan-mark__blue">
+							<path d="M58 326 C 228 340, 392 326, 560 334 S 750 348, 858 324" />
+							<path d="M572 72 C 668 34, 772 36, 846 76" />
+						</g>
+					</svg>
+				</div>
+				<div class="about-slide__inner about-slide__inner--cover">
+					<div class="about-cover-dossier-meta about-reveal" style="--motion-reveal-index: 0;">
+						<span>PERSONAL FILE / 01</span>
+						<span>opened at 2026</span>
 					</div>
-					<div class="mt-4 max-w-4xl">
-						<h1 class="about-hero__title onload-animation" style="animation-delay: 180ms;"><span class="about-hero__line">忘れはしないよ</span><span class="about-hero__line">時が流れても</span></h1>
+					<div class="about-cover-theatre">
+						<div class="about-kicker about-reveal" style="--motion-reveal-index: 2;">Paper Signal Theatre</div>
+						<h1 id="about-cover-title" class="about-cover-title about-reveal" style="--motion-reveal-index: 3;">PAN</h1>
+						<p class="about-cover-subtitle about-reveal" style="--motion-reveal-index: 4;">private notes, builds, favorites</p>
 					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="grid gap-5 lg:grid-cols-[minmax(0,1.68fr)_minmax(13rem,0.56fr)]">
-			<div class="about-story card-base border border-black/8 px-6 py-6 onload-animation dark:border-white/8 md:px-8 md:py-8" style="animation-delay: 120ms;">
-				<div class="about-section-label">{identityLead.label}</div>
-				<div class="about-identity-lead mt-5">
-					<h2 class="about-identity-lead__title">{identityLead.title}</h2>
-					<p class="about-identity-lead__support mt-4">{identityLead.support}</p>
-				</div>
-
-				<div class="about-identity-sections mt-6 space-y-4">
-					{identitySections.map((section) => (
-						<section class="about-identity-block">
-							<div class="about-identity-block__label">{section.label}</div>
-							<h3 class="about-identity-block__title mt-3">{section.title}</h3>
-
-							{section.items && (
-								<div class="about-identity-entry-list mt-4">
-									{section.items.map((item) => (
-										<div class="about-identity-entry">
-											<div class="about-identity-entry__name">{item.name}</div>
-											<p class="about-identity-entry__text">{item.text}</p>
-										</div>
-									))}
-								</div>
-							)}
-
-							{section.paragraphs && (
-								<div class="about-identity-paragraphs mt-4 space-y-4">
-									{section.paragraphs.map((paragraph) => (
-										<p>{paragraph}</p>
-									))}
-								</div>
-							)}
-						</section>
-					))}
-				</div>
-			</div>
-
-			<aside class="space-y-4">
-				<div class="about-rail card-base border border-black/8 px-4 py-4 onload-animation dark:border-white/8 md:px-5 md:py-5" style="animation-delay: 190ms;">
-					<div class="about-panel__title">
-						<Icon name="material-symbols:orbit-rounded" class="text-[1.05rem] text-[var(--primary)]" />
-						Current
+					<div class="about-cover-note about-cover-note--blue about-reveal" style="--motion-reveal-index: 5;">
+						<span>signal route</span>
+						<b>blog / anime / code</b>
 					</div>
-					<div class="about-rail__caption mt-3">recently</div>
-					<ul class="mt-4 space-y-3">
-						{currentArc.map((item, index) => (
-							<li class="about-rail__item">
-								<span class="about-rail__index">0{index + 1}</span>
-								<span>{item}</span>
-							</li>
-						))}
-					</ul>
+					<div class="about-cover-pencil-tag about-reveal" style="--motion-reveal-index: 6;" aria-hidden="true"></div>
+					<div class="about-cover-red-mark about-reveal" style="--motion-reveal-index: 7;" aria-hidden="true">revise</div>
+					<div class="about-slide-count about-reveal" style="--motion-reveal-index: 8;">01 / 06</div>
 				</div>
-			</aside>
-		</section>
+			</section>
 
-		<section class="about-fingerprint card-base overflow-hidden border border-black/8 onload-animation dark:border-white/8" style="animation-delay: 320ms;">
-			<div class="about-fingerprint__header px-7 py-5 md:px-8 md:py-6">
-				<div class="about-fingerprint-hero">
-					<div class="about-fingerprint-hero__label about-fingerprint-hero__label--solo">
-						<div class="about-section-label">Stack</div>
-						<div class="about-fingerprint-hero__line"></div>
+			<section class="about-slide about-slide--now" aria-labelledby="about-now-title">
+				<div class="about-current-paper" aria-hidden="true">
+					<div class="about-current-watermark">02</div>
+					<svg class="about-current-route" viewBox="0 0 1200 720" preserveAspectRatio="none" focusable="false">
+						<path class="about-current-route__pencil" d="M118 188 C 298 142, 432 192, 520 292 S 740 456, 1002 348" />
+						<path class="about-current-route__blue" d="M270 224 C 426 248, 486 340, 574 390 S 724 458, 878 414" />
+						<path class="about-current-route__blue about-current-route__blue--second" d="M832 420 C 704 494, 556 516, 360 548" />
+					</svg>
+				</div>
+				<div class="about-slide__inner about-slide__inner--current">
+					<div class="about-current-head about-reveal" style="--motion-reveal-index: 0;">
+						<div class="about-kicker">Current Notes / 02</div>
+						<h2 id="about-now-title">private build log</h2>
 					</div>
-				</div>
-			</div>
-
-			<div class="about-stack-marquee-wrap border-t border-black/6 py-3 dark:border-white/8">
-				<div class="about-stack-marquee">
-					<div class="about-stack-marquee__track">
-						{stackMarquee.map((item) => (
-							<span>{item}</span>
-						))}
-						{stackMarquee.map((item) => (
-							<span>{item}</span>
-						))}
-					</div>
-				</div>
-			</div>
-
-			<div class="border-t border-black/6 px-6 py-5 dark:border-white/8 md:px-8 md:py-7">
-				<div class="grid gap-3 xl:grid-cols-[minmax(0,1.12fr)_minmax(0,0.9fr)_minmax(0,0.9fr)]">
-					{stackColumns.map((column, index) => (
-						<article class="about-stack-column onload-animation" style={`animation-delay: ${360 + index * 70}ms; --about-stack-accent:${column.accent};`}>
-							<div class="about-stack-column__head">
-								<div class="about-stack-column__label">{column.label}</div>
-								<span class="about-stack-column__pulse"></span>
-							</div>
-							<div class="about-stack-column__list mt-4">
-								{column.items.map((item) => (
-									<div class="about-stack-column__item">{item}</div>
-								))}
-							</div>
+					<div class="about-current-notes" aria-label="Current notes">
+						<article class="about-current-note about-current-note--site about-reveal" style="--motion-reveal-index: 1;">
+							<div class="about-current-note__index">01</div>
+							<h3>Site Tuning</h3>
+							<ul>
+								<li>visual system</li>
+								<li>motion rhythm</li>
+								<li>paper theatre</li>
+							</ul>
 						</article>
-					))}
+						<article class="about-current-note about-current-note--archive about-reveal" style="--motion-reveal-index: 2;">
+							<div class="about-current-note__index">02</div>
+							<h3>Archive Building</h3>
+							<ul>
+								<li>posts</li>
+								<li>projects</li>
+								<li>watch log</li>
+							</ul>
+						</article>
+						<article class="about-current-note about-current-note--taste about-reveal" style="--motion-reveal-index: 3;">
+							<div class="about-current-note__index">03</div>
+							<h3>Taste Calibration</h3>
+							<ul>
+								<li>anime mood</li>
+								<li>technical order</li>
+								<li>quiet memory</li>
+							</ul>
+						</article>
+					</div>
+					<div class="about-current-redline about-reveal" style="--motion-reveal-index: 4;" aria-hidden="true">
+						<span>resume</span>
+						<b>archive</b>
+					</div>
+					<div class="about-current-footer about-reveal" style="--motion-reveal-index: 5;">not final / still collecting signal</div>
 				</div>
-			</div>
-		</section>
+			</section>
+
+			<section class="about-slide about-slide--signal" aria-labelledby="about-signal-title">
+				<div class="about-build-paper" aria-hidden="true">
+					<div class="about-build-watermark">BUILD</div>
+					<svg class="about-build-annotation" viewBox="0 0 1200 720" preserveAspectRatio="none" focusable="false">
+						<path class="about-build-annotation__pencil" d="M132 236 L 1066 236" />
+						<path class="about-build-annotation__pencil" d="M132 396 L 1066 396" />
+						<path class="about-build-annotation__blue" d="M514 286 C 602 258, 700 258, 798 286" />
+						<path class="about-build-annotation__blue" d="M506 548 C 598 574, 704 574, 806 548" />
+					</svg>
+				</div>
+				<div class="about-slide__inner about-slide__inner--build">
+					<div class="about-build-head about-reveal" style="--motion-reveal-index: 0;">
+						<div class="about-kicker">Build Inventory / 03</div>
+						<h2 id="about-signal-title">materials, tools, traces</h2>
+					</div>
+					<div class="about-build-ledger" aria-label="Build inventory">
+						<section class="about-build-lane about-build-lane--lang about-reveal" style="--motion-reveal-index: 1;">
+							<div class="about-build-lane__head"><span>A / LANG</span></div>
+							<ul>
+								<li><b>Python</b><span>model notes</span></li>
+								<li class="about-build-item--marked"><b>TypeScript</b><span>site logic</span></li>
+								<li><b>Dart</b><span>app side</span></li>
+								<li><b>Java</b><span>old track</span></li>
+							</ul>
+						</section>
+						<section class="about-build-lane about-build-lane--surface about-reveal" style="--motion-reveal-index: 2;">
+							<div class="about-build-lane__head"><span>B / SURFACE</span></div>
+							<ul>
+								<li class="about-build-item--marked"><b>Astro</b><span>site shell</span></li>
+								<li><b>Tailwind CSS</b><span>material layer</span></li>
+								<li><b>Vue</b><span>component lab</span></li>
+								<li class="about-build-item--marked"><b>CSS</b><span>final texture</span></li>
+							</ul>
+						</section>
+						<section class="about-build-lane about-build-lane--tools about-reveal" style="--motion-reveal-index: 3;">
+							<div class="about-build-lane__head"><span>C / TOOLS</span></div>
+							<ul>
+								<li><b>PyTorch</b><span>model work</span></li>
+								<li><b>Git</b><span>archive trace</span></li>
+								<li><b>Prompting</b><span>direction tool</span></li>
+							</ul>
+						</section>
+					</div>
+					<div class="about-build-redline about-reveal" style="--motion-reveal-index: 4;" aria-hidden="true">
+						<span>badges</span>
+						<b>materials</b>
+					</div>
+					<div class="about-build-footer about-reveal" style="--motion-reveal-index: 5;">compiled by hand / revised in browser</div>
+				</div>
+			</section>
+
+			<section class="about-slide about-slide--texture about-slide--favorites-a" aria-labelledby="about-texture-title">
+				<div class="about-favorites-paper" aria-hidden="true">
+					<div class="about-favorites-watermark">VISUAL</div>
+					<div class="about-favorites-record"></div>
+					<svg class="about-favorites-circle" viewBox="0 0 320 160" focusable="false">
+						<path d="M42 72 C 74 18, 210 20, 264 58 C 310 90, 260 136, 158 132 C 64 128, 14 108, 42 72" />
+					</svg>
+				</div>
+				<div class="about-slide__inner about-slide__inner--favorites">
+					<div class="about-favorites-head about-reveal" style="--motion-reveal-index: 0;">
+						<div class="about-kicker">Favorites Contact Sheet / 04</div>
+						<h2 id="about-texture-title">anime and game frames</h2>
+					</div>
+					<div class="about-favorites-gallery about-favorites-gallery--paired" aria-label="Anime and game image frames">
+						<article class="about-favorite-frame about-favorite-frame--large about-favorite-frame--anime about-reveal" style="--motion-reveal-index: 1;">
+							<div class="about-favorite-frame__slot"><span>anime image pending</span></div>
+							<div class="about-favorite-frame__caption"><span>01 / Anime</span><b>title / author pending</b></div>
+						</article>
+						<div class="about-favorite-note about-favorite-note--anime about-reveal" style="--motion-reveal-index: 2;">
+							<span>01 / Anime note</span>
+							<p>Caption text pending. This is where the longer personal sentence goes, not below the image.</p>
+						</div>
+						<article class="about-favorite-frame about-favorite-frame--large about-favorite-frame--game about-reveal" style="--motion-reveal-index: 3;">
+							<div class="about-favorite-frame__slot"><span>game image pending</span></div>
+							<div class="about-favorite-frame__caption"><span>02 / Game</span><b>title / studio pending</b></div>
+						</article>
+						<div class="about-favorite-note about-favorite-note--game about-reveal" style="--motion-reveal-index: 4;">
+							<span>02 / Game note</span>
+							<p>Caption text pending. A second short paragraph can explain why this work belongs here.</p>
+						</div>
+					</div>
+					<div class="about-favorites-side about-reveal" style="--motion-reveal-index: 3;" aria-hidden="true">
+						<span>Part A</span>
+						<b>Visual Favorites</b>
+						<small>02 frames</small>
+					</div>
+					<div class="about-favorites-redline about-reveal" style="--motion-reveal-index: 4;" aria-hidden="true">not ranking</div>
+					<div class="about-favorites-footer about-reveal" style="--motion-reveal-index: 5;">images can replace these paper frames later</div>
+				</div>
+			</section>
+
+			<section class="about-slide about-slide--texture about-slide--favorites-b" aria-labelledby="about-favorites-b-title">
+				<div class="about-favorites-paper" aria-hidden="true">
+					<div class="about-favorites-watermark">SHELF</div>
+					<div class="about-favorites-record"></div>
+				</div>
+				<div class="about-slide__inner about-slide__inner--favorites">
+					<div class="about-favorites-head about-reveal" style="--motion-reveal-index: 0;">
+						<div class="about-kicker">Favorites Contact Sheet / 05</div>
+						<h2 id="about-favorites-b-title">sound and reading frames</h2>
+					</div>
+					<div class="about-favorites-gallery about-favorites-gallery--paired about-favorites-gallery--shelf" aria-label="Music and novel manga image frames">
+						<article class="about-favorite-frame about-favorite-frame--album about-favorite-frame--sound about-reveal" style="--motion-reveal-index: 1;">
+							<div class="about-favorite-frame__slot"><span>album cover pending</span></div>
+							<div class="about-favorite-frame__caption"><span>03 / Music</span><b>album / artist pending</b></div>
+						</article>
+						<div class="about-favorite-note about-favorite-note--sound about-reveal" style="--motion-reveal-index: 2;">
+							<span>03 / Music note</span>
+							<p>Caption text pending. This area can hold the feeling, memory, or listening scene.</p>
+						</div>
+						<article class="about-favorite-frame about-favorite-frame--large about-favorite-frame--manga about-reveal" style="--motion-reveal-index: 3;">
+							<div class="about-favorite-frame__slot"><span>novel / manga image pending</span></div>
+							<div class="about-favorite-frame__caption"><span>04 / Novel + Manga</span><b>title / author pending</b></div>
+						</article>
+						<div class="about-favorite-note about-favorite-note--manga about-reveal" style="--motion-reveal-index: 4;">
+							<span>04 / Reading note</span>
+							<p>Caption text pending. A quiet note can explain the aftertaste or recurring image.</p>
+						</div>
+					</div>
+					<div class="about-favorites-side about-reveal" style="--motion-reveal-index: 3;" aria-hidden="true">
+						<span>Part B</span>
+						<b>Shelf Favorites</b>
+						<small>02 frames</small>
+					</div>
+					<div class="about-favorites-redline about-reveal" style="--motion-reveal-index: 4;" aria-hidden="true">not ranking</div>
+					<div class="about-favorites-footer about-reveal" style="--motion-reveal-index: 5;">more room for captions, less wall-of-covers</div>
+				</div>
+			</section>
+
+			<section class="about-slide about-slide--stack" aria-labelledby="about-stack-title">
+				<div class="about-slide__inner">
+					<div class="about-kicker about-reveal">Stack credits</div>
+					<h2 id="about-stack-title" class="about-slide-title about-reveal" style="--motion-reveal-index: 1;">制作名单。</h2>
+					<div class="about-stack-marquee-wrap about-reveal" style="--motion-reveal-index: 2;">
+						<div class="about-stack-marquee">
+							<div class="about-stack-marquee__track">
+								{stackMarquee.map((item) => <span>{item}</span>)}
+								{stackMarquee.map((item) => <span>{item}</span>)}
+							</div>
+						</div>
+					</div>
+					<div class="about-stack-grid">
+						{stackColumns.map((column, index) => (
+							<article class="about-stack-column about-reveal" style={`--about-stack-accent:${column.accent}; --motion-reveal-index: ${index + 3};`}>
+								<div class="about-stack-column__head">
+									<div class="about-stack-column__label">{column.label}</div>
+									<span class="about-stack-column__pulse"></span>
+								</div>
+								<div class="about-stack-column__list mt-4">
+									{column.items.map((item) => <div class="about-stack-column__item">{item}</div>)}
+								</div>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="about-slide about-slide--exit" aria-labelledby="about-exit-title">
+				<div class="about-slide__inner about-slide__inner--narrow">
+					<div class="about-kicker about-reveal">Continue</div>
+					<h2 id="about-exit-title" class="about-slide-title about-reveal" style="--motion-reveal-index: 1;">如果你想继续看，可以从这里进入。</h2>
+					<div class="about-exit-actions about-reveal" style="--motion-reveal-index: 2;">
+						<a href={url("/blog/")}>Blog</a>
+						<a href={url("/projects/")}>Projects</a>
+						<a href={url("/anime/")}>Anime</a>
+					</div>
+					<div class="about-slide-count about-reveal" style="--motion-reveal-index: 3;">07 / 07</div>
+					<footer class="about-exit-footer about-reveal" style="--motion-reveal-index: 4;">
+						© 2026 Pan. Built with <a href="https://astro.build/" target="_blank" rel="noopener">Astro</a>. / <a href={url("/rss.xml")}>RSS</a> / <a href={url("/sitemap-index.xml")}>Sitemap</a>
+					</footer>
+				</div>
+			</section>
+		</div>
 	</div>
 </MainGridLayout>

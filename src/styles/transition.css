@@ -127,11 +127,29 @@ html.swup-ready #post-container :nth-child(n) {
     .onload-animation,
     #post-container :nth-child(n),
     .pan-wordmark__letter,
-    .pan-wordmark__ornaments {
+    .pan-wordmark__ornaments,
+    #home-hero-image img,
+    .home-hero__scan,
+    .home-hero__noise,
+    .home-hero__scroll-cue span:last-child::after,
+    .home-log__cut,
+    .home-log__cut::before,
+    .home-log__cut::after,
+    .about-reveal,
+    .about-slide__media img,
+    .about-stack-marquee__track {
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
         clip-path: none !important;
         animation: none !important;
+    }
+
+    .home-log__cut::after {
+        opacity: 0 !important;
+    }
+
+    .about-deck {
+        scroll-snap-type: y proximity !important;
     }
 }

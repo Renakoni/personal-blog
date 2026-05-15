@@ -1,5 +1,4 @@
 import {
-	AUTO_MODE,
 	DARK_MODE,
 	DEFAULT_THEME,
 	LIGHT_MODE,
@@ -41,13 +40,6 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 		case DARK_MODE:
 			document.documentElement.classList.add("dark");
 			break;
-		case AUTO_MODE:
-			if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-				document.documentElement.classList.add("dark");
-			} else {
-				document.documentElement.classList.remove("dark");
-			}
-			break;
 	}
 
 	// Set the theme for Expressive Code
@@ -66,5 +58,8 @@ export function setTheme(theme: LIGHT_DARK_MODE): void {
 
 export function getStoredTheme(): LIGHT_DARK_MODE {
 	if (typeof localStorage === "undefined") return DEFAULT_THEME;
-	return (localStorage.getItem("theme") as LIGHT_DARK_MODE) || DEFAULT_THEME;
+	const stored = localStorage.getItem("theme");
+	if (stored === LIGHT_MODE || stored === DARK_MODE) return stored;
+	localStorage.setItem("theme", DEFAULT_THEME);
+	return DEFAULT_THEME;
 }
