@@ -4,38 +4,6 @@ import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { url } from "../utils/url-utils";
 
-const stackColumns = [
-	{
-		label: "Languages",
-		accent: "var(--about-accent-1)",
-		items: ["Python", "TypeScript", "Dart", "Java"],
-	},
-	{
-		label: "Frontend",
-		accent: "var(--about-accent-2)",
-		items: ["Astro", "Tailwind CSS", "Vue", "CSS"],
-	},
-	{
-		label: "Toolkit",
-		accent: "var(--about-accent-3)",
-		items: ["PyTorch", "Git", "Prompting"],
-	},
-];
-
-const stackMarquee = [
-	"Python",
-	"TypeScript",
-	"Astro",
-	"Tailwind CSS",
-	"Dart",
-	"Vue",
-	"PyTorch",
-	"Java",
-	"CSS",
-	"Git",
-	"Prompting",
-	"Astro",
-];
 ---
 <MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)} showSidebar={false}>
 	<div class="about-page about-page--stage">
@@ -214,7 +182,7 @@ const stackMarquee = [
 					<div class="about-favorites-gallery about-favorites-gallery--paired" aria-label="Anime and game image frames">
 						<article class="about-favorite-frame about-favorite-frame--large about-favorite-frame--anime about-reveal" style="--motion-reveal-index: 1;">
 							<div class="about-favorite-frame__slot"><span>anime image pending</span></div>
-							<div class="about-favorite-frame__caption"><span>01 / Anime</span><b>title / author pending</b></div>
+							<div class="about-favorite-frame__caption"><span>01 / Anime</span><b>signature pending</b></div>
 						</article>
 						<div class="about-favorite-note about-favorite-note--anime about-reveal" style="--motion-reveal-index: 2;">
 							<span>01 / Anime note</span>
@@ -222,7 +190,7 @@ const stackMarquee = [
 						</div>
 						<article class="about-favorite-frame about-favorite-frame--large about-favorite-frame--game about-reveal" style="--motion-reveal-index: 3;">
 							<div class="about-favorite-frame__slot"><span>game image pending</span></div>
-							<div class="about-favorite-frame__caption"><span>02 / Game</span><b>title / studio pending</b></div>
+							<div class="about-favorite-frame__caption"><span>02 / Game</span><b>signature pending</b></div>
 						</article>
 						<div class="about-favorite-note about-favorite-note--game about-reveal" style="--motion-reveal-index: 4;">
 							<span>02 / Game note</span>
@@ -252,7 +220,7 @@ const stackMarquee = [
 					<div class="about-favorites-gallery about-favorites-gallery--paired about-favorites-gallery--shelf" aria-label="Music and novel manga image frames">
 						<article class="about-favorite-frame about-favorite-frame--album about-favorite-frame--sound about-reveal" style="--motion-reveal-index: 1;">
 							<div class="about-favorite-frame__slot"><span>album cover pending</span></div>
-							<div class="about-favorite-frame__caption"><span>03 / Music</span><b>album / artist pending</b></div>
+							<div class="about-favorite-frame__caption"><span>03 / Music</span><b>signature pending</b></div>
 						</article>
 						<div class="about-favorite-note about-favorite-note--sound about-reveal" style="--motion-reveal-index: 2;">
 							<span>03 / Music note</span>
@@ -260,7 +228,7 @@ const stackMarquee = [
 						</div>
 						<article class="about-favorite-frame about-favorite-frame--large about-favorite-frame--manga about-reveal" style="--motion-reveal-index: 3;">
 							<div class="about-favorite-frame__slot"><span>novel / manga image pending</span></div>
-							<div class="about-favorite-frame__caption"><span>04 / Novel + Manga</span><b>title / author pending</b></div>
+							<div class="about-favorite-frame__caption"><span>04 / Novel + Manga</span><b>signature pending</b></div>
 						</article>
 						<div class="about-favorite-note about-favorite-note--manga about-reveal" style="--motion-reveal-index: 4;">
 							<span>04 / Reading note</span>
@@ -277,47 +245,104 @@ const stackMarquee = [
 				</div>
 			</section>
 
-			<section class="about-slide about-slide--stack" aria-labelledby="about-stack-title">
-				<div class="about-slide__inner">
-					<div class="about-kicker about-reveal">Stack credits</div>
-					<h2 id="about-stack-title" class="about-slide-title about-reveal" style="--motion-reveal-index: 1;">制作名单。</h2>
-					<div class="about-stack-marquee-wrap about-reveal" style="--motion-reveal-index: 2;">
-						<div class="about-stack-marquee">
-							<div class="about-stack-marquee__track">
-								{stackMarquee.map((item) => <span>{item}</span>)}
-								{stackMarquee.map((item) => <span>{item}</span>)}
-							</div>
+			<section class="about-slide about-slide--taste" aria-labelledby="about-taste-title">
+				<div class="about-taste-paper" aria-hidden="true">
+					<div class="about-taste-watermark">TASTE</div>
+					<svg class="about-taste-gridlines" viewBox="0 0 1200 720" preserveAspectRatio="none" focusable="false">
+						<path d="M132 142 L 1074 142" />
+						<path d="M132 578 L 1074 578" />
+						<path d="M238 90 L 238 632" />
+						<path d="M962 88 L 962 636" />
+						<path d="M338 502 C 500 552, 690 552, 850 500" />
+					</svg>
+				</div>
+				<div class="about-slide__inner about-slide__inner--taste">
+					<div class="about-taste-head about-reveal" style="--motion-reveal-index: 0;">
+						<div class="about-kicker">Taste Diagram / 06</div>
+						<h2 id="about-taste-title">mood / method</h2>
+					</div>
+					<div class="about-taste-board" aria-label="Taste diagram">
+						<div class="about-taste-terms about-taste-terms--mood about-reveal" style="--motion-reveal-index: 1;">
+							<span>night</span>
+							<span>silence</span>
+							<span>character</span>
+							<span>memory</span>
 						</div>
+						<svg class="about-taste-figure about-reveal" viewBox="0 0 360 560" role="img" aria-label="Line drawn character anatomy diagram" style="--motion-reveal-index: 2;">
+							<g class="about-taste-figure__pencil">
+								<path d="M176 92 C 139 94, 116 124, 119 159 C 122 196, 150 216, 184 213 C 219 210, 244 184, 241 148 C 238 113, 212 90, 176 92" />
+								<path d="M178 216 C 154 250, 142 288, 140 342 C 138 402, 126 462, 103 520" />
+								<path d="M182 216 C 214 252, 226 292, 224 346 C 222 404, 232 462, 257 520" />
+								<path d="M144 276 C 111 304, 86 342, 65 392" />
+								<path d="M218 276 C 258 296, 288 330, 310 382" />
+								<path d="M138 340 C 164 358, 202 360, 226 342" />
+								<path d="M150 246 C 174 236, 200 236, 218 248" />
+								<path d="M154 146 C 166 140, 192 139, 206 146" />
+								<path d="M156 170 C 174 180, 196 180, 213 168" />
+							</g>
+							<g class="about-taste-figure__blue">
+								<path d="M118 160 C 84 162, 58 178, 40 206" />
+								<path d="M240 150 C 280 132, 316 138, 336 166" />
+								<path d="M91 394 C 132 420, 210 420, 274 388" />
+								<path d="M178 90 L 178 524" />
+								<circle cx="180" cy="284" r="118" />
+							</g>
+							<g class="about-taste-figure__red">
+								<path d="M225 120 L 252 96" />
+								<path d="M250 99 L 257 112" />
+							</g>
+						</svg>
+						<div class="about-taste-terms about-taste-terms--structure about-reveal" style="--motion-reveal-index: 3;">
+							<span>system</span>
+							<span>archive</span>
+							<span>code</span>
+							<span>order</span>
+						</div>
+						<svg class="about-taste-routes about-reveal" viewBox="0 0 960 470" preserveAspectRatio="none" focusable="false" style="--motion-reveal-index: 4;">
+							<path d="M142 92 C 290 88, 358 142, 472 214 S 692 318, 816 82" />
+							<path d="M126 202 C 262 236, 350 258, 456 250 S 684 196, 832 202" />
+							<path d="M142 330 C 278 280, 370 302, 472 356 S 674 438, 818 336" />
+						</svg>
 					</div>
-					<div class="about-stack-grid">
-						{stackColumns.map((column, index) => (
-							<article class="about-stack-column about-reveal" style={`--about-stack-accent:${column.accent}; --motion-reveal-index: ${index + 3};`}>
-								<div class="about-stack-column__head">
-									<div class="about-stack-column__label">{column.label}</div>
-									<span class="about-stack-column__pulse"></span>
-								</div>
-								<div class="about-stack-column__list mt-4">
-									{column.items.map((item) => <div class="about-stack-column__item">{item}</div>)}
-								</div>
-							</article>
-						))}
-					</div>
+					<div class="about-taste-note">taste is how memory becomes structure</div>
+					<div class="about-taste-redline about-reveal" style="--motion-reveal-index: 5;" aria-hidden="true">not a profile</div>
 				</div>
 			</section>
 
 			<section class="about-slide about-slide--exit" aria-labelledby="about-exit-title">
-				<div class="about-slide__inner about-slide__inner--narrow">
-					<div class="about-kicker about-reveal">Continue</div>
-					<h2 id="about-exit-title" class="about-slide-title about-reveal" style="--motion-reveal-index: 1;">如果你想继续看，可以从这里进入。</h2>
-					<div class="about-exit-actions about-reveal" style="--motion-reveal-index: 2;">
-						<a href={url("/blog/")}>Blog</a>
-						<a href={url("/projects/")}>Projects</a>
-						<a href={url("/anime/")}>Anime</a>
+				<div class="about-exit-paper" aria-hidden="true">
+					<div class="about-exit-watermark">OPEN</div>
+					<svg class="about-exit-lines" viewBox="0 0 1200 720" preserveAspectRatio="none" focusable="false">
+						<path d="M132 196 L 1074 196" />
+						<path d="M132 514 L 1074 514" />
+						<path d="M258 88 L 258 632" />
+						<path d="M944 88 L 944 632" />
+						<path d="M276 470 C 430 388, 576 386, 714 438 S 940 502, 1042 404" />
+					</svg>
+				</div>
+				<div class="about-slide__inner about-slide__inner--exit">
+					<div class="about-exit-head about-reveal" style="--motion-reveal-index: 0;">
+						<div class="about-kicker">Open Tab / 07</div>
+						<h2 id="about-exit-title">still open</h2>
 					</div>
-					<div class="about-slide-count about-reveal" style="--motion-reveal-index: 3;">07 / 07</div>
-					<footer class="about-exit-footer about-reveal" style="--motion-reveal-index: 4;">
-						© 2026 Pan. Built with <a href="https://astro.build/" target="_blank" rel="noopener">Astro</a>. / <a href={url("/rss.xml")}>RSS</a> / <a href={url("/sitemap-index.xml")}>Sitemap</a>
-					</footer>
+					<div class="about-exit-tabs about-reveal" style="--motion-reveal-index: 1;" aria-label="Open personal tabs">
+						<span class="about-exit-tab about-exit-tab--watch">watch</span>
+						<span class="about-exit-tab about-exit-tab--build">build</span>
+						<span class="about-exit-tab about-exit-tab--write">write</span>
+						<span class="about-exit-tab about-exit-tab--wander">wander</span>
+					</div>
+					<svg class="about-exit-signal about-reveal" viewBox="0 0 920 360" aria-hidden="true" style="--motion-reveal-index: 2;">
+						<path d="M72 182 C 178 92, 288 108, 354 168 S 492 282, 612 194 S 758 92, 850 150" />
+						<path d="M256 248 C 360 214, 456 226, 548 272 S 728 324, 834 246" />
+						<circle cx="608" cy="196" r="46" />
+					</svg>
+					<div class="about-exit-redline about-reveal" style="--motion-reveal-index: 3;" aria-hidden="true">do not close</div>
+					<nav class="about-exit-links about-reveal" style="--motion-reveal-index: 4;" aria-label="Continue reading">
+						<a href={url("/blog/")}>blog</a>
+						<a href={url("/projects/")}>projects</a>
+						<a href={url("/anime/")}>anime</a>
+						<a href={url("/rss.xml")}>rss</a>
+					</nav>
 				</div>
 			</section>
 		</div>
