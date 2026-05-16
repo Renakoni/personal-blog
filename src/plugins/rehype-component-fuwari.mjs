@@ -1,4 +1,5 @@
 /// <reference types="mdast" />
+import katex from "katex";
 import { h } from "hastscript";
 
 const tones = new Set([
@@ -20,6 +21,7 @@ const calloutTypes = new Set([
 	"warning",
 	"caution",
 	"danger",
+	"proof",
 ]);
 
 function cleanToken(value, fallback, allowed) {
@@ -120,7 +122,7 @@ export function FuwariColorComponent(properties, children) {
 
 export function FuwariMarkComponent(properties, children) {
 	const tone = cleanToken(properties?.tone || properties?.color, "amber", tones);
-	return h("mark", { class: `fuwari-mark fuwari-mark--${tone}` }, children);
+	return h("span", { class: `fuwari-mark fuwari-mark--${tone}` }, children);
 }
 
 export function FuwariBadgeComponent(properties, children) {
@@ -129,9 +131,10 @@ export function FuwariBadgeComponent(properties, children) {
 }
 
 export function FuwariCalloutComponent(properties, children) {
-	const type = cleanToken(properties?.type, "note", calloutTypes);
+	const rawType = cleanToken(properties?.type, "note", calloutTypes);
+	const type = rawType === "important" ? "proof" : rawType;
 	const title = properties?.title || type.toUpperCase();
-	return h("aside", { class: `fuwari-callout fuwari-callout--${type}` }, [
+	return h("section", { class: `fuwari-callout fuwari-callout--${type}` }, [
 		h("div", { class: "fuwari-callout__title" }, String(title)),
 		h("div", { class: "fuwari-callout__body" }, children),
 	]);
@@ -139,7 +142,7 @@ export function FuwariCalloutComponent(properties, children) {
 
 export function FuwariAsideComponent(properties, children) {
 	const title = properties?.title || "Aside";
-	return h("aside", { class: "fuwari-aside" }, [
+	return h("section", { class: "fuwari-aside" }, [
 		h("div", { class: "fuwari-aside__title" }, String(title)),
 		...children,
 	]);
@@ -147,7 +150,7 @@ export function FuwariAsideComponent(properties, children) {
 
 export function FuwariEvidenceComponent(properties, children) {
 	const label = properties?.label || "Evidence";
-	return h("aside", { class: "fuwari-evidence" }, [
+	return h("section", { class: "fuwari-evidence" }, [
 		h("div", { class: "fuwari-evidence__label" }, String(label)),
 		...children,
 	]);
@@ -155,10 +158,13 @@ export function FuwariEvidenceComponent(properties, children) {
 
 export function FuwariFigureComponent(properties, children) {
 	const caption = properties?.caption || properties?.title || textFromChildren(children);
-	const imageChildren = children.map(paragraphToFigureImage);
-	return h("div", { class: "fuwari-figure" }, [
-		...imageChildren,
-		caption ? h("figcaption", { class: "fuwari-figure__caption" }, String(caption)) : null,
+	const src = properties?.src;
+	const alt = properties?.alt || caption || "Image";
+	const isPlaceholder = src && String(src).trim().startsWith("./");
+	const imageChildren = src && !isPlaceholder ? [h("img", { src, alt, loading: "lazy" })] : children.map(paragraphToFigureImage);
+	return h("section", { class: "fuwari-figure" }, [
+		h("div", { class: `fuwari-image-frame${isPlaceholder ? " fuwari-image-frame--placeholder" : ""}` }, isPlaceholder ? [h("span", src)] : imageChildren),
+		caption ? h("p", { class: "fuwari-figure__caption" }, String(caption)) : null,
 	].filter(Boolean));
 }
 
@@ -198,44 +204,64 @@ export function FuwariTabsComponent(properties, children) {
 		...tabs.map((tab, index) => h("input", { id: `${name}-${index}`, name, type: "radio", checked: index === 0 })),
 		h("div", { class: "fuwari-tabs-rail", role: "tablist", ariaLabel: "Tabs" }, tabs.map((tab, index) => h("label", { for: `${name}-${index}`, role: "tab" }, tab.label))),
 		...tabs.map((tab, index) => h("div", { class: "fuwari-tab-panel", role: "tabpanel", dataTabIndex: String(index) }, [
-			tab.lang === "text" ? h("p", tab.body) : h("pre", [h("code", { class: `language-${tab.lang}` }, tab.body)]),
+			tab.lang === "text" ? h("p", tab.body) : h("div", { class: "fuwari-tab-code" }, [h("code", tab.body)]),
 		])),
 	]);
 }
 
 export function FuwariMathComponent(_properties, children) {
-	return h("figure", { class: "fuwari-math-block" }, [
-		h("figcaption", "LaTeX"),
-		h("div", { class: "fuwari-math-formula" }, children),
+	const formula = textFromChildren(children);
+	const rendered = katex.renderToString(formula, {
+		displayMode: true,
+		throwOnError: false,
+		strict: false,
+	});
+	return h("section", { class: "fuwari-math-block" }, [
+		h("div", { class: "fuwari-math-label" }, "LaTeX"),
+		h("div", { class: "fuwari-math-formula" }, [
+			{ type: "raw", value: rendered },
+		]),
 	]);
+}
+
+function metricNumbers(properties, kind) {
+	const fallbackMax = kind === "rating" ? 5 : 100;
+	const value = Number.parseFloat(properties?.value || "0");
+	const max = Number.parseFloat(properties?.max || String(fallbackMax));
+	const safeValue = Number.isFinite(value) ? value : 0;
+	const safeMax = Number.isFinite(max) && max > 0 ? max : fallbackMax;
+	return { value: safeValue, max: safeMax, percent: `${Math.round(Math.max(0, Math.min(1, safeValue / safeMax)) * 100)}%` };
+}
+
+function ratingStars(value, max) {
+	const count = Math.ceil(max);
+	const filled = Math.round(Math.max(0, Math.min(1, value / max)) * count);
+	return Array.from({ length: count }, (_, index) => h("span", { class: index >= filled ? "star-empty" : undefined }, "★"));
 }
 
 export function FuwariRatingComponent(properties, children) {
 	const label = properties?.label || "Rating";
-	const value = Number.parseFloat(properties?.value || "0");
-	const max = Number.parseFloat(properties?.max || "100");
-	const percent = max > 0 ? `${Math.max(0, Math.min(100, (value / max) * 100))}%` : "0%";
-	return h("section", { class: "fuwari-metric fuwari-metric--rating" }, [
-		h("div", { class: "fuwari-metric__label" }, "Rating"),
-		h("div", { class: "fuwari-metric__row", style: `--metric-value: ${percent};` }, [
-			h("div", { class: "fuwari-metric__head" }, [h("span", String(label)), h("strong", `${properties?.value || "0"} / ${properties?.max || "100"}`)]),
-			h("div", { class: "fuwari-metric__track" }, [h("span")]),
+	const { value, max, percent } = metricNumbers(properties, "rating");
+	return h("section", { class: "fuwari-metric fuwari-metric--rating", style: `--metric-progress: ${percent};` }, [
+		h("div", { class: "fuwari-metric-topline" }, [h("span", "Rating"), h("strong", [String(value), h("small", `/ ${max}`)])]),
+		h("div", { class: "fuwari-metric-main" }, [
+			h("h3", String(label)),
+			h("div", { class: "fuwari-rating-stars", ariaLabel: `${value} out of ${max}` }, ratingStars(value, max)),
 		]),
-		properties?.note ? h("p", { class: "fuwari-metric__note" }, String(properties.note)) : null,
+		h("div", { class: "fuwari-metric-track", ariaHidden: "true" }, [h("span")]),
+		properties?.note ? h("p", String(properties.note)) : null,
 		...children,
 	].filter(Boolean));
 }
 
 export function FuwariStatComponent(properties, children) {
 	const label = properties?.label || "Stat";
-	const value = properties?.value || "0";
-	return h("section", { class: "fuwari-metric fuwari-metric--stat" }, [
-		h("div", { class: "fuwari-metric__label" }, "Stats"),
-		h("div", { class: "fuwari-metric__grid" }, [
-			h("div", { class: "fuwari-metric__stat" }, [h("span", String(label)), h("strong", String(value))]),
-			properties?.max ? h("div", { class: "fuwari-metric__stat" }, [h("span", "Max"), h("strong", String(properties.max))]) : null,
-		].filter(Boolean)),
-		properties?.note ? h("p", { class: "fuwari-metric__note" }, String(properties.note)) : null,
+	const { value, max, percent } = metricNumbers(properties, "stat");
+	return h("section", { class: "fuwari-metric fuwari-metric--stat", style: `--metric-progress: ${percent};` }, [
+		h("div", { class: "fuwari-metric-topline" }, [h("span", "Stat"), h("strong", [String(value), h("small", `/ ${max}`)])]),
+		h("div", { class: "fuwari-metric-main" }, [h("h3", String(label))]),
+		h("div", { class: "fuwari-metric-track", ariaHidden: "true" }, [h("span")]),
+		properties?.note ? h("p", String(properties.note)) : null,
 		...children,
 	].filter(Boolean));
 }

@@ -140,7 +140,7 @@ export default defineConfig({
 						badge: FuwariBadgeComponent,
 						callout: FuwariCalloutComponent,
 						aside: FuwariAsideComponent,
-						evidence: FuwariEvidenceComponent,
+						evidence: (x, y) => FuwariCalloutComponent({ ...x, type: "proof" }, y),
 						figure: FuwariFigureComponent,
 						gallery: FuwariGalleryComponent,
 						latex: FuwariMathComponent,

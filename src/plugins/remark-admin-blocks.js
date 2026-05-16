@@ -1,5 +1,9 @@
 const specialLanguages = new Set(["note", "warning", "proof", "image", "video", "github", "tabs", "rating", "stat", "fuwari-latex"]);
 
+function cleanDirectiveValue(value) {
+	return String(value || "").replace(/\\:/g, ":").trim();
+}
+
 function normalizeGithubRepo(value) {
 	const trimmed = String(value || "")
 		.trim()
@@ -53,14 +57,21 @@ function imageNode(src, alt = "") {
 }
 
 function imageFigureNode(src, alt = "", caption = "") {
-	return {
-		type: "paragraph",
-		data: { hName: "div", hProperties: { class: "fuwari-figure" } },
-		children: [
-			imageNode(src, alt),
-			...(caption ? [{ type: "html", value: `<figcaption class="fuwari-figure__caption">${caption}</figcaption>` }] : []),
-		],
-	};
+	return elementNode("figure", { src, alt, caption }, []);
+}
+
+function normalizeGithubParagraph(node) {
+	if (!node || node.type !== "paragraph" || !Array.isArray(node.children) || node.children.length !== 1) return node;
+	const [child] = node.children;
+	if (child.type === "text") {
+		const repo = normalizeGithubRepo(cleanDirectiveValue(child.value));
+		return repo ? elementNode("github", { repo }, []) : node;
+	}
+	if (child.type === "link" && Array.isArray(child.children) && child.children.length === 1) {
+		const repo = normalizeGithubRepo(cleanDirectiveValue(child.url));
+		return repo ? elementNode("github", { repo }, []) : node;
+	}
+	return node;
 }
 
 function adminBlockNode(node) {
@@ -122,7 +133,7 @@ export function remarkAdminBlocks() {
 			parent.children = parent.children.map((child) => {
 				if (child.type === "code") return adminBlockNode(child);
 				walk(child);
-				return child;
+				return normalizeGithubParagraph(child);
 			});
 		}
 		walk(tree);

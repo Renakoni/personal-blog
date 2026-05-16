@@ -23,73 +23,30 @@ export function GithubCardComponent(properties, children) {
 		);
 
 	const repo = properties.repo;
-	const cardUuid = `GC${Math.random().toString(36).slice(-6)}`; // Collisions are not important
-
-	const nAvatar = h(`div#${cardUuid}-avatar`, { class: "gc-avatar" });
-	const nLanguage = h(
-		`span#${cardUuid}-language`,
-		{ class: "gc-language" },
-		"Waiting...",
-	);
-
-	const nTitle = h("div", { class: "gc-titlebar" }, [
-		h("div", { class: "gc-titlebar-left" }, [
-			h("div", { class: "gc-owner" }, [
-				nAvatar,
-				h("div", { class: "gc-user" }, repo.split("/")[0]),
-			]),
-			h("div", { class: "gc-divider" }, "/"),
-			h("div", { class: "gc-repo" }, repo.split("/")[1]),
-		]),
-		h("div", { class: "github-logo" }),
-	]);
-
-	const nDescription = h(
-		`div#${cardUuid}-description`,
-		{ class: "gc-description" },
-		"Waiting for api.github.com...",
-	);
-
-	const nStars = h(`div#${cardUuid}-stars`, { class: "gc-stars" }, "00K");
-	const nForks = h(`div#${cardUuid}-forks`, { class: "gc-forks" }, "0K");
-	const nLicense = h(`div#${cardUuid}-license`, { class: "gc-license" }, "0K");
-
-	const nScript = h(
-		`script#${cardUuid}-script`,
-		{ type: "text/javascript", defer: true },
-		`
-      fetch('https://api.github.com/repos/${repo}', { referrerPolicy: "no-referrer" }).then(response => response.json()).then(data => {
-        document.getElementById('${cardUuid}-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
-        document.getElementById('${cardUuid}-language').innerText = data.language;
-        document.getElementById('${cardUuid}-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll("\u202f", '');
-        document.getElementById('${cardUuid}-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll("\u202f", '');
-        const avatarEl = document.getElementById('${cardUuid}-avatar');
-        avatarEl.style.backgroundImage = 'url(' + data.owner.avatar_url + ')';
-        avatarEl.style.backgroundColor = 'transparent';
-        document.getElementById('${cardUuid}-license').innerText = data.license?.spdx_id || "no-license";
-        document.getElementById('${cardUuid}-card').classList.remove("fetch-waiting");
-        console.log("[GITHUB-CARD] Loaded card for ${repo} | ${cardUuid}.")
-      }).catch(err => {
-        const c = document.getElementById('${cardUuid}-card');
-        c?.classList.add("fetch-error");
-        console.warn("[GITHUB-CARD] (Error) Loading card for ${repo} | ${cardUuid}.")
-      })
-    `,
-	);
+	const [owner, name] = repo.split("/");
+	const href = `https://github.com/${repo}`;
 
 	return h(
-		`a#${cardUuid}-card`,
+		"a",
 		{
-			class: "card-github fetch-waiting no-styling",
-			href: `https://github.com/${repo}`,
+			class: "card-github no-styling",
+			href,
 			target: "_blank",
+			rel: "noreferrer",
 			repo,
 		},
 		[
-			nTitle,
-			nDescription,
-			h("div", { class: "gc-infobar" }, [nStars, nForks, nLicense, nLanguage]),
-			nScript,
+			h("div", { class: "gc-mark", ariaHidden: "true" }, [
+				h("svg", { viewBox: "0 0 16 16" }, [
+					h("path", { d: "M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.6 7.6 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" }),
+				]),
+			]),
+			h("div", { class: "gc-body" }, [
+				h("span", "GitHub repository"),
+				h("strong", [h("em", owner), h("small", "/"), name]),
+				h("p", href),
+			]),
+			h("div", { class: "gc-corner", ariaHidden: "true" }, "↗"),
 		],
 	);
 }
