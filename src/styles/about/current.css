@@ -1,0 +1,347 @@
+.about-slide--now {
+    --about-current-paper: oklch(0.9 0.026 78);
+    --about-current-note: oklch(0.965 0.018 82 / 0.88);
+    --about-current-ink: oklch(0.2 0.022 258);
+    --about-current-muted: oklch(0.36 0.025 258 / 0.62);
+    --about-current-blue: oklch(0.46 0.12 246);
+    --about-current-red: oklch(0.54 0.16 32);
+    background:
+        radial-gradient(ellipse at 24% 22%, oklch(0.98 0.034 86 / 0.56), transparent 27rem),
+        radial-gradient(ellipse at 78% 76%, oklch(0.76 0.036 70 / 0.24), transparent 25rem),
+        var(--about-current-paper);
+    color: var(--about-current-ink);
+}
+
+.about-slide--now::before {
+    z-index: 0;
+    opacity: 0.62;
+    background:
+        linear-gradient(oklch(0.34 0.02 246 / 0.075) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(0.34 0.02 246 / 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 22% 24%, oklch(1 0 0 / 0.5) 0 1px, transparent 1.6px);
+    background-size: 4.4rem 4.4rem, 4.4rem 4.4rem, 0.72rem 0.72rem;
+    mask-image: none;
+}
+
+.about-slide--now::after {
+    inset: 0;
+    height: auto;
+    z-index: 0;
+    background:
+        linear-gradient(90deg, oklch(0.22 0.018 52 / 0.12), transparent 12%, transparent 88%, oklch(0.22 0.018 52 / 0.1)),
+        repeating-linear-gradient(0deg, oklch(0.18 0.014 60 / 0.022) 0 1px, transparent 1px 5px);
+    mix-blend-mode: multiply;
+}
+
+.about-current-paper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.about-current-watermark {
+    position: absolute;
+    right: clamp(1.2rem, 7vw, 8rem);
+    bottom: clamp(2rem, 5vw, 4rem);
+    color: oklch(0.26 0.02 248 / 0.055);
+    font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: clamp(12rem, 28vw, 30rem);
+    font-weight: 900;
+    letter-spacing: -0.16em;
+    line-height: 0.72;
+}
+
+.about-current-route {
+    position: absolute;
+    inset: clamp(5.8rem, 8vw, 7rem) clamp(1.2rem, 4vw, 4rem) clamp(1.8rem, 4vw, 3rem);
+    width: auto;
+    height: auto;
+    fill: none;
+    overflow: visible;
+}
+
+.about-current-route__pencil {
+    stroke: oklch(0.32 0.02 248 / 0.2);
+    stroke-width: 1.1;
+    stroke-linecap: round;
+}
+
+.about-current-route__blue {
+    stroke: oklch(0.44 0.12 246 / 0.64);
+    stroke-width: 2.2;
+    stroke-dasharray: 12 13;
+    stroke-linecap: round;
+}
+
+.about-slide__inner--current {
+    z-index: 2;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100%;
+    padding-top: clamp(7.4rem, 9vw, 8.8rem);
+    padding-bottom: clamp(2.4rem, 5vw, 4.2rem);
+}
+
+.about-current-head {
+    max-width: 34rem;
+    color: var(--about-current-ink);
+}
+
+.about-current-head .about-kicker {
+    color: var(--about-current-blue);
+}
+
+.about-current-head h2 {
+    margin-top: 0.34rem;
+    color: var(--about-current-ink);
+    font-size: clamp(1.3rem, 2.4vw, 2.4rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.about-current-notes {
+    position: relative;
+    display: grid;
+    min-height: min(58vh, 32rem);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+    margin-top: clamp(1rem, 2vw, 1.6rem);
+}
+
+.about-current-note {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: clamp(0.7rem, 1.2vw, 1rem);
+    min-height: clamp(10.5rem, 18vw, 15rem);
+    border: 1px solid oklch(0.34 0.025 248 / 0.16);
+    padding: clamp(1rem, 1.8vw, 1.35rem);
+    background:
+        linear-gradient(135deg, oklch(1 0 0 / 0.52), transparent 34%),
+        repeating-linear-gradient(0deg, transparent 0 11px, oklch(0.33 0.02 248 / 0.035) 11px 12px),
+        var(--about-current-note);
+    color: var(--about-current-ink);
+    box-shadow: 0 18px 38px oklch(0.28 0.018 62 / 0.12);
+}
+
+.about-current-note::before {
+    content: "";
+    position: absolute;
+    top: -0.8rem;
+    left: 16%;
+    width: clamp(3.8rem, 7vw, 6rem);
+    height: 1.3rem;
+    border: 1px solid oklch(0.54 0.03 80 / 0.16);
+    background: oklch(0.96 0.034 86 / 0.46);
+    transform: rotate(-3deg);
+    mix-blend-mode: multiply;
+}
+
+.about-current-note--site {
+    grid-column: 1 / 5;
+    grid-row: 2 / 6;
+    transform: rotate(-1.3deg);
+}
+
+.about-current-note--archive {
+    grid-column: 7 / 11;
+    grid-row: 1 / 5;
+    transform: rotate(0.9deg);
+}
+
+.about-current-note--taste {
+    grid-column: 4 / 8;
+    grid-row: 5 / 9;
+    transform: rotate(-0.6deg);
+}
+
+.about-current-note__index {
+    color: var(--about-current-blue);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+}
+
+.about-current-note h3 {
+    color: var(--about-current-ink);
+    font-size: clamp(1.35rem, 2.4vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+}
+
+.about-current-note ul {
+    display: grid;
+    gap: 0.38rem;
+    color: var(--about-current-muted);
+    font-size: clamp(0.72rem, 1vw, 0.88rem);
+    font-weight: 760;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.about-current-note li::before {
+    content: "+";
+    margin-right: 0.5rem;
+    color: var(--about-current-blue);
+}
+
+.about-current-redline {
+    position: absolute;
+    left: max(clamp(2rem, 8vw, 8rem), calc((100vw - var(--page-width)) / 2 + 2rem));
+    bottom: clamp(3.2rem, 7vw, 5.4rem);
+    display: grid;
+    gap: 0.14rem;
+    color: var(--about-current-red);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transform: rotate(-7deg);
+}
+
+.about-current-redline span {
+    position: relative;
+    color: oklch(0.28 0.02 248 / 0.48);
+}
+
+.about-current-redline span::after {
+    content: "";
+    position: absolute;
+    left: -0.12rem;
+    right: -0.2rem;
+    top: 54%;
+    height: 2px;
+    background: var(--about-current-red);
+    transform: rotate(-8deg);
+}
+
+.about-current-redline b {
+    color: var(--about-current-red);
+}
+
+.about-current-footer {
+    justify-self: end;
+    color: var(--about-current-muted);
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.about-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.72fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: end;
+}
+
+.about-current-list {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.about-current-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    min-height: 3.2rem;
+    border-bottom: 1px solid var(--about-deck-line);
+    color: oklch(0.9 0.012 270 / 0.82);
+    font-weight: 760;
+}
+
+.about-current-item span {
+    color: color-mix(in oklch, var(--primary) 72%, var(--about-deck-muted));
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+}
+
+@media (max-width: 768px) {
+    .about-slide__inner--current {
+            display: flex;
+            min-height: 100%;
+            padding: 6.4rem 1.25rem 2rem;
+        }
+
+    .about-current-watermark {
+            right: -1.8rem;
+            bottom: 4.2rem;
+            font-size: 12rem;
+        }
+
+    .about-current-route {
+            inset: 8.2rem 0.6rem 2rem;
+            opacity: 0.74;
+        }
+
+    .about-current-head h2 {
+            font-size: clamp(1.15rem, 7vw, 1.7rem);
+        }
+
+    .about-current-notes {
+            display: flex;
+            min-height: 0;
+            flex-direction: column;
+            gap: 0.86rem;
+            margin-top: 0.3rem;
+        }
+
+    .about-current-note {
+            min-height: auto;
+            padding: 0.9rem 1rem;
+            transform: none;
+        }
+
+    .about-current-note--site,
+        .about-current-note--archive,
+        .about-current-note--taste {
+            grid-column: auto;
+            grid-row: auto;
+        }
+
+    .about-current-note--site { transform: rotate(-0.8deg); }
+
+    .about-current-note--archive { transform: rotate(0.7deg); }
+
+    .about-current-note--taste { transform: rotate(-0.4deg); }
+
+    .about-current-note h3 {
+            font-size: 1.24rem;
+        }
+
+    .about-current-note ul {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.24rem 0.5rem;
+            font-size: 0.62rem;
+            letter-spacing: 0.04em;
+        }
+
+    .about-current-note li::before {
+            margin-right: 0.24rem;
+        }
+
+    .about-current-redline {
+            left: 1.35rem;
+            bottom: 3.6rem;
+            font-size: 0.68rem;
+        }
+
+    .about-current-footer {
+            align-self: end;
+            max-width: 14rem;
+            text-align: right;
+            font-size: 0.62rem;
+        }
+
+    .about-current-item {
+            min-height: 2.8rem;
+            font-size: 0.9rem;
+        }
+}

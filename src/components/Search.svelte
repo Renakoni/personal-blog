@@ -1,5 +1,6 @@
 <script lang="ts">
-import Icon from "@iconify/svelte";
+import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
+import { navbarIcons } from "./navbar-icons";
 import { url } from "@utils/url-utils.ts";
 import { onMount, tick } from "svelte";
 import type { SearchResult } from "@/global";
@@ -293,7 +294,7 @@ onMount(() => {
 		bg-black/[0.04] hover:bg-black/[0.06] focus-visible:bg-black/[0.06]
 		dark:bg-white/5 dark:hover:bg-white/10 dark:focus-visible:bg-white/10"
 	>
-		<Icon icon="material-symbols:search" class="text-[1.2rem] text-black/45 dark:text-white/45" />
+		<Icon icon={navbarIcons["material-symbols:search"]} class="text-[1.2rem] text-black/45 dark:text-white/45" />
 		<span class="command-trigger__key">⌘K</span>
 	</button>
 
@@ -303,7 +304,7 @@ onMount(() => {
 		id="search-switch"
 		class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90"
 	>
-		<Icon icon="material-symbols:search" class="text-[1.25rem]"></Icon>
+		<Icon icon={navbarIcons["material-symbols:search"]} class="text-[1.25rem]"></Icon>
 	</button>
 
 	<div
@@ -321,7 +322,7 @@ onMount(() => {
 		</div>
 
 		<div id="search-bar-inside" class="command-palette__input-wrap">
-			<Icon icon="material-symbols:terminal-rounded" class="command-palette__input-icon" />
+			<Icon icon={navbarIcons["material-symbols:terminal-rounded"]} class="command-palette__input-icon" />
 			<input
 				bind:this={inputEl}
 				placeholder="Jump to a page or search posts..."
@@ -352,7 +353,7 @@ onMount(() => {
 						role="option"
 						aria-selected={activeIndex === index}
 					>
-						<span class="command-palette__icon"><Icon icon={item.icon} /></span>
+						<span class="command-palette__icon"><Icon icon={navbarIcons[item.icon]} /></span>
 						<span class="command-palette__copy">
 							<span class="command-palette__title">{item.title}</span>
 							<span class="command-palette__desc">{item.description}</span>
@@ -392,7 +393,7 @@ onMount(() => {
 						role="option"
 						aria-selected={activeIndex === itemIndex}
 					>
-						<span class="command-palette__icon"><Icon icon="material-symbols:article-outline-rounded" /></span>
+						<span class="command-palette__icon"><Icon icon={navbarIcons["material-symbols:article-outline-rounded"]} /></span>
 						<span class="command-palette__copy">
 							<span class="command-palette__title">{item.title}</span>
 							<span class="command-palette__desc">{@html item.description}</span>

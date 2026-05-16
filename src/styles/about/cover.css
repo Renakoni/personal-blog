@@ -1,0 +1,392 @@
+.about-slide--cover {
+    --about-paper: oklch(0.91 0.028 78);
+    --about-paper-deep: oklch(0.82 0.034 74);
+    --about-paper-ink: oklch(0.2 0.024 258);
+    --about-paper-muted: oklch(0.34 0.024 258 / 0.64);
+    --about-pencil: oklch(0.42 0.025 246 / 0.28);
+    --about-blue-pencil: oklch(0.46 0.12 246);
+    --about-red-pencil: oklch(0.54 0.16 32);
+    --about-tape: oklch(0.95 0.035 86 / 0.46);
+    background:
+        radial-gradient(ellipse at 18% 16%, oklch(0.98 0.035 86 / 0.64), transparent 28rem),
+        radial-gradient(ellipse at 88% 20%, oklch(0.75 0.038 68 / 0.28), transparent 24rem),
+        linear-gradient(115deg, oklch(0.76 0.026 68 / 0.24), transparent 34%),
+        var(--about-paper);
+    color: var(--about-paper-ink);
+}
+
+.about-slide--cover::before {
+    z-index: 0;
+    opacity: 0.72;
+    background:
+        linear-gradient(90deg, transparent 0 6.1rem, oklch(0.45 0.028 245 / 0.12) 6.1rem 6.16rem, transparent 6.16rem),
+        linear-gradient(oklch(0.34 0.02 246 / 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(0.34 0.02 246 / 0.055) 1px, transparent 1px),
+        radial-gradient(circle at 18% 20%, oklch(1 0 0 / 0.55) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 72% 64%, oklch(0.3 0.018 70 / 0.16) 0 0.8px, transparent 1.4px);
+    background-size: 100% 100%, 4.75rem 4.75rem, 4.75rem 4.75rem, 0.78rem 0.78rem, 0.62rem 0.62rem;
+    mask-image: none;
+}
+
+.about-slide--cover::after {
+    inset: 0;
+    height: auto;
+    z-index: 0;
+    background:
+        linear-gradient(90deg, oklch(0.24 0.018 50 / 0.18), transparent 10%, transparent 90%, oklch(0.24 0.018 50 / 0.13)),
+        linear-gradient(180deg, oklch(1 0 0 / 0.42), transparent 13%, transparent 78%, oklch(0.48 0.024 62 / 0.18)),
+        repeating-linear-gradient(0deg, oklch(0.18 0.014 60 / 0.028) 0 1px, transparent 1px 4px);
+    mix-blend-mode: multiply;
+}
+
+.about-cover-paper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.about-cover-paper::before,
+.about-cover-paper::after {
+    content: "";
+    position: absolute;
+    inset: clamp(5.8rem, 8vw, 7.4rem) clamp(1.1rem, 3vw, 3.2rem) clamp(1rem, 3vw, 2.4rem);
+    border: 1px solid oklch(0.36 0.024 246 / 0.16);
+    transform: rotate(-0.22deg);
+}
+
+.about-cover-paper::after {
+    inset: clamp(7.4rem, 10vw, 9.2rem) clamp(2rem, 6vw, 7rem) clamp(2.2rem, 6vw, 5rem);
+    border-style: dashed;
+    border-color: oklch(0.36 0.024 246 / 0.1);
+    transform: rotate(0.18deg);
+}
+
+.about-cover-registration {
+    position: absolute;
+    z-index: 3;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-color: oklch(0.2 0.018 250 / 0.36);
+}
+
+.about-cover-registration--tl { top: clamp(6.6rem, 8vw, 7.8rem); left: clamp(1.7rem, 4vw, 4rem); border-top: 1px solid; border-left: 1px solid; }
+.about-cover-registration--tr { top: clamp(6.6rem, 8vw, 7.8rem); right: clamp(1.7rem, 4vw, 4rem); border-top: 1px solid; border-right: 1px solid; }
+.about-cover-registration--bl { bottom: clamp(1.7rem, 4vw, 3.8rem); left: clamp(1.7rem, 4vw, 4rem); border-bottom: 1px solid; border-left: 1px solid; }
+.about-cover-registration--br { right: clamp(1.7rem, 4vw, 4rem); bottom: clamp(1.7rem, 4vw, 3.8rem); border-right: 1px solid; border-bottom: 1px solid; }
+
+.about-cover-tape {
+    position: absolute;
+    z-index: 5;
+    border: 1px solid oklch(0.55 0.03 78 / 0.16);
+    background:
+        linear-gradient(90deg, oklch(1 0 0 / 0.2), transparent 18% 80%, oklch(1 0 0 / 0.18)),
+        repeating-linear-gradient(90deg, transparent 0 9px, oklch(0.35 0.02 72 / 0.035) 9px 10px),
+        var(--about-tape);
+    box-shadow: 0 8px 24px oklch(0.32 0.02 68 / 0.12);
+    mix-blend-mode: multiply;
+}
+
+.about-cover-tape--top {
+    top: clamp(6.4rem, 8vw, 7.7rem);
+    left: 47%;
+    width: clamp(7rem, 14vw, 13rem);
+    height: clamp(1.8rem, 3vw, 2.5rem);
+    transform: rotate(-3.2deg);
+}
+
+.about-cover-tape--side {
+    right: clamp(2.2rem, 6vw, 7rem);
+    bottom: clamp(10rem, 20vw, 15rem);
+    width: clamp(1.9rem, 4vw, 2.7rem);
+    height: clamp(8rem, 16vw, 12rem);
+    transform: rotate(2.8deg);
+}
+
+.about-cover-pencil-lines {
+    position: absolute;
+    inset: clamp(5rem, 7vw, 6.4rem) clamp(1.2rem, 3vw, 3.6rem) clamp(1.4rem, 3vw, 3rem);
+    z-index: 2;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    fill: none;
+    stroke: var(--about-pencil);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.about-cover-pencil-lines circle {
+    stroke-dasharray: 5 11;
+}
+
+.about-cover-pan-mark {
+    position: absolute;
+    z-index: 4;
+    right: clamp(-3.5rem, -2vw, -1rem);
+    bottom: clamp(7rem, 12vw, 10rem);
+    width: min(78vw, 58rem);
+    max-height: 44vh;
+    overflow: visible;
+    fill: none;
+    transform: rotate(-1.2deg);
+    filter: drop-shadow(0 18px 18px oklch(0.24 0.02 62 / 0.08));
+}
+
+.about-cover-pan-mark path {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 930;
+    stroke-dashoffset: 930;
+    animation: about-sketch-draw 1100ms var(--motion-ease-emphatic) forwards;
+    animation-delay: calc(var(--motion-stagger-step) * 2);
+}
+
+.about-cover-pan-mark__draft path {
+    stroke: oklch(0.24 0.02 250 / 0.2);
+    stroke-width: 18;
+}
+
+.about-cover-pan-mark__ink path {
+    stroke: oklch(0.18 0.02 252 / 0.78);
+    stroke-width: 8.5;
+}
+
+.about-cover-pan-mark__blue path {
+    stroke: oklch(0.42 0.13 246 / 0.72);
+    stroke-width: 3.2;
+    stroke-dasharray: 18 15;
+}
+
+.about-cover-dossier-meta,
+.about-cover-note,
+.about-cover-red-mark {
+    font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.about-cover-dossier-meta {
+    position: absolute;
+    top: clamp(7.8rem, 10vw, 9.8rem);
+    left: max(clamp(1.6rem, 5vw, 5.2rem), calc((100vw - var(--page-width)) / 2 + 1.2rem));
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.1rem;
+    color: var(--about-paper-muted);
+    font-size: clamp(0.62rem, 1vw, 0.78rem);
+    font-weight: 850;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.about-cover-dossier-meta span:first-child {
+    color: var(--about-paper-ink);
+}
+
+.about-cover-theatre {
+    position: relative;
+    max-width: 25rem;
+    margin-bottom: clamp(1.2rem, 4vw, 2.8rem);
+    color: var(--about-paper-ink);
+}
+
+.about-slide--cover .about-kicker {
+    color: var(--about-blue-pencil);
+}
+
+.about-slide--cover .about-cover-title {
+    display: block;
+    color: var(--about-paper-ink);
+    font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: clamp(3.8rem, 11vw, 9.4rem);
+    font-weight: 900;
+    letter-spacing: -0.09em;
+    line-height: 0.82;
+    opacity: 0.18;
+    text-shadow: none;
+}
+
+.about-slide--cover .about-cover-subtitle {
+    margin-top: 0.82rem;
+    color: var(--about-paper-muted);
+    font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: clamp(0.78rem, 1.25vw, 0.98rem);
+    font-weight: 760;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.about-cover-note {
+    position: absolute;
+    z-index: 6;
+    display: grid;
+    gap: 0.2rem;
+    max-width: 13.5rem;
+    color: var(--about-paper-muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.about-cover-note b {
+    color: var(--about-paper-ink);
+    font-size: clamp(0.82rem, 1.2vw, 1rem);
+    font-weight: 850;
+    letter-spacing: 0.02em;
+    text-transform: none;
+}
+
+.about-cover-note::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    background: currentColor;
+    transform-origin: left center;
+}
+
+.about-cover-note--blue {
+    top: clamp(12rem, 18vw, 16rem);
+    right: clamp(1.6rem, 5vw, 5.8rem);
+    color: var(--about-blue-pencil);
+    transform: rotate(-1.8deg);
+}
+
+.about-cover-note--blue::before {
+    right: 100%;
+    top: 1.1rem;
+    width: clamp(4rem, 8vw, 7.2rem);
+    transform: rotate(-8deg);
+}
+
+.about-cover-pencil-tag {
+    position: absolute;
+    z-index: 3;
+    right: clamp(17rem, 29vw, 34rem);
+    bottom: clamp(9rem, 15vw, 13rem);
+    width: clamp(4.5rem, 8vw, 7rem);
+    height: clamp(1.4rem, 2vw, 1.8rem);
+    border-top: 1px solid oklch(0.28 0.02 248 / 0.26);
+    border-bottom: 1px solid oklch(0.28 0.02 248 / 0.12);
+    transform: rotate(-8deg);
+}
+
+.about-cover-pencil-tag::before,
+.about-cover-pencil-tag::after {
+    content: "";
+    position: absolute;
+    left: 0.4rem;
+    right: 0.4rem;
+    height: 1px;
+    background: oklch(0.28 0.02 248 / 0.16);
+}
+
+.about-cover-pencil-tag::before { top: 0.42rem; }
+.about-cover-pencil-tag::after { bottom: 0.42rem; }
+
+.about-cover-red-mark {
+    position: absolute;
+    z-index: 7;
+    top: clamp(13.6rem, 21vw, 18.5rem);
+    left: max(clamp(2rem, 7vw, 7rem), calc((100vw - var(--page-width)) / 2 + 2rem));
+    color: var(--about-red-pencil);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transform: rotate(-12deg);
+}
+
+.about-cover-red-mark::before,
+.about-cover-red-mark::after {
+    content: "";
+    position: absolute;
+    left: -0.9rem;
+    top: 50%;
+    width: 0.7rem;
+    height: 1.5px;
+    border-radius: 999px;
+    background: currentColor;
+}
+
+.about-cover-red-mark::before { transform: rotate(44deg); }
+.about-cover-red-mark::after { transform: rotate(-44deg); }
+
+.about-slide--cover .about-slide-count {
+    color: oklch(0.25 0.018 252 / 0.48);
+}
+
+@keyframes about-sketch-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 768px) {
+    .about-slide__inner--cover {
+            padding-top: 6.2rem;
+            padding-bottom: 2.5rem;
+        }
+
+    .about-cover-paper::before {
+            inset: 5.9rem 0.95rem 1.1rem;
+        }
+
+    .about-cover-paper::after {
+            inset: 7.2rem 1.5rem 2.2rem;
+        }
+
+    .about-cover-pencil-lines {
+            inset: 5.8rem 0.2rem 1.6rem;
+            opacity: 0.72;
+        }
+
+    .about-cover-pan-mark {
+            right: -2.6rem;
+            bottom: 11.5rem;
+            width: 27.5rem;
+            max-width: none;
+            opacity: 0.9;
+        }
+
+    .about-cover-dossier-meta {
+            left: 1.35rem;
+            right: 1.35rem;
+            top: 7rem;
+        }
+
+    .about-cover-note--blue {
+            top: 14rem;
+            right: 1.4rem;
+            max-width: 10.5rem;
+        }
+
+    .about-cover-note--blue::before {
+            width: 3.2rem;
+            transform: rotate(9deg);
+        }
+
+    .about-cover-pencil-tag {
+            right: 3.6rem;
+            bottom: 19rem;
+            width: 4.2rem;
+            opacity: 0.62;
+        }
+
+    .about-cover-tape--side {
+            right: 1.4rem;
+            bottom: 8.2rem;
+            height: 7.2rem;
+        }
+
+    .about-cover-red-mark {
+            top: 15.6rem;
+            left: 1.55rem;
+        }
+
+    .about-slide--cover .about-cover-title {
+            font-size: clamp(3.4rem, 24vw, 5.7rem);
+        }
+
+    .about-cover-title {
+            font-size: clamp(2.45rem, 14vw, 4rem);
+        }
+}
